@@ -1006,7 +1006,6 @@ export default function App() {
               ))}
             </div>
           )}
-          </div>
         </nav>
 
         {/* ── HERO ───────────────────────────────── */}
