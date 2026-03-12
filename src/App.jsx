@@ -223,13 +223,13 @@ function BoschLogo({ scale = 1, uid = "0" }) {
 }
 
 /* Amazon: lowercase "amazon" dark-gray + orange smile-arrow */
-function AmazonLogo({ scale = 1 }) {
+function AmazonLogo({ scale = 1, isDark = false }) {
   const W = 148 * scale, H = 52 * scale;
   return (
     <svg width={W} height={H} viewBox="0 0 148 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* "amazon" text — same dark near-black the brand uses */}
+      {/* "amazon" text — theme-aware */}
       <text x="2" y="32"
-        fill="#232F3E"
+        fill={isDark ? "#f1f5f9" : "#232F3E"}
         fontFamily="'Helvetica Neue','Arial',sans-serif"
         fontWeight="700"
         fontSize="30"
@@ -248,7 +248,7 @@ function AmazonLogo({ scale = 1 }) {
 }
 
 /* Ascent Global Logistics: dot cluster (teal→navy) + "ascent" lowercase navy text */
-function AscentLogo({ scale = 1 }) {
+function AscentLogo({ scale = 1, isDark = false }) {
   const W = 200 * scale, H = 68 * scale;
   /* Dot positions: [cx, cy, r, color]
      Arranged as an ascending cluster — large teal top-left,
@@ -269,9 +269,9 @@ function AscentLogo({ scale = 1 }) {
       {dots.map(([cx, cy, r, color], i) => (
         <circle key={i} cx={cx} cy={cy} r={r} fill={color}/>
       ))}
-      {/* "ascent" wordmark — bold rounded navy, matching the real brand */}
+      {/* "ascent" wordmark — theme-aware */}
       <text x="68" y="48"
-        fill="#1B3A72"
+        fill={isDark ? "#f1f5f9" : "#1B3A72"}
         fontFamily="'Segoe UI','Helvetica Neue','Arial',sans-serif"
         fontWeight="700"
         fontSize="36"
@@ -598,7 +598,7 @@ function PastCard({ e, i, th }) {
     }}>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:18 }}>
         <div>
-          {LogoComp && <div style={{ marginBottom:12 }}><LogoComp scale={0.78} /></div>}
+          {LogoComp && <div style={{ marginBottom:12 }}><LogoComp scale={0.78} isDark={th.isDark} /></div>}
           <h4 style={{ fontFamily:"'Outfit',sans-serif", fontSize:17, fontWeight:800, color:th.text, marginBottom:2 }}>{e.role}</h4>
           <p style={{ fontFamily:"'Inter',sans-serif", fontSize:13, color:th.textMid, fontWeight:500 }}>{e.company}</p>
         </div>
@@ -768,6 +768,69 @@ function ParticleCanvas({ th }) {
   return <canvas ref={ref} style={{ position:"absolute", inset:0, zIndex:0, pointerEvents:"none", opacity:0.7 }} />;
 }
 
+/* ─── CYBER CAR BACKGROUND ─────────────────────────────────────── */
+function BgCar() {
+  const circuitNodes = [[118,216],[198,184],[308,162],[435,140],[568,144],[665,160],[750,196]];
+  const branchEnds   = [[198,256],[308,112],[435,112],[568,112],[665,256]];
+  return (
+    <svg viewBox="0 0 900 290" width="900" height="290" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* ── Car body silhouette (sedan side profile) ── */}
+      <path
+        d="M 55,248 L 145,248 A 74,50 0 0,0 285,248 L 618,248 A 74,50 0 0,0 758,248
+           L 818,248 L 826,230 L 812,205 L 772,183 L 736,175 L 704,162
+           C 674,136 642,116 620,112 L 370,112
+           C 348,116 320,130 300,150 L 274,176 L 240,188 L 180,196 L 124,210 L 84,224 Z"
+        fill="currentColor" fillOpacity="0.4"
+      />
+      {/* Windshield */}
+      <path d="M 302,150 L 324,115 L 438,112 L 438,154 Z"
+        stroke="currentColor" strokeWidth="1.2" fill="none"/>
+      {/* Rear window */}
+      <path d="M 443,112 L 620,112 L 618,154 L 443,154 Z"
+        stroke="currentColor" strokeWidth="1.2" fill="none"/>
+      {/* Front wheel */}
+      <circle cx="215" cy="278" r="40" stroke="currentColor" strokeWidth="2.5"/>
+      <circle cx="215" cy="278" r="26" stroke="currentColor" strokeWidth="0.9" strokeDasharray="4 3"/>
+      <circle cx="215" cy="278" r="7" fill="currentColor"/>
+      {/* Rear wheel */}
+      <circle cx="688" cy="278" r="40" stroke="currentColor" strokeWidth="2.5"/>
+      <circle cx="688" cy="278" r="26" stroke="currentColor" strokeWidth="0.9" strokeDasharray="4 3"/>
+      <circle cx="688" cy="278" r="7" fill="currentColor"/>
+      {/* Headlight detail */}
+      <path d="M 78,226 L 98,218 L 108,221 L 104,230 L 80,233 Z"
+        stroke="currentColor" strokeWidth="0.9" fill="none"/>
+      {/* Taillight detail */}
+      <path d="M 814,228 L 800,221 L 792,224 L 796,232 L 816,235 Z"
+        stroke="currentColor" strokeWidth="0.9" fill="none"/>
+      {/* ── Circuit traces (CAN bus / ECU network) ── */}
+      {/* Main horizontal trace */}
+      <polyline
+        points="118,216 198,184 308,162 435,140 568,144 665,160 750,196"
+        stroke="currentColor" strokeWidth="1" strokeDasharray="7 4"/>
+      {/* Branch traces */}
+      <line x1="198" y1="184" x2="198" y2="248" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3"/>
+      <line x1="308" y1="162" x2="308" y2="113" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3"/>
+      <line x1="435" y1="140" x2="435" y2="112" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3"/>
+      <line x1="568" y1="144" x2="568" y2="112" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3"/>
+      <line x1="665" y1="160" x2="688" y2="248" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3"/>
+      {/* Secondary cross-trace */}
+      <polyline points="198,184 240,162 308,162" stroke="currentColor" strokeWidth="0.6" strokeDasharray="4 4"/>
+      <polyline points="568,144 620,150 665,160" stroke="currentColor" strokeWidth="0.6" strokeDasharray="4 4"/>
+      {/* Circuit nodes — primary */}
+      {circuitNodes.map(([x, y], i) => (
+        <g key={i}>
+          <circle cx={x} cy={y} r="5.5" stroke="currentColor" strokeWidth="1" fill="none"/>
+          <circle cx={x} cy={y} r="2.2" fill="currentColor"/>
+        </g>
+      ))}
+      {/* Circuit nodes — secondary (branch endpoints) */}
+      {branchEnds.map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r="3.5" stroke="currentColor" strokeWidth="0.9" fill="none"/>
+      ))}
+    </svg>
+  );
+}
+
 /* ─── MAIN APP ──────────────────────────────────────────────────── */
 export default function App() {
   const [dark, setDark] = useState(false);
@@ -826,7 +889,10 @@ export default function App() {
           <div style={{ maxWidth:1200, margin:"0 auto", padding:"0 28px", height:66, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
             <a href="#about" style={{ textDecoration:"none", display:"flex", alignItems:"center", gap:10 }}>
               <div style={{ width:32, height:32, borderRadius:9, background:`linear-gradient(135deg,${th.accent},#7c3aed)`, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:`0 4px 12px ${th.accent}40` }}>
-                <span style={{ fontFamily:"'Outfit',sans-serif", fontWeight:900, fontSize:14, color:"#fff" }}>MW</span>
+                <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 1.5L2 4V8.5C2 12 4.5 15.2 8 16.5C11.5 15.2 14 12 14 8.5V4L8 1.5Z" fill="rgba(255,255,255,0.22)" stroke="white" strokeWidth="1.25" strokeLinejoin="round"/>
+                  <path d="M5.5 9.2L7.2 11L10.8 7.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
               <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:17, fontWeight:800, color:th.text, letterSpacing:-0.3 }}>
                 Micheal<span style={{ color:th.accent }}>.</span>
@@ -859,6 +925,11 @@ export default function App() {
           {/* Gradient blobs */}
           <div style={{ position:"absolute", top:"10%", right:"5%", width:500, height:500, borderRadius:"50%", background:`radial-gradient(circle, ${th.accent}08 0%, transparent 70%)`, pointerEvents:"none", animation:"float 8s ease-in-out infinite" }} />
           <div style={{ position:"absolute", bottom:"10%", left:"5%", width:350, height:350, borderRadius:"50%", background:`radial-gradient(circle, rgba(226,0,21,0.04) 0%, transparent 70%)`, pointerEvents:"none", animation:"float 10s ease-in-out infinite 1s" }} />
+
+          {/* Cyber car silhouette with circuit overlay */}
+          <div style={{ position:"absolute", bottom:"0%", right:"-4%", color:th.accent, opacity:0.045, pointerEvents:"none", userSelect:"none", zIndex:0 }}>
+            <BgCar />
+          </div>
 
           <div style={{ maxWidth:1200, margin:"0 auto", width:"100%", position:"relative", zIndex:1 }}>
             <div style={{ display:"flex", flexWrap:"wrap", gap:48, alignItems:"center" }}>
