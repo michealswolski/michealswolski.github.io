@@ -175,47 +175,17 @@ const SOCIALS = [
 
 /* ─── COMPANY LOGOS ────────────────────────────────────────────── */
 
-/* Bosch: silver/chrome circular emblem with H-anchor symbol + red BOSCH text */
+/* Bosch: bold red BOSCH wordmark — matches official brand identity */
 function BoschLogo({ scale = 1, uid = "0" }) {
-  const rg = `brg${uid}`, ri = `bri${uid}`;
-  const W = 260 * scale, H = 72 * scale;
+  const W = 200 * scale, H = 58 * scale;
   return (
-    <svg width={W} height={H} viewBox="0 0 260 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id={rg} cx="36%" cy="26%" r="78%" gradientUnits="userSpaceOnUse" fx="24" fy="18">
-          <stop offset="0%"   stopColor="#f8f8f8"/>
-          <stop offset="30%"  stopColor="#d6d6d6"/>
-          <stop offset="62%"  stopColor="#a0a0a0"/>
-          <stop offset="100%" stopColor="#686868"/>
-        </radialGradient>
-        <radialGradient id={ri} cx="40%" cy="30%" r="70%" gradientUnits="userSpaceOnUse" fx="28" fy="24">
-          <stop offset="0%"   stopColor="#252525"/>
-          <stop offset="100%" stopColor="#000000"/>
-        </radialGradient>
-      </defs>
-
-      {/* Outer metallic ring */}
-      <circle cx="36" cy="36" r="35.5" fill={`url(#${rg})`}/>
-      {/* Subtle inner ring groove */}
-      <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(0,0,0,0.18)" strokeWidth="1.5"/>
-      {/* Inner dark circle */}
-      <circle cx="36" cy="36" r="28.5" fill={`url(#${ri})`}/>
-
-      {/* H / anchor symbol — white, centred in inner circle */}
-      {/* Left pillar */}
-      <rect x="20" y="15" width="10" height="42" rx="5" fill="white"/>
-      {/* Right pillar */}
-      <rect x="42" y="15" width="10" height="42" rx="5" fill="white"/>
-      {/* Horizontal crossbar */}
-      <rect x="20" y="30.5" width="32" height="11" rx="3.5" fill="white"/>
-
-      {/* BOSCH wordmark */}
-      <text x="82" y="52"
+    <svg width={W} height={H} viewBox="0 0 200 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="2" y="50"
         fill="#E20015"
-        fontFamily="'Arial Black','Arial','Helvetica Neue',sans-serif"
+        fontFamily="'Outfit','Arial Black','Arial',sans-serif"
         fontWeight="900"
-        fontSize="44"
-        letterSpacing="2">
+        fontSize="52"
+        letterSpacing="3">
         BOSCH
       </text>
     </svg>
