@@ -328,6 +328,10 @@ body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
 @keyframes boschGlow{0%,100%{box-shadow:0 0 30px rgba(226,0,21,0.15),0 0 60px rgba(226,0,21,0.05)}50%{box-shadow:0 0 50px rgba(226,0,21,0.25),0 0 100px rgba(226,0,21,0.1)}}
 @keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes breatheA{0%,100%{transform:translate(0,0) scale(1);opacity:0.45}25%{transform:translate(6%,-8%) scale(1.12);opacity:0.65}50%{transform:translate(-4%,5%) scale(0.95);opacity:0.4}75%{transform:translate(3%,2%) scale(1.08);opacity:0.55}}
+@keyframes breatheB{0%,100%{transform:translate(0,0) scale(1);opacity:0.4}30%{transform:translate(-5%,6%) scale(1.1);opacity:0.6}60%{transform:translate(6%,-3%) scale(0.92);opacity:0.35}85%{transform:translate(-2%,-5%) scale(1.05);opacity:0.5}}
+@keyframes breatheC{0%,100%{transform:translate(0,0) scale(1.05);opacity:0.35}20%{transform:translate(4%,7%) scale(0.9);opacity:0.55}45%{transform:translate(-7%,-2%) scale(1.15);opacity:0.3}70%{transform:translate(2%,-6%) scale(0.98);opacity:0.5}}
+@keyframes driftGrid{0%{transform:translate(0,0)}100%{transform:translate(-50%,-50%)}}
 
 .tilt-card{transform-style:preserve-3d}
 .tilt-card .card-shine{
@@ -787,6 +791,44 @@ function ParticleCanvas({ th }) {
   return <canvas ref={ref} style={{ position:"absolute", inset:0, zIndex:0, pointerEvents:"none", opacity:0.7 }} />;
 }
 
+/* ─── BREATHING AMBIENT BACKGROUND ─────────────────────────────── */
+function BreathingBg({ th }) {
+  const accent = th.isDark ? "99,102,241" : "79,70,229";   // indigo
+  const accent2 = th.isDark ? "139,92,246" : "124,58,237";  // violet
+  const red = "226,0,21";
+  const base = th.isDark ? 0.035 : 0.025;  // master opacity — very subtle
+  return (
+    <div style={{ position:"fixed", inset:0, zIndex:-1, pointerEvents:"none", overflow:"hidden" }}>
+      {/* Orb 1 — large indigo, top-left drift */}
+      <div style={{
+        position:"absolute", top:"-15%", left:"-10%", width:"55vmax", height:"55vmax", borderRadius:"50%",
+        background:`radial-gradient(circle, rgba(${accent},${base * 2.2}) 0%, rgba(${accent},0) 70%)`,
+        animation:"breatheA 18s ease-in-out infinite", willChange:"transform,opacity",
+      }} />
+      {/* Orb 2 — medium violet, bottom-right */}
+      <div style={{
+        position:"absolute", bottom:"-10%", right:"-8%", width:"45vmax", height:"45vmax", borderRadius:"50%",
+        background:`radial-gradient(circle, rgba(${accent2},${base * 1.8}) 0%, rgba(${accent2},0) 70%)`,
+        animation:"breatheB 22s ease-in-out infinite", willChange:"transform,opacity",
+      }} />
+      {/* Orb 3 — subtle red accent, center-right (Bosch vibe) */}
+      <div style={{
+        position:"absolute", top:"30%", right:"15%", width:"30vmax", height:"30vmax", borderRadius:"50%",
+        background:`radial-gradient(circle, rgba(${red},${base * 0.9}) 0%, rgba(${red},0) 70%)`,
+        animation:"breatheC 26s ease-in-out infinite", willChange:"transform,opacity",
+      }} />
+      {/* Micro dot grid overlay — barely visible, adds texture */}
+      <div style={{
+        position:"absolute", inset:0,
+        backgroundImage:`radial-gradient(rgba(${accent},${th.isDark ? 0.04 : 0.025}) 1px, transparent 1px)`,
+        backgroundSize:"32px 32px",
+        opacity: 0.5,
+        animation:"driftGrid 120s linear infinite",
+      }} />
+    </div>
+  );
+}
+
 /* ─── CYBER CAR BACKGROUND ─────────────────────────────────────── */
 function BgCar() {
   const circuitNodes = [[118,216],[198,184],[308,162],[435,140],[568,144],[665,160],[750,196]];
@@ -895,6 +937,9 @@ export default function App() {
           : `radial-gradient(ellipse at 10% 20%, rgba(79,70,229,0.04) 0%, transparent 45%), radial-gradient(ellipse at 90% 85%, rgba(124,58,237,0.03) 0%, transparent 50%), ${th.bg}`,
         transition:"background 0.5s ease",
       }} />
+
+      {/* Living breathing ambient orbs + dot grid */}
+      <BreathingBg th={th} />
 
       <div style={{ opacity:loaded?1:0, transition:"opacity 0.5s ease", color:th.text, minHeight:"100vh" }}>
 
