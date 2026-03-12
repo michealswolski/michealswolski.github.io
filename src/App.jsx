@@ -54,7 +54,7 @@ const P = {
   focus: ["Product Cybersecurity","IoT & Embedded Systems","Power Platform Development","Automotive Security","AI-Assisted Engineering"],
 };
 const EDU = [
-  { degree:"B.S. Information Assurance & Cyber Defense", school:"Eastern Michigan University", status:"Expected 2026", loc:"Ypsilanti, MI", honors:"" },
+  { degree:"B.S. Information Assurance & Cyber Defense", school:"Eastern Michigan University", status:"Expected 2026", loc:"Ypsilanti, MI", honors:"GPA: 3.66 • Cum Laude" },
   { degree:"A.A.S. Cybersecurity", school:"Henry Ford College", status:"Graduated 2023", loc:"Dearborn, MI", honors:"GPA: 3.6 • Dean's List" },
 ];
 const CERTS = [
