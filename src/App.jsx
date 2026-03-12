@@ -25,20 +25,20 @@ const T = {
     isDark: false,
   },
   dark: {
-    bg: "#060810", bgAlt: "#0d1117", bgDeep: "#111827",
-    bgNav: "rgba(6,8,16,0.9)", text: "#f1f5f9", textMid: "#94a3b8",
-    textDim: "#475569", textFaint: "#334155",
+    bg: "#07090f", bgAlt: "#0d1117", bgDeep: "#111827",
+    bgNav: "rgba(7,9,15,0.92)", text: "#f1f5f9", textMid: "#94a3b8",
+    textDim: "#64748b", textFaint: "#334155",
     accent: "#818cf8", accentHov: "#a5b4fc",
-    accentGlow: "rgba(129,140,248,0.15)", accentLight: "rgba(129,140,248,0.06)",
-    accentMid: "rgba(129,140,248,0.1)", green: "#34d399", greenBg: "rgba(52,211,153,0.08)",
-    border: "#1e293b", borderHov: "#4338ca",
-    card: "#0d1117", cardHov: "#111827",
-    shadow: "0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3)",
-    shadowMd: "0 4px 24px rgba(0,0,0,0.4)",
-    shadowHov: "0 16px 48px rgba(129,140,248,0.12), 0 4px 16px rgba(0,0,0,0.4)",
-    tagBg: "rgba(255,255,255,0.04)", tagBorder: "#1e293b", tagText: "#94a3b8",
+    accentGlow: "rgba(129,140,248,0.18)", accentLight: "rgba(129,140,248,0.08)",
+    accentMid: "rgba(129,140,248,0.14)", green: "#34d399", greenBg: "rgba(52,211,153,0.08)",
+    border: "#1e293b", borderHov: "#6366f1",
+    card: "#111827", cardHov: "#1a2236",
+    shadow: "0 1px 3px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04)",
+    shadowMd: "0 4px 24px rgba(0,0,0,0.5)",
+    shadowHov: "0 16px 48px rgba(129,140,248,0.15), 0 4px 20px rgba(0,0,0,0.4)",
+    tagBg: "rgba(255,255,255,0.06)", tagBorder: "#1e293b", tagText: "#94a3b8",
     btnBg: "linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)",
-    btnShadow: "0 4px 20px rgba(79,70,229,0.4)",
+    btnShadow: "0 4px 20px rgba(79,70,229,0.45)",
     badgeInternship: "#a78bfa", badgeGH: "#818cf8",
     badgeLab: "#22d3ee", badgeWork: "#94a3b8", badgeCW: "#fbbf24", badgeHome: "#f472b6",
     isDark: true,
@@ -922,9 +922,15 @@ export default function App() {
                 </div>
 
                 <h1 style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(40px,6.5vw,78px)", fontWeight:900, lineHeight:1.06, letterSpacing:-2, marginBottom:14, animation:"fadeUp 0.7s ease 0.1s both" }}>
-                  <span style={{ background:`linear-gradient(135deg, ${th.text} 0%, ${th.text} 40%, ${th.accent} 70%, #7c3aed 100%)`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
-                    Micheal Wolski
-                  </span>
+                  {th.isDark ? (
+                    <span style={{ color:"#f1f5f9" }}>
+                      Micheal <span style={{ color:th.accent }}>Wolski</span>
+                    </span>
+                  ) : (
+                    <span style={{ background:"linear-gradient(135deg, #0f172a 0%, #0f172a 40%, #4f46e5 70%, #7c3aed 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+                      Micheal Wolski
+                    </span>
+                  )}
                 </h1>
 
                 <div style={{ height:30, marginBottom:20, animation:"fadeUp 0.7s ease 0.18s both" }}>
@@ -1096,10 +1102,8 @@ export default function App() {
         <section id="contact" style={{ padding:"110px 28px", background: th.isDark ? th.bg : th.bgAlt }}>
           <div style={{ maxWidth:680, margin:"0 auto", textAlign:"center" }}>
             <SecLabel th={th}>Contact</SecLabel>
-            <h2 style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(30px,4.5vw,48px)", fontWeight:900, letterSpacing:-1, lineHeight:1.1, marginBottom:18 }}>
-              <span style={{ background:`linear-gradient(135deg,${th.text},${th.accent},#7c3aed)`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
-                Let's Work Together
-              </span>
+            <h2 style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(30px,4.5vw,48px)", fontWeight:900, letterSpacing:-1, lineHeight:1.1, marginBottom:18, color:th.text }}>
+              Let's Work <span style={{ color:th.accent }}>Together</span>
             </h2>
             <p style={{ fontFamily:"'Inter',sans-serif", fontSize:16, color:th.textMid, lineHeight:1.8, marginBottom:44 }}>
               Looking for internships, co-ops, and entry-level roles in cybersecurity, IoT security, or product security. Let's connect.
