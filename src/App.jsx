@@ -147,11 +147,13 @@ const SKILLS = [
 
 const HEATMAP = (()=>{
   const d=[]; const now=Date.now();
+  /* Seeded hash so the map is consistent across page reloads */
+  const hash = s => { let h=0; for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;} return Math.abs(h)%100; };
   for(let i=364;i>=0;i--){
     const date=new Date(now-i*86400000); const day=date.getDay();
-    const r=Math.random(); let l=0;
-    if(r>0.55)l=1; if(r>0.72)l=2; if(r>0.85)l=3; if(r>0.93)l=4;
-    if((day===0||day===6)&&r<0.4)l=0;
+    const r=hash(date.toISOString().slice(0,10)+"mw"); let l=0;
+    if(r>55)l=1; if(r>72)l=2; if(r>85)l=3; if(r>93)l=4;
+    if((day===0||day===6)&&r<40)l=0;
     d.push({date:date.toISOString().slice(0,10),level:l});
   }
   return d;
@@ -334,7 +336,44 @@ body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   pointer-events:none;opacity:0;transition:opacity 0.3s;
 }
 .tilt-card:hover .card-shine{opacity:1}
+
+.desktop-nav{display:flex;align-items:center;gap:3px}
+.hamburger-btn{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.mobile-overlay{display:none}
+.mobile-overlay.open{display:flex}
+@media(max-width:860px){
+  .desktop-nav{display:none !important}
+  .hamburger-btn{display:flex !important}
+}
+
+.scroll-top{position:fixed;bottom:28px;right:28px;z-index:150;width:42px;height:42px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;opacity:0;transform:translateY(12px);pointer-events:none}
+.scroll-top.vis{opacity:1;transform:none;pointer-events:auto}
 `;
+
+/* ─── SOCIAL ICONS ────────────────────────────────────────────── */
+function IconLinkedIn({ size = 14, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+    </svg>
+  );
+}
+function IconGitHub({ size = 14, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.51 11.51 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+    </svg>
+  );
+}
+function IconMail({ size = 14, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    </svg>
+  );
+}
+const SOCIAL_ICON = { LinkedIn: IconLinkedIn, GitHub: IconGitHub, Email: IconMail };
 
 /* ─── SMALL ATOMS ──────────────────────────────────────────────── */
 function Badge({ cat, th }) {
@@ -482,7 +521,7 @@ function CareerSection({ th }) {
           {/* Bosch featured card */}
           <div style={{
             position:"relative", borderRadius:22, overflow:"hidden",
-            background: th.isDark ? "#0d0506" : "#fff",
+            background: th.isDark ? "#111520" : "#fff",
             border:`1.5px solid rgba(226,0,21,0.25)`,
             boxShadow:`0 0 0 1px rgba(226,0,21,0.08), 0 24px 80px rgba(226,0,21,0.1), 0 8px 32px rgba(0,0,0,0.08)`,
             animation:"boschGlow 4s ease-in-out infinite",
@@ -819,6 +858,7 @@ export default function App() {
   const [activeNav, setActiveNav] = useState("about");
   const [filterCat, setFilterCat] = useState("ALL");
   const [modal, setModal] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const th = dark ? T.dark : T.light;
   const typed = useTypewriter(P.focus);
 
@@ -878,23 +918,49 @@ export default function App() {
                 Micheal<span style={{ color:th.accent }}>.</span>
               </span>
             </a>
-            <div style={{ display:"flex", alignItems:"center", gap:3 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:4 }}>
+              {/* Desktop nav */}
+              <div className="desktop-nav">
+                {NAV.map(n => (
+                  <a key={n.id} href={`#${n.id}`} style={{
+                    fontFamily:"'Inter',sans-serif", fontSize:13, fontWeight:500,
+                    color: activeNav === n.id ? th.accent : th.textMid,
+                    textDecoration:"none", padding:"6px 11px", borderRadius:8,
+                    background: activeNav === n.id ? th.accentLight : "transparent",
+                    border:`1px solid ${activeNav === n.id ? th.accentMid : "transparent"}`,
+                    transition:"all 0.2s ease",
+                  }}>
+                    {n.label}
+                  </a>
+                ))}
+              </div>
+              <button onClick={() => setDark(!dark)} style={{ marginLeft:6, width:36, height:36, borderRadius:10, background:th.tagBg, border:`1px solid ${th.border}`, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, transition:"all 0.2s ease" }}>
+                {dark ? "☀️" : "🌙"}
+              </button>
+              {/* Hamburger for mobile */}
+              <button className="hamburger-btn" onClick={() => setMenuOpen(!menuOpen)} style={{ marginLeft:4, width:36, height:36, borderRadius:10, background:th.tagBg, border:`1px solid ${th.border}`, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", gap:4 }}>
+                <span style={{ width:16, height:2, background:th.textMid, borderRadius:1, transition:"all 0.2s", transform:menuOpen?"translateY(6px) rotate(45deg)":"none" }} />
+                <span style={{ width:16, height:2, background:th.textMid, borderRadius:1, transition:"all 0.2s", opacity:menuOpen?0:1 }} />
+                <span style={{ width:16, height:2, background:th.textMid, borderRadius:1, transition:"all 0.2s", transform:menuOpen?"translateY(-6px) rotate(-45deg)":"none" }} />
+              </button>
+            </div>
+          </div>
+          {/* Mobile dropdown */}
+          {menuOpen && (
+            <div style={{ background:th.bgNav, backdropFilter:"blur(20px) saturate(180%)", borderBottom:`1px solid ${th.border}`, padding:"12px 24px 18px", display:"flex", flexDirection:"column", gap:4, animation:"fadeIn 0.15s ease" }}>
               {NAV.map(n => (
-                <a key={n.id} href={`#${n.id}`} style={{
-                  fontFamily:"'Inter',sans-serif", fontSize:13, fontWeight:500,
+                <a key={n.id} href={`#${n.id}`} onClick={() => setMenuOpen(false)} style={{
+                  fontFamily:"'Inter',sans-serif", fontSize:14, fontWeight:500,
                   color: activeNav === n.id ? th.accent : th.textMid,
-                  textDecoration:"none", padding:"6px 11px", borderRadius:8,
+                  textDecoration:"none", padding:"10px 14px", borderRadius:10,
                   background: activeNav === n.id ? th.accentLight : "transparent",
-                  border:`1px solid ${activeNav === n.id ? th.accentMid : "transparent"}`,
                   transition:"all 0.2s ease",
                 }}>
                   {n.label}
                 </a>
               ))}
-              <button onClick={() => setDark(!dark)} style={{ marginLeft:8, width:36, height:36, borderRadius:10, background:th.tagBg, border:`1px solid ${th.border}`, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:16, transition:"all 0.2s ease" }}>
-                {dark ? "☀️" : "🌙"}
-              </button>
             </div>
+          )}
           </div>
         </nav>
 
@@ -964,14 +1030,14 @@ export default function App() {
                 </div>
 
                 {/* Stats */}
-                <div style={{ display:"flex", gap:0, animation:"fadeUp 0.7s ease 0.44s both" }}>
+                <div style={{ display:"flex", flexWrap:"wrap", gap:"18px 0", animation:"fadeUp 0.7s ease 0.44s both" }}>
                   {[
                     { num:"23+", label:"Projects Built" },
                     { num:"2", label:"Degrees" },
                     { num:"Bosch", label:"Current Employer" },
                     { num:"2025", label:"Active Intern" },
                   ].map((s, i) => (
-                    <div key={s.label} style={{ paddingRight:32, borderRight: i < 3 ? `1px solid ${th.border}` : "none", paddingLeft: i > 0 ? 32 : 0 }}>
+                    <div key={s.label} style={{ paddingRight:28, borderRight: i < 3 ? `1px solid ${th.border}` : "none", paddingLeft: i > 0 ? 28 : 0 }}>
                       <div style={{ fontFamily:"'Outfit',sans-serif", fontSize:i===2?18:26, fontWeight:900, color:th.accent, lineHeight:1.1 }}>{s.num}</div>
                       <div style={{ fontFamily:"'Inter',sans-serif", fontSize:11.5, color:th.textDim, marginTop:3 }}>{s.label}</div>
                     </div>
@@ -1001,17 +1067,23 @@ export default function App() {
 
                 {/* Social links */}
                 <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
-                  {SOCIALS.map(s => (
-                    <a key={s.label} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" style={{
-                      fontFamily:"'IBM Plex Mono',monospace", fontSize:11, fontWeight:600, color:th.textMid,
-                      background:th.card, border:`1px solid ${th.border}`, borderRadius:10,
-                      padding:"10px 16px", textDecoration:"none", display:"flex", alignItems:"center", justifyContent:"space-between",
-                      boxShadow:th.shadow, transition:"all 0.2s ease",
-                    }}>
-                      {s.label}
-                      <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M2 10L10 2M10 2H5M10 2V7"/></svg>
-                    </a>
-                  ))}
+                  {SOCIALS.map(s => {
+                    const Ic = SOCIAL_ICON[s.label];
+                    return (
+                      <a key={s.label} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" style={{
+                        fontFamily:"'IBM Plex Mono',monospace", fontSize:11, fontWeight:600, color:th.textMid,
+                        background:th.card, border:`1px solid ${th.border}`, borderRadius:10,
+                        padding:"10px 16px", textDecoration:"none", display:"flex", alignItems:"center", justifyContent:"space-between",
+                        boxShadow:th.shadow, transition:"all 0.2s ease",
+                      }}>
+                        <span style={{ display:"flex", alignItems:"center", gap:8 }}>
+                          {Ic && <Ic size={13} color={th.accent} />}
+                          {s.label}
+                        </span>
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M2 10L10 2M10 2H5M10 2V7"/></svg>
+                      </a>
+                    );
+                  })}
                 </div>
 
                 {/* Location badge */}
@@ -1110,17 +1182,21 @@ export default function App() {
             </p>
 
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))", gap:14, marginBottom:44 }}>
-              {SOCIALS.map(s => (
-                <a key={s.label} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" style={{
-                  display:"flex", alignItems:"center", justifyContent:"center", gap:9,
-                  fontFamily:"'Inter',sans-serif", fontSize:14, fontWeight:600, color:th.text,
-                  background:th.card, border:`1px solid ${th.border}`, borderRadius:14,
-                  padding:"16px 22px", textDecoration:"none", boxShadow:th.shadow, transition:"all 0.2s ease",
-                }}>
-                  {s.label}
-                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke={th.accent} strokeWidth="2" strokeLinecap="round"><path d="M2 10L10 2M10 2H5M10 2V7"/></svg>
-                </a>
-              ))}
+              {SOCIALS.map(s => {
+                const Ic = SOCIAL_ICON[s.label];
+                return (
+                  <a key={s.label} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" style={{
+                    display:"flex", alignItems:"center", justifyContent:"center", gap:9,
+                    fontFamily:"'Inter',sans-serif", fontSize:14, fontWeight:600, color:th.text,
+                    background:th.card, border:`1px solid ${th.border}`, borderRadius:14,
+                    padding:"16px 22px", textDecoration:"none", boxShadow:th.shadow, transition:"all 0.2s ease",
+                  }}>
+                    {Ic && <Ic size={16} color={th.accent} />}
+                    {s.label}
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke={th.accent} strokeWidth="2" strokeLinecap="round"><path d="M2 10L10 2M10 2H5M10 2V7"/></svg>
+                  </a>
+                );
+              })}
             </div>
 
             <div style={{ display:"inline-flex", alignItems:"center", gap:12, background:th.accentLight, border:`1px solid ${th.accentMid}`, borderRadius:16, padding:"18px 28px" }}>
@@ -1139,7 +1215,7 @@ export default function App() {
               Micheal<span style={{ color:th.accent }}>.</span>
             </span>
             <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10.5, color:th.textDim, letterSpacing:0.5 }}>
-              © 2025 Micheal Wolski · React + Vite · GitHub Pages
+              © 2025–2026 Micheal Wolski · React + Vite · GitHub Pages
             </span>
             <a href="https://github.com/michealswolski" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10.5, color:th.accent, textDecoration:"none" }}>
               github.com/michealswolski →
@@ -1148,6 +1224,15 @@ export default function App() {
         </footer>
 
       </div>
+
+      {/* Scroll to top */}
+      <button
+        className={`scroll-top ${scrollY > 400 ? "vis" : ""}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        style={{ background:th.accent, boxShadow:th.btnShadow, color:"#fff" }}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+      </button>
 
       {modal && <Modal project={modal} onClose={() => setModal(null)} th={th} />}
     </>
