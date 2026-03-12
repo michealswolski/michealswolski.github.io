@@ -174,39 +174,110 @@ const SOCIALS = [
 ];
 
 /* ─── COMPANY LOGOS ────────────────────────────────────────────── */
-function BoschLogo({ scale = 1 }) {
-  const w = 96 * scale, h = 38 * scale;
+
+/* Bosch: silver/chrome circular emblem with H-anchor symbol + red BOSCH text */
+function BoschLogo({ scale = 1, uid = "0" }) {
+  const rg = `brg${uid}`, ri = `bri${uid}`;
+  const W = 260 * scale, H = 72 * scale;
   return (
-    <svg width={w} height={h} viewBox="0 0 96 38" fill="none">
-      <rect width="96" height="38" rx="6" fill="#E20015"/>
-      <text x="48" y="26" textAnchor="middle" fill="white"
-        fontFamily="Arial Black, Arial" fontWeight="900" fontSize="20" letterSpacing="3">
+    <svg width={W} height={H} viewBox="0 0 260 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id={rg} cx="36%" cy="26%" r="78%" gradientUnits="userSpaceOnUse" fx="24" fy="18">
+          <stop offset="0%"   stopColor="#f8f8f8"/>
+          <stop offset="30%"  stopColor="#d6d6d6"/>
+          <stop offset="62%"  stopColor="#a0a0a0"/>
+          <stop offset="100%" stopColor="#686868"/>
+        </radialGradient>
+        <radialGradient id={ri} cx="40%" cy="30%" r="70%" gradientUnits="userSpaceOnUse" fx="28" fy="24">
+          <stop offset="0%"   stopColor="#252525"/>
+          <stop offset="100%" stopColor="#000000"/>
+        </radialGradient>
+      </defs>
+
+      {/* Outer metallic ring */}
+      <circle cx="36" cy="36" r="35.5" fill={`url(#${rg})`}/>
+      {/* Subtle inner ring groove */}
+      <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(0,0,0,0.18)" strokeWidth="1.5"/>
+      {/* Inner dark circle */}
+      <circle cx="36" cy="36" r="28.5" fill={`url(#${ri})`}/>
+
+      {/* H / anchor symbol — white, centred in inner circle */}
+      {/* Left pillar */}
+      <rect x="20" y="15" width="10" height="42" rx="5" fill="white"/>
+      {/* Right pillar */}
+      <rect x="42" y="15" width="10" height="42" rx="5" fill="white"/>
+      {/* Horizontal crossbar */}
+      <rect x="20" y="30.5" width="32" height="11" rx="3.5" fill="white"/>
+
+      {/* BOSCH wordmark */}
+      <text x="82" y="52"
+        fill="#E20015"
+        fontFamily="'Arial Black','Arial','Helvetica Neue',sans-serif"
+        fontWeight="900"
+        fontSize="44"
+        letterSpacing="2">
         BOSCH
       </text>
     </svg>
   );
 }
 
+/* Amazon: lowercase "amazon" dark-gray + orange smile-arrow */
 function AmazonLogo({ scale = 1 }) {
-  const w = 100 * scale, h = 40 * scale;
+  const W = 148 * scale, H = 52 * scale;
   return (
-    <svg width={w} height={h} viewBox="0 0 100 40" fill="none">
-      <text x="2" y="26" fill="#232F3E" fontFamily="Arial" fontWeight="900" fontSize="22" letterSpacing="-0.5">amazon</text>
-      <path d="M10 32 Q50 44 90 32" stroke="#FF9900" strokeWidth="3" fill="none" strokeLinecap="round"/>
-      <path d="M86 28.5 L90 32 L85.5 35" fill="none" stroke="#FF9900" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width={W} height={H} viewBox="0 0 148 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* "amazon" text — same dark near-black the brand uses */}
+      <text x="2" y="32"
+        fill="#232F3E"
+        fontFamily="'Helvetica Neue','Arial',sans-serif"
+        fontWeight="700"
+        fontSize="30"
+        letterSpacing="-0.4">
+        amazon
+      </text>
+      {/* Smile curve: starts under "a", dips down, arrowhead under "n" */}
+      <path d="M14 40 C28 50, 110 50, 132 40"
+        stroke="#FF9900" strokeWidth="3.8" fill="none" strokeLinecap="round"/>
+      {/* Arrow tip pointing upper-right */}
+      <path d="M126 35.5 L132 40 L125.5 43.5"
+        fill="none" stroke="#FF9900" strokeWidth="3.2"
+        strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 }
 
+/* Ascent Global Logistics: dot cluster (teal→navy) + "ascent" lowercase navy text */
 function AscentLogo({ scale = 1 }) {
-  const w = 120 * scale, h = 40 * scale;
+  const W = 200 * scale, H = 68 * scale;
+  /* Dot positions: [cx, cy, r, color]
+     Arranged as an ascending cluster — large teal top-left,
+     stepping down-right to small dark-navy (mirrors the real logo) */
+  const dots = [
+    [23, 13, 12,  "#08C4D8"], // top — largest, bright teal
+    [40, 23, 10,  "#0BB8CC"], // second row right
+    [10, 28,  9,  "#0AA8C0"], // second row left
+    [28, 34,  8,  "#0A90B8"], // third row centre
+    [46, 36,  7.5,"#0A7CB4"], // third row right
+    [16, 44,  7,  "#1468A8"], // fourth row left
+    [34, 46,  6.5,"#1458A0"], // fourth row centre
+    [ 6, 52,  6,  "#165099"], // bottom-left small
+    [48, 50,  5.5,"#1B4B8A"], // bottom-right darkest
+  ];
   return (
-    <svg width={w} height={h} viewBox="0 0 120 40" fill="none">
-      <rect x="0" y="0" width="40" height="40" rx="6" fill="#1B4B8A"/>
-      <path d="M12 28 L20 12 L28 28" stroke="white" strokeWidth="2.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
-      <path d="M15 22 L25 22" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-      <text x="48" y="18" fill="#1B4B8A" fontFamily="Arial" fontWeight="900" fontSize="13" letterSpacing="2">ASCENT</text>
-      <text x="48" y="33" fill="#4A90D9" fontFamily="Arial" fontWeight="500" fontSize="9" letterSpacing="1.5">GLOBAL LOGISTICS</text>
+    <svg width={W} height={H} viewBox="0 0 200 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {dots.map(([cx, cy, r, color], i) => (
+        <circle key={i} cx={cx} cy={cy} r={r} fill={color}/>
+      ))}
+      {/* "ascent" wordmark — bold rounded navy, matching the real brand */}
+      <text x="68" y="48"
+        fill="#1B3A72"
+        fontFamily="'Segoe UI','Helvetica Neue','Arial',sans-serif"
+        fontWeight="700"
+        fontSize="36"
+        letterSpacing="-0.5">
+        ascent
+      </text>
     </svg>
   );
 }
@@ -461,7 +532,7 @@ function CareerSection({ th }) {
                 <div>
                   {/* Logo */}
                   <div style={{ marginBottom:16 }}>
-                    <BoschLogo scale={1.1} />
+                    <BoschLogo scale={0.82} uid="career" />
                   </div>
                   <h3 style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(20px,3vw,28px)", fontWeight:900, color:th.text, marginBottom:6, letterSpacing:-0.4 }}>
                     {c.role}
@@ -527,7 +598,7 @@ function PastCard({ e, i, th }) {
     }}>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:18 }}>
         <div>
-          {LogoComp && <div style={{ marginBottom:12 }}><LogoComp scale={0.85} /></div>}
+          {LogoComp && <div style={{ marginBottom:12 }}><LogoComp scale={0.78} /></div>}
           <h4 style={{ fontFamily:"'Outfit',sans-serif", fontSize:17, fontWeight:800, color:th.text, marginBottom:2 }}>{e.role}</h4>
           <p style={{ fontFamily:"'Inter',sans-serif", fontSize:13, color:th.textMid, fontWeight:500 }}>{e.company}</p>
         </div>
@@ -790,12 +861,12 @@ export default function App() {
           <div style={{ position:"absolute", bottom:"10%", left:"5%", width:350, height:350, borderRadius:"50%", background:`radial-gradient(circle, rgba(226,0,21,0.04) 0%, transparent 70%)`, pointerEvents:"none", animation:"float 10s ease-in-out infinite 1s" }} />
 
           <div style={{ maxWidth:1200, margin:"0 auto", width:"100%", position:"relative", zIndex:1 }}>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr auto", gap:48, alignItems:"center" }}>
-              <div style={{ maxWidth:780 }}>
+            <div style={{ display:"flex", flexWrap:"wrap", gap:48, alignItems:"center" }}>
+              <div style={{ flex:"1 1 480px", maxWidth:760 }}>
                 {/* "Currently at Bosch" badge */}
-                <div style={{ display:"inline-flex", alignItems:"center", gap:10, marginBottom:24, padding:"8px 18px", borderRadius:24, background:"rgba(226,0,21,0.06)", border:"1px solid rgba(226,0,21,0.2)", backdropFilter:"blur(8px)", animation:"fadeUp 0.6s ease both" }}>
+                <div style={{ display:"inline-flex", alignItems:"center", gap:12, marginBottom:24, padding:"9px 16px 9px 12px", borderRadius:24, background:"rgba(226,0,21,0.06)", border:"1px solid rgba(226,0,21,0.2)", backdropFilter:"blur(8px)", animation:"fadeUp 0.6s ease both" }}>
                   <Dot color="#E20015" animated />
-                  <BoschLogo scale={0.55} />
+                  <BoschLogo scale={0.38} uid="badge" />
                   <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10.5, color:"#E20015", fontWeight:700, letterSpacing:1.2 }}>Product Security Intern</span>
                 </div>
 
@@ -852,7 +923,7 @@ export default function App() {
               </div>
 
               {/* Right — Bosch featured panel */}
-              <div style={{ display:"flex", flexDirection:"column", gap:14, minWidth:200, animation:"slideInRight 0.8s cubic-bezier(.22,1,.36,1) 0.2s both" }}>
+              <div style={{ display:"flex", flexDirection:"column", gap:14, width:260, flexShrink:0, animation:"slideInRight 0.8s cubic-bezier(.22,1,.36,1) 0.2s both" }}>
                 <div style={{
                   background: th.isDark ? "rgba(226,0,21,0.05)" : "rgba(226,0,21,0.04)",
                   border:"1.5px solid rgba(226,0,21,0.2)", borderRadius:20,
@@ -861,7 +932,7 @@ export default function App() {
                   animation:"boschGlow 4s ease-in-out infinite",
                 }}>
                   <div style={{ marginBottom:14, display:"flex", justifyContent:"center" }}>
-                    <BoschLogo scale={0.95} />
+                    <BoschLogo scale={0.82} uid="panel" />
                   </div>
                   <div style={{ fontFamily:"'Outfit',sans-serif", fontSize:13, fontWeight:700, color:th.text, marginBottom:4 }}>Product Security Intern</div>
                   <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9.5, color:th.textDim, marginBottom:14 }}>Automotive Cybersecurity</div>
