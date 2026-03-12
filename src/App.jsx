@@ -223,13 +223,13 @@ function BoschLogo({ scale = 1, uid = "0" }) {
 }
 
 /* Amazon: lowercase "amazon" dark-gray + orange smile-arrow */
-function AmazonLogo({ scale = 1, isDark = false }) {
+function AmazonLogo({ scale = 1 }) {
   const W = 148 * scale, H = 52 * scale;
   return (
     <svg width={W} height={H} viewBox="0 0 148 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* "amazon" text — theme-aware */}
+      {/* "amazon" text — brand dark near-black */}
       <text x="2" y="32"
-        fill={isDark ? "#f1f5f9" : "#232F3E"}
+        fill="#232F3E"
         fontFamily="'Helvetica Neue','Arial',sans-serif"
         fontWeight="700"
         fontSize="30"
@@ -248,7 +248,7 @@ function AmazonLogo({ scale = 1, isDark = false }) {
 }
 
 /* Ascent Global Logistics: dot cluster (teal→navy) + "ascent" lowercase navy text */
-function AscentLogo({ scale = 1, isDark = false }) {
+function AscentLogo({ scale = 1 }) {
   const W = 200 * scale, H = 68 * scale;
   /* Dot positions: [cx, cy, r, color]
      Arranged as an ascending cluster — large teal top-left,
@@ -269,9 +269,9 @@ function AscentLogo({ scale = 1, isDark = false }) {
       {dots.map(([cx, cy, r, color], i) => (
         <circle key={i} cx={cx} cy={cy} r={r} fill={color}/>
       ))}
-      {/* "ascent" wordmark — theme-aware */}
+      {/* "ascent" wordmark — brand navy */}
       <text x="68" y="48"
-        fill={isDark ? "#f1f5f9" : "#1B3A72"}
+        fill="#1B3A72"
         fontFamily="'Segoe UI','Helvetica Neue','Arial',sans-serif"
         fontWeight="700"
         fontSize="36"
@@ -598,7 +598,17 @@ function PastCard({ e, i, th }) {
     }}>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:18 }}>
         <div>
-          {LogoComp && <div style={{ marginBottom:12 }}><LogoComp scale={0.78} isDark={th.isDark} /></div>}
+          {LogoComp && (
+        <div style={{
+          marginBottom:12, display:"inline-block",
+          background: th.isDark ? "rgba(255,255,255,0.92)" : "transparent",
+          borderRadius: th.isDark ? 8 : 0,
+          padding: th.isDark ? "7px 14px 5px" : 0,
+          transition:"background 0.4s ease, padding 0.4s ease, border-radius 0.4s ease",
+        }}>
+          <LogoComp scale={0.78} />
+        </div>
+      )}
           <h4 style={{ fontFamily:"'Outfit',sans-serif", fontSize:17, fontWeight:800, color:th.text, marginBottom:2 }}>{e.role}</h4>
           <p style={{ fontFamily:"'Inter',sans-serif", fontSize:13, color:th.textMid, fontWeight:500 }}>{e.company}</p>
         </div>
