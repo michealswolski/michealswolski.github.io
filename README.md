@@ -1,5 +1,5 @@
 # michealwolski.github.io
-> Personal cybersecurity portfolio — Live at [michealwolski.github.io](https://michealwolski.github.io)
+> Personal cybersecurity portfolio — Live at [michealwolski.github.io](https://michealswolski.github.io)
 
 ## Features
 - Liquid chrome canvas background with iridescent metaballs
