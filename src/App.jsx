@@ -975,10 +975,10 @@ export default function App() {
                   <a key={n.id} href={`#${n.id}`} style={{
                     fontFamily:"'Inter',sans-serif", fontSize:12, fontWeight:500,
                     color: activeNav === n.id ? th.accent : th.textMid,
-                    textDecoration:"none", padding:"5px 9px", borderRadius:7,
+                    textDecoration:"none", padding:"5px 9px", borderRadius:7, whiteSpace:"nowrap",
                     background: activeNav === n.id ? th.accentLight : "transparent",
                     border:`1px solid ${activeNav === n.id ? th.accentMid : "transparent"}`,
-                    transition:"all 0.2s ease", whiteSpace:"nowrap",
+                    transition:"all 0.2s ease",
                   }}>
                     {n.label}
                   </a>
@@ -1180,4 +1180,158 @@ export default function App() {
 
         {/* ── ACTIVITY ───────────────────────────── */}
         <section id="activity" style={{ padding:"110px 28px", background: th.isDark ? th.bgAlt : th.bg }}>
-          <di
+          <div style={{ maxWidth:1200, margin:"0 auto" }}>
+            <SecLabel th={th}>Activity</SecLabel>
+            <SecTitle th={th} sub="Development activity across all repositories over the past year.">
+              Development Activity
+            </SecTitle>
+            <div style={{ background:th.card, border:`1px solid ${th.border}`, borderRadius:20, padding:"32px 36px", boxShadow:th.shadowMd }}>
+              <GitMap th={th} />
+            </div>
+          </div>
+        </section>
+
+        {/* ── EDUCATION ──────────────────────────── */}
+        <section id="education" style={{ padding:"110px 28px", background: th.isDark ? th.bg : th.bgAlt }}>
+          <div style={{ maxWidth:1200, margin:"0 auto" }}>
+            <SecLabel th={th}>Education</SecLabel>
+            <SecTitle th={th}>Academic Background</SecTitle>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))", gap:18, marginBottom:56 }}>
+              {EDU.map((e, i) => <EduItem key={i} e={e} i={i} th={th} />)}
+            </div>
+            <SecLabel th={th}>Certifications</SecLabel>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(210px,1fr))", gap:14, marginTop:16 }}>
+              {CERTS.map((c, i) => <CertItem key={i} c={c} i={i} th={th} />)}
+            </div>
+          </div>
+        </section>
+
+        {/* ── SKILLS ─────────────────────────────── */}
+        <section id="skills" style={{ padding:"110px 28px", background: th.isDark ? th.bgAlt : th.bg }}>
+          <div style={{ maxWidth:1200, margin:"0 auto" }}>
+            <SecLabel th={th}>Skills</SecLabel>
+            <SecTitle th={th} sub="Tools and technologies spanning security, development, automotive, and infrastructure.">
+              Technical Skills
+            </SecTitle>
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(290px,1fr))", gap:44 }}>
+              {SKILLS.map((s, i) => <SkillGroup key={i} s={s} i={i} th={th} />)}
+            </div>
+          </div>
+        </section>
+
+        {/* ── RESUME ─────────────────────────────── */}
+        <section id="resume" style={{ padding:"110px 28px", background: th.isDark ? th.bg : th.bgAlt }}>
+          <div style={{ maxWidth:680, margin:"0 auto", textAlign:"center" }}>
+            <SecLabel th={th}>Resume</SecLabel>
+            <h2 style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(30px,4.5vw,48px)", fontWeight:900, letterSpacing:-1, lineHeight:1.1, marginBottom:18, color:th.text }}>
+              Professional <span style={{ color:th.accent }}>Resume</span>
+            </h2>
+            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:16, color:th.textMid, lineHeight:1.8, marginBottom:12 }}>
+              Download my latest resume tailored for automotive cybersecurity and product security engineering roles.
+            </p>
+            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:14, color:th.textDim, lineHeight:1.7, marginBottom:44 }}>
+              This resume highlights my experience in automotive cybersecurity, enterprise security automation, and product security engineering. Updated May 2026.
+            </p>
+            <div style={{ background:th.card, border:`1px solid ${th.border}`, borderRadius:20, padding:"48px 40px", boxShadow:th.shadowMd, marginBottom:32 }}>
+              <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:8, marginBottom:32 }}>
+                <div style={{ width:64, height:64, borderRadius:16, background:th.accentLight, border:`1px solid ${th.accentMid}`, display:"flex", alignItems:"center", justifyContent:"center", marginBottom:8 }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={th.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
+                <div style={{ fontFamily:"'Outfit',sans-serif", fontSize:18, fontWeight:700, color:th.text }}>Micheal Wolski — Resume</div>
+                <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:11, color:th.textDim }}>Automotive Cybersecurity · Product Security · Enterprise Automation</div>
+              </div>
+              <a
+                href="/Micheal_Wolski_Resume_2026.pdf"
+                download="Micheal_Wolski_Resume_2026.pdf"
+                style={{
+                  display:"inline-flex", alignItems:"center", gap:10,
+                  fontFamily:"'Inter',sans-serif", fontSize:15, fontWeight:700, color:"#fff",
+                  background:th.btnBg, borderRadius:12, padding:"16px 36px",
+                  textDecoration:"none", boxShadow:th.btnShadow,
+                  transition:"all 0.2s ease", marginBottom:16,
+                }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Resume (PDF)
+              </a>
+              <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10.5, color:th.textDim, marginTop:4 }}>
+                Last Updated: May 2026
+              </div>
+            </div>
+            <div style={{ display:"inline-flex", alignItems:"center", gap:10, background:th.accentLight, border:`1px solid ${th.accentMid}`, borderRadius:14, padding:"14px 24px" }}>
+              <Dot color={th.green} animated />
+              <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:11, color:th.accent, fontWeight:600 }}>
+                Open to full-time opportunities · Graduating May 2026
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* ── CONTACT ────────────────────────────── */}
+        <section id="contact" style={{ padding:"110px 28px", background: th.isDark ? th.bg : th.bgAlt }}>
+          <div style={{ maxWidth:680, margin:"0 auto", textAlign:"center" }}>
+            <SecLabel th={th}>Contact</SecLabel>
+            <h2 style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(30px,4.5vw,48px)", fontWeight:900, letterSpacing:-1, lineHeight:1.1, marginBottom:18, color:th.text }}>
+              Let's Work <span style={{ color:th.accent }}>Together</span>
+            </h2>
+            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:16, color:th.textMid, lineHeight:1.8, marginBottom:44 }}>
+              Graduating May 2026 and open to full-time roles in automotive cybersecurity, product security, and enterprise security engineering. Let's connect.
+            </p>
+
+            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))", gap:14, marginBottom:44 }}>
+              {SOCIALS.map(s => {
+                const Ic = SOCIAL_ICON[s.label];
+                return (
+                  <a key={s.label} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" style={{
+                    display:"flex", alignItems:"center", justifyContent:"center", gap:9,
+                    fontFamily:"'Inter',sans-serif", fontSize:14, fontWeight:600, color:th.text,
+                    background:th.card, border:`1px solid ${th.border}`, borderRadius:14,
+                    padding:"16px 22px", textDecoration:"none", boxShadow:th.shadow, transition:"all 0.2s ease",
+                  }}>
+                    {Ic && <Ic size={16} color={th.accent} />}
+                    {s.label}
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke={th.accent} strokeWidth="2" strokeLinecap="round"><path d="M2 10L10 2M10 2H5M10 2V7"/></svg>
+                  </a>
+                );
+              })}
+            </div>
+
+            <div style={{ display:"inline-flex", alignItems:"center", gap:12, background:th.accentLight, border:`1px solid ${th.accentMid}`, borderRadius:16, padding:"18px 28px" }}>
+              <Dot color={th.green} animated />
+              <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:12, color:th.accent, fontWeight:600 }}>
+                {P.location} · {P.email}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* ── FOOTER ─────────────────────────────── */}
+        <footer style={{ borderTop:`1px solid ${th.border}`, padding:"30px 28px", background:th.isDark?th.bgAlt:th.bg, textAlign:"center" }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", maxWidth:1200, margin:"0 auto", flexWrap:"wrap", gap:8 }}>
+            <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:15, fontWeight:800, color:th.text }}>
+              Micheal<span style={{ color:th.accent }}>.</span>
+            </span>
+            <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10.5, color:th.textDim, letterSpacing:0.5 }}>
+              © 2025–2026 Micheal Wolski · React + Vite · GitHub Pages
+            </span>
+            <a href="https://github.com/michealswolski" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10.5, color:th.accent, textDecoration:"none" }}>
+              github.com/michealswolski →
+            </a>
+          </div>
+        </footer>
+
+      </div>
+
+      {/* Scroll to top */}
+      <button
+        className={`scroll-top ${scrollY > 400 ? "vis" : ""}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        style={{ background:th.accent, boxShadow:th.btnShadow, color:"#fff" }}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+      </button>
+
+      {modal && <Modal project={modal} onClose={() => setModal(null)} th={th} />}
+    </>
+  );
+}
