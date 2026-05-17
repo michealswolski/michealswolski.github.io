@@ -140,7 +140,7 @@ const PROJECTS = [
 
 const SKILLS = [
   {cat:"Automotive Cybersecurity",items:["ISO/SAE 21434 & TARA","CAN Bus Protocol Analysis","UDS (Unified Diagnostic Services)","ECU Security Architecture","OBD-II Interface Development","In-Vehicle Network Security","Software-Defined Vehicle (SDV) Security","Secure Boot / HSM / SecOC","Automotive E/E Architecture"]},
-  {cat:"Security & Risk",items:["Threat Modeling & TARA","Vulnerability Assessment","Incident Response Planning","Security Automation","Enterprise Security Operations","SIEM & Detection (Splunk)","Nessus / OpenVAS","Wireshark / Nmap","Burp Suite / Metasploit","HackTheBox (CTF)","Prompt Injection / AI Red Teaming"]},
+  {cat:"Security & Risk",items:["Threat Modeling & TARA","Vulnerability Assessment","Incident Response Planning","Security Automation","Enterprise Security Operations","SIEM & Detection (Splunk)","Nessus / OpenVAS","Wireshark / Nmap","Burp Suite / Metasploit","DDoS Detection & Mitigation","Botnet Traffic Analysis","VPN Architecture (OpenVPN / WireGuard)","HackTheBox (CTF)","Prompt Injection / AI Red Teaming"]},
   {cat:"Development & Tools",items:["Power Platform (BI, Apps, Automate)","Python (Security Automation)","React & JavaScript","Flask Web Framework","Database Design (SQLite / SQL)","Git / GitHub","API Integration","Raspberry Pi & Embedded Systems","Electron / Node.js","Swift / SwiftUI"]},
   {cat:"Automotive Industry",items:["GM OEM Program Automation (IECS Process Creation)","Multi-OEM Security Data Aggregation","Cross-Divisional Workflow Design","Automotive Engineering Change Management","Tier 1 Supplier Operations","Cybersecurity Fire Drills","IQPC Automotive IQ Cybersecurity 2026 Attendee","Technical Documentation & Whitepapers","Security Visibility Platforms"]},
 ];
