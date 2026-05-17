@@ -1260,7 +1260,7 @@ export default function App() {
                   <div style={{ fontSize:10, fontWeight:700, letterSpacing:2.5, textTransform:"uppercase", color:"#4f46e5", marginBottom:10, fontFamily:"'IBM Plex Mono',monospace" }}>Summary</div>
                   <div style={{ width:36, height:3, background:"linear-gradient(90deg,#4f46e5,#7c3aed)", borderRadius:2, marginBottom:16 }} />
                   <p style={{ fontSize:14, lineHeight:1.8, color:"#334155" }}>
-                    Cybersecurity professional specializing in automotive security and enterprise automation, currently serving as Product Cybersecurity Intern at Robert Bosch LLC supporting Ford and GM OEM programs. Graduating May 2026 from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense (3.9 GPA, Cum Laude). Experienced in enterprise security automation, automotive threat analysis, and embedded security systems. Attended ESCAR USA 2026.
+                    Cybersecurity professional specializing in automotive security and enterprise automation, currently serving as Product Cybersecurity Intern at Robert Bosch LLC. Created automated workflow infrastructure for GM programs and developed enterprise security visibility tools across multiple OEM initiatives. Graduating May 2026 from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense (3.9 GPA, Cum Laude). Experienced in enterprise security automation, automotive threat analysis, and embedded security systems. Attended ESCAR USA 2026.
                   </p>
                 </div>
 
@@ -1278,7 +1278,7 @@ export default function App() {
                       </div>
                       <span style={{ fontSize:12, color:"#94a3b8", fontFamily:"'IBM Plex Mono',monospace", whiteSpace:"nowrap" }}>Aug 2025 – Present · Farmington, MI</span>
                     </div>
-                    <div style={{ fontSize:11, color:"#7c3aed", fontFamily:"'IBM Plex Mono',monospace", marginBottom:12 }}>M/TEL-AM · Ford & GM OEM Programs · Five Divisions</div>
+                    <div style={{ fontSize:11, color:"#7c3aed", fontFamily:"'IBM Plex Mono',monospace", marginBottom:12 }}>M/TEL-AM · Multi-OEM Programs</div>
                     <ul style={{ paddingLeft:18, display:"flex", flexDirection:"column", gap:7 }}>
                       {[
                         "Self-initiated and led development of comprehensive cybersecurity visibility platform, aggregating 40+ security projects from multiple OEM programs (including Ford and GM data) into centralized Power BI dashboard — full stack: Power Apps intake portal, SharePoint database, custom dashboard UI. Delivered executive presentations to business unit leaders.",
@@ -1450,7 +1450,4 @@ export default function App() {
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
       </button>
 
-      {modal && <Modal project={modal} onClose={() => setModal(null)} th={th} />}
-    </>
-  );
-}
+      {modal 
