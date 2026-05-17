@@ -48,13 +48,13 @@ const T = {
 /* ─── DATA ─────────────────────────────────────────────────────── */
 const P = {
   name: "Micheal Wolski",
-  title: "Cybersecurity Student & Product Security Intern",
-  summary: "Cybersecurity student pursuing a B.S. in Information Assurance & Cyber Defense at Eastern Michigan University with hands-on internship experience at Robert Bosch supporting major OEM programs. I build security tools, IoT embedded systems, enterprise dashboards, and hands-on lab environments—combining academic coursework with real-world development and AI-assisted engineering.",
+  title: "Automotive Cybersecurity Engineer | Product Security | AI Automation",
+  summary: "Cybersecurity professional specializing in automotive security and enterprise automation, currently serving as Product Cybersecurity Intern at Robert Bosch LLC supporting Ford and GM OEM programs. Graduating May 2026 from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense (3.9 GPA, Cum Laude) and an A.A.S. in Cybersecurity from Henry Ford College. Experienced in developing enterprise security automation tools, conducting automotive threat analysis, and building embedded security systems. Passionate about Software-Defined Vehicle security, CAN bus intrusion detection, and applying AI/ML to cybersecurity challenges. Attended ESCAR USA 2026 conference focused on automotive cybersecurity and SDV threat landscapes.",
   location: "Woodhaven, MI", email: "michealswolski@gmail.com",
-  focus: ["Product Cybersecurity","IoT & Embedded Systems","Power Platform Development","Automotive Security","AI-Assisted Engineering"],
+  focus: ["Automotive Cybersecurity","Software-Defined Vehicle Security","Enterprise Security Automation","CAN Bus Intrusion Detection","AI/LLM Integration"],
 };
 const EDU = [
-  { degree:"B.S. Information Assurance & Cyber Defense", school:"Eastern Michigan University", status:"Expected 2026", loc:"Ypsilanti, MI", honors:"GPA: 3.66 • Cum Laude" },
+  { degree:"B.S. Information Assurance & Cyber Defense", school:"Eastern Michigan University", status:"Graduating May 2026", loc:"Ypsilanti, MI", honors:"GPA: 3.9 • Cum Laude" },
   { degree:"A.A.S. Cybersecurity", school:"Henry Ford College", status:"Graduated 2023", loc:"Dearborn, MI", honors:"GPA: 3.6 • Dean's List" },
 ];
 const CERTS = [
@@ -67,21 +67,20 @@ const CERTS = [
 /* ─── CAREER / EXPERIENCE ──────────────────────────────────────── */
 const CAREER = {
   current: {
-    role: "Product Security Intern",
-    company: "Robert Bosch",
+    role: "Product Cybersecurity Intern",
+    company: "Robert Bosch LLC",
     companyShort: "Bosch",
     logo: "BOSCH",
-    period: "2025 – Present",
-    location: "Michigan",
-    domain: "Automotive Cybersecurity",
+    period: "Aug 2025 – Present",
+    location: "Farmington, MI",
+    domain: "Automotive Cybersecurity · M/TEL-AM · Ford & GM OEM Programs",
     color: "#E20015",
     points: [
-      "Support product cybersecurity across multiple divisions for major OEM programs",
-      "Built cross-divisional Power BI dashboard with SharePoint backend for tracking security configurations",
-      "Developed LLM-based onboarding agent using prompt engineering and AI integration",
-      "Participate in risk and cybersecurity review meetings and planning sessions",
-      "Created Power Apps intake forms and Power Automate workflows for security processes",
-      "Facilitate security awareness workshops and training sessions across teams",
+      "Self-initiated and led development of comprehensive cybersecurity visibility platform, aggregating 40+ security projects and features into centralized Power BI dashboard. Built complete solution from scratch including database architecture, automated intake workflow, learning materials, and executive presentations to business unit leaders, driving cross-functional alignment and supporting sales enablement through security capability demonstration.",
+      "Designed and implemented end-to-end IECS (Internal Engineering Change System) automation workflow, streamlining cross-divisional engineering change management processes and reducing manual processing overhead.",
+      "Developed AI-powered whitepaper processing agent using large language models for automated technical documentation generation and analysis, improving documentation workflow efficiency.",
+      "Created automated security project intake portal using Power Apps, establishing standardized submission process and reducing manual coordination between security teams and business units.",
+      "Served as Game Master for cybersecurity fire drill exercises, designing incident response scenarios and facilitating cross-team tabletop exercises to test security protocols and improve organizational readiness.",
     ],
   },
   past: [
@@ -113,12 +112,16 @@ const CAREER = {
 };
 
 const PROJECTS = [
-  {id:"BSH-001",title:"Cross-Divisional Project Dashboard",sub:"Power BI Analytics — Bosch Internship",desc:"Comprehensive project tracking dashboard in Power BI for a global automotive cybersecurity organization. Custom themes, cross-divisional filtering, drill-through reporting.",tags:["Power BI","DAX","SharePoint","Power Query"],cat:"INTERNSHIP",domain:"Analytics",impact:"Unified project tracking across multiple global cybersecurity divisions",details:"Built from scratch during my internship to solve fragmented project tracking across divisions. Pulls data from SharePoint via Power Query, transforms with DAX measures, custom dark-themed UI. Drill-through pages per division, KPI cards with conditional formatting, automated refresh schedules."},
-  {id:"BSH-002",title:"Cross-Divisional Project Database",sub:"Power Apps Canvas App — Bosch Internship",desc:"Canvas App with dark futuristic UI, wizard workflows, admin dashboards, and ticketing system. Hardened .msapp packages for cross-tenant deployment.",tags:["Power Apps","Power Automate","SharePoint","ALM"],cat:"INTERNSHIP",domain:"Enterprise Apps",impact:"Cross-tenant deployment across global cybersecurity divisions",details:"Multi-step wizard for project intake, role-based admin dashboards, integrated ticketing system. Troubleshot PAC CLI compatibility and built hardened .msapp packages for cross-tenant deployment."},
-  {id:"BSH-003",title:"LLM-Based Onboarding Agent",sub:"AI-Powered Team Onboarding — Bosch Internship",desc:"AI-powered onboarding assistant using prompt engineering and LLM integration to streamline cybersecurity team onboarding and reduce ramp-up time.",tags:["Prompt Engineering","LLM","AI","Automation"],cat:"INTERNSHIP",domain:"AI Enablement",impact:"Streamlined cybersecurity team onboarding with AI",details:"Internal AI agent helping new team members get up to speed on cybersecurity processes. Uses carefully crafted system prompts to answer procedural questions and reduce onboarding friction."},
+  {id:"BSH-001",title:"Cybersecurity Visibility Platform",sub:"Power BI Dashboard — Bosch Internship",desc:"Self-initiated enterprise security visibility platform aggregating 40+ security projects and features into a centralized Power BI dashboard with SharePoint backend, automated intake, and executive presentations.",tags:["Power BI","DAX","SharePoint","Power Query","Database Architecture"],cat:"INTERNSHIP",domain:"Analytics",impact:"40+ projects tracked; drove cross-functional alignment and sales enablement across five divisions",details:"Built entirely from scratch to solve fragmented project tracking across five divisions supporting Ford and GM OEM programs. Designed the full solution: database architecture, automated intake workflow, dark-themed custom UI with drill-through reporting, KPI cards with conditional formatting, and automated refresh. Delivered executive presentations to business unit leaders and created onboarding learning materials."},
+  {id:"BSH-004",title:"IECS Automation Flow",sub:"Enterprise Workflow Automation — Bosch Internship",desc:"Fully designed and implemented an enterprise-grade automation workflow for IECS (Internal Engineering Change System), streamlining cross-divisional engineering change management processes and reducing manual processing overhead.",tags:["Power Automate","SharePoint","Power Apps","Microsoft 365","Workflow Automation"],cat:"INTERNSHIP",domain:"Enterprise Automation",impact:"Automated end-to-end engineering change request lifecycle across divisions",details:"Built comprehensive workflow automation from concept to deployment, integrating with existing enterprise systems. Features automated end-to-end engineering change request lifecycle, cross-divisional approval workflows, real-time status tracking and notifications, and significant reduction in manual processing time."},
+  {id:"BSH-005",title:"365 Whitepaper Agent",sub:"AI Document Processing — Bosch Internship",desc:"AI-powered document processing agent for enterprise whitepaper creation and analysis using large language models. Streamlines technical documentation workflows by automating content generation, analysis, and formatting for cybersecurity and engineering whitepapers.",tags:["LLM Integration","Python","NLP","Microsoft 365 APIs","Prompt Engineering"],cat:"INTERNSHIP",domain:"AI Enablement",impact:"Automated technical documentation generation; improved documentation workflow efficiency",details:"Developed using LLM integration and custom prompt engineering for cybersecurity and engineering documentation. Features automated whitepaper content generation and formatting, intelligent document analysis and summarization, integration with Microsoft 365 document management, and custom prompts tuned for technical cybersecurity content."},
+  {id:"BSH-002",title:"Security Project Intake Portal",sub:"Power Apps Canvas App — Bosch Internship",desc:"Automated security project intake portal using Power Apps, establishing a standardized submission process and reducing manual coordination between security teams and business units.",tags:["Power Apps","Power Automate","SharePoint","ALM"],cat:"INTERNSHIP",domain:"Enterprise Apps",impact:"Standardized intake across five divisions; reduced manual coordination overhead",details:"Canvas App with dark futuristic UI, multi-step wizard for project intake, role-based admin dashboards, and integrated ticketing system. Hardened .msapp packages for cross-tenant deployment. Built alongside the Power BI visibility platform as part of the end-to-end security operations ecosystem."},
   {id:"CW-001",title:"OBD-II Diagnostic Scanner",sub:"IoT & Embedded Systems Course — EMU",desc:"Designing and building an OBD-II vehicle diagnostic scanner. Involves hardware interfacing, protocol communication, and real-time data acquisition from vehicle ECUs.",tags:["IoT","Embedded Systems","OBD-II","Hardware","Protocols"],cat:"COURSEWORK",domain:"IoT / Automotive",impact:"Hands-on embedded systems project bridging IoT and automotive diagnostics",details:"Currently developing an OBD-II scanner for my IoT and Embedded Systems class at EMU. Hardware interfaces to communicate with vehicle ECUs, reading diagnostic trouble codes, and displaying real-time sensor data."},
   {id:"CW-002",title:"PKI & Certificate Authority Research",sub:"Cybersecurity Coursework — EMU",desc:"Research project analyzing PKI infrastructure vulnerabilities, certificate authority trust models, and real-world CA compromise case studies.",tags:["PKI","Certificate Authority","Research","Cryptography"],cat:"COURSEWORK",domain:"Cryptography",impact:"Comprehensive research report on PKI trust chains and CA vulnerabilities",details:"Deep-dive research into how PKI infrastructure works, common vulnerability patterns in certificate authority implementations, and analysis of notable CA compromises."},
   {id:"CW-003",title:"Secure Boot & Hardware Security Research",sub:"IECS Embedded Security — EMU",desc:"Researching secure boot implementations in embedded and automotive systems, covering hardware-level security mechanisms and boot attestation for connected vehicles.",tags:["Secure Boot","TPM","Embedded Security","MISRA C","Automotive"],cat:"COURSEWORK",domain:"Embedded Security",impact:"Exploring hardware-level trust chains for automotive ECU security",details:"Academic research exploring TPM integration, chain-of-trust verification, remote attestation, MISRA C coding standards, and how these apply to real-world vehicle ECU security."},
+  {id:"HOME-005",title:"Comic Forge — AI Comic Book Creator",sub:"React Web App — Anthropic Claude API",desc:"React-based web application leveraging Anthropic's Claude API to generate AI-powered comic books. Users create multi-panel comic stories with AI-generated narratives, dialogue, and scene descriptions.",tags:["React","JavaScript","Anthropic Claude API","REST APIs","Generative AI"],cat:"HOME",domain:"AI / Creative Tech",impact:"End-to-end AI comic creation: panel layout, story generation, and export",details:"Demonstrates advanced API integration with Claude for creative content generation. Features interactive comic panel creation interface, real-time AI story and dialogue generation, comic book formatting and export capabilities, and responsive design for desktop and mobile. A portfolio piece showing both creative application design and practical LLM integration."},
+  {id:"HOME-006",title:"CAN Bus Intrusion Detection System",sub:"Raspberry Pi 5 — Embedded Security Capstone",desc:"Embedded security system on Raspberry Pi 5 for real-time automotive network intrusion detection. Interfaces with vehicle OBD-II port via ELM327 adapter to monitor CAN bus traffic, establish statistical baselines, and detect anomalous messages indicative of cyberattacks.",tags:["Python","Flask","SQLite","Raspberry Pi 5","ELM327","CAN Protocol","OBD-II"],cat:"HOME",domain:"Automotive Security",impact:"Real-time CAN bus anomaly detection with web dashboard — ISAC317 capstone project",details:"Built as capstone for ISAC317 IoT Embedded Systems Security course at EMU. Features real-time CAN bus traffic monitoring and logging, statistical baseline anomaly detection engine, web-based threat visualization dashboard (Flask), VIN decoding and DTC (Diagnostic Trouble Code) interpretation, and SQLite database for traffic pattern analysis. Directly relevant to ISO/SAE 21434 and in-vehicle network security."},
+  {id:"HOME-007",title:"BusBreach — Automotive Cybersecurity CTF",sub:"Educational CTF Platform — Automotive Security",desc:"Educational Capture The Flag platform simulating real-world automotive network vulnerabilities. Features interactive challenges covering CAN bus injection, UDS (Unified Diagnostic Services) exploitation, and ECU security in a safe sandboxed environment.",tags:["Python","UDS Protocol","CAN Simulation","CTF","Automotive Security"],cat:"HOME",domain:"Automotive Security",impact:"Progressive CTF challenges for hands-on automotive security learning",details:"Includes UDS protocol server simulation, CAN bus traffic generation and injection challenges, progressive difficulty levels, and a safe sandbox environment for vulnerability testing. Covers CAN bus injection, UDS exploitation, and ECU security concepts — providing a practical learning environment for automotive cybersecurity skills directly aligned with industry standards."},
   {id:"HOME-001",title:"MeshLink",sub:"Encrypted BLE Mesh Messaging — iOS App",desc:"Native iOS app in Swift/SwiftUI with CoreBluetooth for encrypted P2P messaging over Bluetooth Low Energy mesh networks. AES-256-GCM encryption, NFC key sharing, QR exchange.",tags:["Swift","SwiftUI","CoreBluetooth","AES-256-GCM","NFC"],cat:"HOME",domain:"iOS Development",impact:"End-to-end encrypted BLE mesh communication app for iOS",details:"Built a native iOS app from scratch. Uses CoreBluetooth for BLE mesh networking where messages hop between devices. AES-256-GCM encryption with keys exchanged via NFC tap or QR code scan."},
   {id:"HOME-002",title:"Depass Grading & Landscaping",sub:"Business Website — React + EmailJS",desc:"Full-featured business website for a real landscaping client. Includes service pages, portfolio gallery, contact forms with EmailJS, admin dashboard, and SEO optimization.",tags:["React","EmailJS","SEO","Responsive Design","Business"],cat:"HOME",domain:"Web Development",impact:"Live client website with lead generation and admin portal",details:"Built a complete business website for a real client with services, portfolio, testimonials, and FAQ sections, plus a private admin dashboard. Contact form uses EmailJS for instant email notifications."},
   {id:"HOME-003",title:"S650 Mustang Mod Tracker",sub:"Vehicle Build Management App — React",desc:"Interactive build management app for tracking vehicle modifications, maintenance schedules, and budgets. Features onboarding wizard, mod templates, and progress visualization.",tags:["React","Vehicle Mods","Budget Tracking","Responsive"],cat:"HOME",domain:"Automotive",impact:"Personal tool for managing my S650 Mustang build",details:"Built to track modifications on my 2024+ Mustang S650. Onboarding wizard for vehicle setup, pre-loaded mod template library, maintenance tracking with mileage-based reminders, budget dashboard with cost breakdowns."},
@@ -139,10 +142,10 @@ const PROJECTS = [
 ];
 
 const SKILLS = [
-  {cat:"Security Tools",items:["Nessus","OpenVAS","Splunk","Wireshark","Nmap","Metasploit","Burp Suite","Security Onion","Volatility"]},
-  {cat:"Automotive & IoT",items:["Secure Boot","HSM","SecOC","CAN/LIN","OBD-II","SWDL","ISO/SAE 21434","Embedded Systems","Raspberry Pi"]},
-  {cat:"Development",items:["Python","PowerShell","Bash","JavaScript","React","Node.js","Electron","Swift/SwiftUI","Power Apps","Power BI / DAX"]},
-  {cat:"Infrastructure",items:["pfSense","OpenVPN","VirtualBox","Kali Linux","Windows Admin","Linux Admin","SharePoint","Power Automate","CoreBluetooth"]},
+  {cat:"Automotive Cybersecurity",items:["ISO/SAE 21434 & TARA","CAN Bus Protocol Analysis","UDS (Unified Diagnostic Services)","ECU Security Architecture","OBD-II Interface Development","In-Vehicle Network Security","Software-Defined Vehicle (SDV) Security","Secure Boot / HSM / SecOC","Automotive E/E Architecture"]},
+  {cat:"Security & Risk",items:["Threat Modeling & TARA","Vulnerability Assessment","Incident Response Planning","Security Automation","Enterprise Security Operations","SIEM & Detection (Splunk)","Nessus / OpenVAS","Wireshark / Nmap","Burp Suite / Metasploit"]},
+  {cat:"Development & Tools",items:["Power Platform (BI, Apps, Automate)","Python (Security Automation)","React & JavaScript","Flask Web Framework","Database Design (SQLite / SQL)","Git / GitHub","API Integration","Raspberry Pi & Embedded Systems","Electron / Node.js","Swift / SwiftUI"]},
+  {cat:"Automotive Industry",items:["Ford OEM Program Experience","GM OEM Program Experience","Cross-Divisional Coordination","Tier 1 Supplier Operations","Cybersecurity Fire Drills","ESCAR USA 2026 Attendee","Technical Documentation & Whitepapers","Security Visibility Platforms"]},
 ];
 
 const HEATMAP = (()=>{
@@ -166,6 +169,7 @@ const NAV = [
   {id:"activity",label:"Activity"},
   {id:"education",label:"Education"},
   {id:"skills",label:"Skills"},
+  {id:"resume",label:"Resume"},
   {id:"contact",label:"Contact"},
 ];
 
@@ -1177,108 +1181,4 @@ export default function App() {
         <section id="activity" style={{ padding:"110px 28px", background: th.isDark ? th.bgAlt : th.bg }}>
           <div style={{ maxWidth:1200, margin:"0 auto" }}>
             <SecLabel th={th}>Activity</SecLabel>
-            <SecTitle th={th} sub="Development activity across all repositories over the past year.">
-              Development Activity
-            </SecTitle>
-            <div style={{ background:th.card, border:`1px solid ${th.border}`, borderRadius:20, padding:"32px 36px", boxShadow:th.shadowMd }}>
-              <GitMap th={th} />
-            </div>
-          </div>
-        </section>
-
-        {/* ── EDUCATION ──────────────────────────── */}
-        <section id="education" style={{ padding:"110px 28px", background: th.isDark ? th.bg : th.bgAlt }}>
-          <div style={{ maxWidth:1200, margin:"0 auto" }}>
-            <SecLabel th={th}>Education</SecLabel>
-            <SecTitle th={th}>Academic Background</SecTitle>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))", gap:18, marginBottom:56 }}>
-              {EDU.map((e, i) => <EduItem key={i} e={e} i={i} th={th} />)}
-            </div>
-            <SecLabel th={th}>Certifications</SecLabel>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(210px,1fr))", gap:14, marginTop:16 }}>
-              {CERTS.map((c, i) => <CertItem key={i} c={c} i={i} th={th} />)}
-            </div>
-          </div>
-        </section>
-
-        {/* ── SKILLS ─────────────────────────────── */}
-        <section id="skills" style={{ padding:"110px 28px", background: th.isDark ? th.bgAlt : th.bg }}>
-          <div style={{ maxWidth:1200, margin:"0 auto" }}>
-            <SecLabel th={th}>Skills</SecLabel>
-            <SecTitle th={th} sub="Tools and technologies spanning security, development, automotive, and infrastructure.">
-              Technical Skills
-            </SecTitle>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(290px,1fr))", gap:44 }}>
-              {SKILLS.map((s, i) => <SkillGroup key={i} s={s} i={i} th={th} />)}
-            </div>
-          </div>
-        </section>
-
-        {/* ── CONTACT ────────────────────────────── */}
-        <section id="contact" style={{ padding:"110px 28px", background: th.isDark ? th.bg : th.bgAlt }}>
-          <div style={{ maxWidth:680, margin:"0 auto", textAlign:"center" }}>
-            <SecLabel th={th}>Contact</SecLabel>
-            <h2 style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(30px,4.5vw,48px)", fontWeight:900, letterSpacing:-1, lineHeight:1.1, marginBottom:18, color:th.text }}>
-              Let's Work <span style={{ color:th.accent }}>Together</span>
-            </h2>
-            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:16, color:th.textMid, lineHeight:1.8, marginBottom:44 }}>
-              Looking for internships, co-ops, and entry-level roles in cybersecurity, IoT security, or product security. Let's connect.
-            </p>
-
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))", gap:14, marginBottom:44 }}>
-              {SOCIALS.map(s => {
-                const Ic = SOCIAL_ICON[s.label];
-                return (
-                  <a key={s.label} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" style={{
-                    display:"flex", alignItems:"center", justifyContent:"center", gap:9,
-                    fontFamily:"'Inter',sans-serif", fontSize:14, fontWeight:600, color:th.text,
-                    background:th.card, border:`1px solid ${th.border}`, borderRadius:14,
-                    padding:"16px 22px", textDecoration:"none", boxShadow:th.shadow, transition:"all 0.2s ease",
-                  }}>
-                    {Ic && <Ic size={16} color={th.accent} />}
-                    {s.label}
-                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke={th.accent} strokeWidth="2" strokeLinecap="round"><path d="M2 10L10 2M10 2H5M10 2V7"/></svg>
-                  </a>
-                );
-              })}
-            </div>
-
-            <div style={{ display:"inline-flex", alignItems:"center", gap:12, background:th.accentLight, border:`1px solid ${th.accentMid}`, borderRadius:16, padding:"18px 28px" }}>
-              <Dot color={th.green} animated />
-              <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:12, color:th.accent, fontWeight:600 }}>
-                {P.location} · {P.email}
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {/* ── FOOTER ─────────────────────────────── */}
-        <footer style={{ borderTop:`1px solid ${th.border}`, padding:"30px 28px", background:th.isDark?th.bgAlt:th.bg, textAlign:"center" }}>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", maxWidth:1200, margin:"0 auto", flexWrap:"wrap", gap:8 }}>
-            <span style={{ fontFamily:"'Outfit',sans-serif", fontSize:15, fontWeight:800, color:th.text }}>
-              Micheal<span style={{ color:th.accent }}>.</span>
-            </span>
-            <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10.5, color:th.textDim, letterSpacing:0.5 }}>
-              © 2025–2026 Micheal Wolski · React + Vite · GitHub Pages
-            </span>
-            <a href="https://github.com/michealswolski" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10.5, color:th.accent, textDecoration:"none" }}>
-              github.com/michealswolski →
-            </a>
-          </div>
-        </footer>
-
-      </div>
-
-      {/* Scroll to top */}
-      <button
-        className={`scroll-top ${scrollY > 400 ? "vis" : ""}`}
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        style={{ background:th.accent, boxShadow:th.btnShadow, color:"#fff" }}
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
-      </button>
-
-      {modal && <Modal project={modal} onClose={() => setModal(null)} th={th} />}
-    </>
-  );
-}
+            <SecTitle th={t
