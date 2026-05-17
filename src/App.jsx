@@ -1105,11 +1105,11 @@ export default function App() {
                   <div style={{ marginBottom:14, display:"flex", justifyContent:"center" }}>
                     <BoschLogo scale={0.82} uid="panel" />
                   </div>
-                  <div style={{ fontFamily:"'Outfit',sans-serif", fontSize:13, fontWeight:700, color:th.text, marginBottom:4 }}>Product Security Intern</div>
-                  <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9.5, color:th.textDim, marginBottom:14 }}>Automotive Cybersecurity</div>
+                  <div style={{ fontFamily:"'Outfit',sans-serif", fontSize:13, fontWeight:700, color:th.text, marginBottom:4 }}>Product Cybersecurity Intern</div>
+                  <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9.5, color:th.textDim, marginBottom:14 }}>Automotive Cybersecurity · M/TEL-AM</div>
                   <div style={{ display:"inline-flex", alignItems:"center", gap:6, background:"rgba(226,0,21,0.08)", border:"1px solid rgba(226,0,21,0.2)", borderRadius:12, padding:"5px 12px" }}>
                     <Dot color="#E20015" animated />
-                    <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, color:"#E20015", fontWeight:700, letterSpacing:1.2 }}>ACTIVE · 2025</span>
+                    <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, color:"#E20015", fontWeight:700, letterSpacing:1.2 }}>ACTIVE · AUG 2025</span>
                   </div>
                 </div>
 
@@ -1181,4 +1181,4 @@ export default function App() {
         <section id="activity" style={{ padding:"110px 28px", background: th.isDark ? th.bgAlt : th.bg }}>
           <div style={{ maxWidth:1200, margin:"0 auto" }}>
             <SecLabel th={th}>Activity</SecLabel>
-            <SecTitle th={t
+      
