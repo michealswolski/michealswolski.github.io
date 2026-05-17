@@ -333,6 +333,16 @@ body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;font-size
 @keyframes breatheB{0%,100%{transform:translate(0,0) scale(1);opacity:0.4}30%{transform:translate(-5%,6%) scale(1.1);opacity:0.6}60%{transform:translate(6%,-3%) scale(0.92);opacity:0.35}85%{transform:translate(-2%,-5%) scale(1.05);opacity:0.5}}
 @keyframes breatheC{0%,100%{transform:translate(0,0) scale(1.05);opacity:0.35}20%{transform:translate(4%,7%) scale(0.9);opacity:0.55}45%{transform:translate(-7%,-2%) scale(1.15);opacity:0.3}70%{transform:translate(2%,-6%) scale(0.98);opacity:0.5}}
 @keyframes driftGrid{0%{transform:translate(0,0)}100%{transform:translate(-50%,-50%)}}
+@keyframes scanSweep{0%{top:-4px}100%{top:100%}}
+@keyframes neonPulse{0%,100%{box-shadow:0 0 8px rgba(129,140,248,0.4),0 0 20px rgba(129,140,248,0.15)}50%{box-shadow:0 0 20px rgba(129,140,248,0.7),0 0 50px rgba(129,140,248,0.3),0 0 80px rgba(124,58,237,0.15)}}
+@keyframes shimmerTag{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes progressGrad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes termBlink{0%,100%{opacity:1}50%{opacity:0}}
+.glow-tag{transition:all 0.2s ease !important}
+.glow-tag:hover{background:rgba(79,70,229,0.14) !important;border-color:rgba(79,70,229,0.5) !important;color:#4f46e5 !important;box-shadow:0 0 12px rgba(79,70,229,0.3) !important;transform:translateY(-1px) !important}
+.internship-glow{animation:neonPulse 3s ease-in-out infinite}
+.spb{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4f46e5,#7c3aed,#ec4899,#4f46e5);background-size:300% 100%;animation:progressGrad 3s ease infinite;z-index:9999;pointer-events:none;transition:width 0.08s linear}
+
 
 .tilt-card{transform-style:preserve-3d}
 .tilt-card .card-shine{
@@ -471,8 +481,8 @@ function ProjCard({ p, i, onClick, th }) {
         ...tStyle,
         position:"relative", borderRadius:18, cursor:"pointer", overflow:"hidden",
         background: hov ? th.cardHov : th.card,
-        border:`1px solid ${hov ? bc+"60" : th.border}`,
-        boxShadow: hov ? `0 20px 60px ${bc}20, 0 4px 20px rgba(0,0,0,0.1)` : th.shadow,
+        border:`1px solid ${hov ? bc+"70" : p.cat==="INTERNSHIP" ? bc+"30" : th.border}`,
+        boxShadow: hov ? `0 24px 70px ${bc}28, 0 0 30px ${bc}18, 0 4px 20px rgba(0,0,0,0.1)` : p.cat==="INTERNSHIP" && th.isDark ? `0 0 20px ${bc}18, ${th.shadow}` : th.shadow,
         transition:`border 0.3s ease, box-shadow 0.3s ease, background 0.2s ease`,
         opacity: v ? 1 : 0, transform: v ? (tStyle.transform || "none") : "translateY(28px)",
         transitionDelay: `${i * 40}ms`,
@@ -930,6 +940,7 @@ export default function App() {
   return (
     <>
       <style>{GCSS}</style>
+      <div className="spb" style={{ width: `${Math.min(100, scrollY / Math.max(1, (typeof document !== 'undefined' ? document.body.scrollHeight - window.innerHeight : 1)) * 100)}%` }} />
 
       {/* Page background */}
       <div style={{
@@ -1013,8 +1024,13 @@ export default function App() {
         {/* ── HERO ───────────────────────────────── */}
         <section id="about" style={{ position:"relative", minHeight:"100vh", display:"flex", alignItems:"center", padding:"110px 28px 80px", overflow:"hidden" }}>
           <ParticleCanvas th={th} />
+      {th.isDark && <div style={{ position:"absolute", inset:0, overflow:"hidden", pointerEvents:"none", zIndex:0 }}>
+        <div style={{ position:"absolute", width:"100%", height:3, background:"linear-gradient(transparent, rgba(129,140,248,0.07), transparent)", animation:"scanSweep 8s linear infinite" }} />
+      </div>}
 
-          {/* Gradient blobs */}
+          {/* Circuit dot grid */}
+      <div style={{ position:"absolute", inset:0, backgroundImage:`radial-gradient(circle, ${th.isDark?"rgba(129,140,248,0.08)":"rgba(79,70,229,0.06)"} 1.5px, transparent 1.5px)`, backgroundSize:"32px 32px", pointerEvents:"none", zIndex:0 }} />
+      {/* Gradient blobs */}
           <div style={{ position:"absolute", top:"10%", right:"5%", width:500, height:500, borderRadius:"50%", background:`radial-gradient(circle, ${th.accent}08 0%, transparent 70%)`, pointerEvents:"none", animation:"float 8s ease-in-out infinite" }} />
           <div style={{ position:"absolute", bottom:"10%", left:"5%", width:350, height:350, borderRadius:"50%", background:`radial-gradient(circle, rgba(226,0,21,0.04) 0%, transparent 70%)`, pointerEvents:"none", animation:"float 10s ease-in-out infinite 1s" }} />
 
@@ -1081,7 +1097,7 @@ export default function App() {
                     { num:"23+", label:"Projects Built" },
                     { num:"2", label:"Degrees" },
                     { num:"Bosch", label:"Current Employer" },
-                    { num:"2025", label:"Active Intern" },
+                    { num:"2026", label:"B.S. Graduated" },
                   ].map((s, i) => (
                     <div key={s.label} style={{ paddingRight:28, borderRight: i < 3 ? `1px solid ${th.border}` : "none", paddingLeft: i > 0 ? 28 : 0 }}>
                       <div style={{ fontFamily:"'Outfit',sans-serif", fontSize:i===2?18:26, fontWeight:900, color:th.accent, lineHeight:1.1 }}>{s.num}</div>
@@ -1132,7 +1148,19 @@ export default function App() {
                   })}
                 </div>
 
-                {/* Location badge */}
+                {/* Terminal status widget */}
+        <div style={{ background: th.isDark?"rgba(13,17,23,0.9)":"rgba(15,23,42,0.93)", border:`1px solid ${th.isDark?"rgba(129,140,248,0.3)":"rgba(79,70,229,0.25)"}`, borderRadius:14, padding:"16px 18px", boxShadow:"0 4px 24px rgba(0,0,0,0.3)" }}>
+          <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, color:"#3fb950", marginBottom:10, display:"flex", alignItems:"center", gap:6 }}>
+            <span style={{ animation:"termBlink 1.2s infinite" }}>▌</span> system_status --live
+          </div>
+          {[{k:"THREAT_INTEL",v:"ACTIVE",c:"#3fb950"},{k:"HTB_PRACTICE",v:"ONGOING",c:"#58a6ff"},{k:"ESCAR_2026",v:"ATTENDED",c:"#a78bfa"},{k:"CLEARANCE",v:"INTERN",c:"#fbbf24"}].map(({k,v,c}) => (
+            <div key={k} style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:9, lineHeight:1.9, display:"flex", justifyContent:"space-between" }}>
+              <span style={{ color:"#8b949e" }}>{k}</span>
+              <span style={{ color:c, fontWeight:700 }}>{v}</span>
+            </div>
+          ))}
+        </div>
+        {/* Location badge */}
                 <div style={{ background:th.tagBg, border:`1px solid ${th.tagBorder}`, borderRadius:10, padding:"12px 16px", textAlign:"center" }}>
                   <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10, color:th.textDim }}>📍 {P.location}</span>
                 </div>
