@@ -1221,48 +1221,168 @@ export default function App() {
 
         {/* ── RESUME ─────────────────────────────── */}
         <section id="resume" style={{ padding:"110px 28px", background: th.isDark ? th.bg : th.bgAlt }}>
-          <div style={{ maxWidth:680, margin:"0 auto", textAlign:"center" }}>
+          <div style={{ maxWidth:900, margin:"0 auto" }}>
             <SecLabel th={th}>Resume</SecLabel>
-            <h2 style={{ fontFamily:"'Outfit',sans-serif", fontSize:"clamp(30px,4.5vw,48px)", fontWeight:900, letterSpacing:-1, lineHeight:1.1, marginBottom:18, color:th.text }}>
-              Professional <span style={{ color:th.accent }}>Resume</span>
-            </h2>
-            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:16, color:th.textMid, lineHeight:1.8, marginBottom:12 }}>
-              Download my latest resume tailored for automotive cybersecurity and product security engineering roles.
-            </p>
-            <p style={{ fontFamily:"'Inter',sans-serif", fontSize:14, color:th.textDim, lineHeight:1.7, marginBottom:44 }}>
-              This resume highlights my experience in automotive cybersecurity, enterprise security automation, and product security engineering. Updated May 2026.
-            </p>
-            <div style={{ background:th.card, border:`1px solid ${th.border}`, borderRadius:20, padding:"48px 40px", boxShadow:th.shadowMd, marginBottom:32 }}>
-              <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:8, marginBottom:32 }}>
-                <div style={{ width:64, height:64, borderRadius:16, background:th.accentLight, border:`1px solid ${th.accentMid}`, display:"flex", alignItems:"center", justifyContent:"center", marginBottom:8 }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={th.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                </div>
-                <div style={{ fontFamily:"'Outfit',sans-serif", fontSize:18, fontWeight:700, color:th.text }}>Micheal Wolski — Resume</div>
-                <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:11, color:th.textDim }}>Automotive Cybersecurity · Product Security · Enterprise Automation</div>
+            <SecTitle th={th} sub="Live view — updated May 2026">
+              Professional Resume
+            </SecTitle>
+
+            {/* Download bar */}
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:12, marginBottom:32, background:th.card, border:`1px solid ${th.border}`, borderRadius:14, padding:"16px 24px", boxShadow:th.shadow }}>
+              <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+                <Dot color={th.green} animated />
+                <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:11, color:th.accent, fontWeight:600 }}>Open to full-time opportunities · Graduating May 2026</span>
               </div>
-              <a
-                href="/Micheal_Wolski_Resume_2026.pdf"
-                download="Micheal_Wolski_Resume_2026.pdf"
-                style={{
-                  display:"inline-flex", alignItems:"center", gap:10,
-                  fontFamily:"'Inter',sans-serif", fontSize:15, fontWeight:700, color:"#fff",
-                  background:th.btnBg, borderRadius:12, padding:"16px 36px",
-                  textDecoration:"none", boxShadow:th.btnShadow,
-                  transition:"all 0.2s ease", marginBottom:16,
-                }}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download Resume (PDF)
+              <a href="/Micheal_Wolski_Resume_2026.pdf" download="Micheal_Wolski_Resume_2026.pdf" style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'Inter',sans-serif", fontSize:13, fontWeight:700, color:"#fff", background:th.btnBg, borderRadius:9, padding:"10px 22px", textDecoration:"none", boxShadow:th.btnShadow, whiteSpace:"nowrap" }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
               </a>
-              <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:10.5, color:th.textDim, marginTop:4 }}>
-                Last Updated: May 2026
-              </div>
             </div>
-            <div style={{ display:"inline-flex", alignItems:"center", gap:10, background:th.accentLight, border:`1px solid ${th.accentMid}`, borderRadius:14, padding:"14px 24px" }}>
-              <Dot color={th.green} animated />
-              <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:11, color:th.accent, fontWeight:600 }}>
-                Open to full-time opportunities · Graduating May 2026
-              </span>
+
+            {/* ── Resume Document ── */}
+            <div style={{ background:"#ffffff", borderRadius:20, boxShadow:"0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08)", overflow:"hidden", fontFamily:"'Inter',sans-serif", color:"#0f172a" }}>
+
+              {/* Header band */}
+              <div style={{ background:"linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#4f46e5 100%)", padding:"44px 52px 36px", color:"#fff" }}>
+                <div style={{ fontSize:"clamp(26px,4vw,40px)", fontFamily:"'Outfit',sans-serif", fontWeight:900, letterSpacing:-1, marginBottom:6 }}>Micheal Wolski</div>
+                <div style={{ fontSize:15, fontWeight:500, opacity:0.88, marginBottom:20, letterSpacing:0.2 }}>Automotive Cybersecurity Engineer · Product Security · AI Automation</div>
+                <div style={{ display:"flex", flexWrap:"wrap", gap:"10px 28px", fontSize:12, opacity:0.8, fontFamily:"'IBM Plex Mono',monospace" }}>
+                  <span>michealswolski@gmail.com</span>
+                  <span>Woodhaven, MI</span>
+                  <span>linkedin.com/in/michealwolski</span>
+                  <span>github.com/michealswolski</span>
+                </div>
+              </div>
+
+              <div style={{ padding:"44px 52px", display:"flex", flexDirection:"column", gap:36 }}>
+
+                {/* Summary */}
+                <div>
+                  <div style={{ fontSize:10, fontWeight:700, letterSpacing:2.5, textTransform:"uppercase", color:"#4f46e5", marginBottom:10, fontFamily:"'IBM Plex Mono',monospace" }}>Summary</div>
+                  <div style={{ width:36, height:3, background:"linear-gradient(90deg,#4f46e5,#7c3aed)", borderRadius:2, marginBottom:16 }} />
+                  <p style={{ fontSize:14, lineHeight:1.8, color:"#334155" }}>
+                    Cybersecurity professional specializing in automotive security and enterprise automation, currently serving as Product Cybersecurity Intern at Robert Bosch LLC supporting Ford and GM OEM programs. Graduating May 2026 from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense (3.9 GPA, Cum Laude). Experienced in enterprise security automation, automotive threat analysis, and embedded security systems. Attended ESCAR USA 2026.
+                  </p>
+                </div>
+
+                {/* Experience */}
+                <div>
+                  <div style={{ fontSize:10, fontWeight:700, letterSpacing:2.5, textTransform:"uppercase", color:"#4f46e5", marginBottom:10, fontFamily:"'IBM Plex Mono',monospace" }}>Experience</div>
+                  <div style={{ width:36, height:3, background:"linear-gradient(90deg,#4f46e5,#7c3aed)", borderRadius:2, marginBottom:24 }} />
+
+                  {/* Bosch */}
+                  <div style={{ marginBottom:28 }}>
+                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:4, marginBottom:4 }}>
+                      <div>
+                        <span style={{ fontSize:15, fontWeight:700, color:"#0f172a" }}>Product Cybersecurity Intern</span>
+                        <span style={{ fontSize:14, color:"#64748b", marginLeft:8 }}>· Robert Bosch LLC</span>
+                      </div>
+                      <span style={{ fontSize:12, color:"#94a3b8", fontFamily:"'IBM Plex Mono',monospace", whiteSpace:"nowrap" }}>Aug 2025 – Present · Farmington, MI</span>
+                    </div>
+                    <div style={{ fontSize:11, color:"#7c3aed", fontFamily:"'IBM Plex Mono',monospace", marginBottom:12 }}>M/TEL-AM · Ford & GM OEM Programs · Five Divisions</div>
+                    <ul style={{ paddingLeft:18, display:"flex", flexDirection:"column", gap:7 }}>
+                      {[
+                        "Self-initiated and led development of comprehensive cybersecurity visibility platform, aggregating 40+ security projects into centralized Power BI dashboard with database architecture, automated intake, and executive presentations to business unit leaders.",
+                        "Designed and implemented end-to-end IECS automation workflow, streamlining cross-divisional engineering change management and reducing manual processing overhead.",
+                        "Developed AI-powered whitepaper agent using LLMs for automated technical documentation generation and analysis.",
+                        "Created automated security project intake portal using Power Apps, standardizing submission across security teams and business units.",
+                        "Served as Game Master for cybersecurity fire drill exercises, designing incident response scenarios and facilitating cross-team tabletop exercises.",
+                      ].map((pt,i) => (
+                        <li key={i} style={{ fontSize:13, lineHeight:1.7, color:"#334155" }}>{pt}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Amazon */}
+                  <div style={{ marginBottom:28 }}>
+                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:4, marginBottom:10 }}>
+                      <div>
+                        <span style={{ fontSize:15, fontWeight:700, color:"#0f172a" }}>Warehouse Operations</span>
+                        <span style={{ fontSize:14, color:"#64748b", marginLeft:8 }}>· Amazon</span>
+                      </div>
+                      <span style={{ fontSize:12, color:"#94a3b8", fontFamily:"'IBM Plex Mono',monospace", whiteSpace:"nowrap" }}>2022 – 2025 · Michigan</span>
+                    </div>
+                    <ul style={{ paddingLeft:18, display:"flex", flexDirection:"column", gap:6 }}>
+                      <li style={{ fontSize:13, lineHeight:1.7, color:"#334155" }}>Inbound process — receiving and stowing inventory at high throughput in fast-paced fulfillment environment.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Education */}
+                <div>
+                  <div style={{ fontSize:10, fontWeight:700, letterSpacing:2.5, textTransform:"uppercase", color:"#4f46e5", marginBottom:10, fontFamily:"'IBM Plex Mono',monospace" }}>Education</div>
+                  <div style={{ width:36, height:3, background:"linear-gradient(90deg,#4f46e5,#7c3aed)", borderRadius:2, marginBottom:20 }} />
+                  <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:16 }}>
+                    {[
+                      { deg:"B.S. Information Assurance & Cyber Defense", school:"Eastern Michigan University", detail:"GPA 3.9 · Cum Laude · Graduating May 2026" },
+                      { deg:"A.A.S. Cybersecurity", school:"Henry Ford College", detail:"GPA 3.6 · Dean's List · Graduated 2023" },
+                    ].map((e,i) => (
+                      <div key={i} style={{ background:"#f8fafc", borderRadius:12, padding:"16px 20px", borderLeft:"3px solid #4f46e5" }}>
+                        <div style={{ fontSize:14, fontWeight:700, color:"#0f172a", marginBottom:3 }}>{e.deg}</div>
+                        <div style={{ fontSize:13, color:"#475569", marginBottom:4 }}>{e.school}</div>
+                        <div style={{ fontSize:11, color:"#7c3aed", fontFamily:"'IBM Plex Mono',monospace" }}>{e.detail}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Key Projects */}
+                <div>
+                  <div style={{ fontSize:10, fontWeight:700, letterSpacing:2.5, textTransform:"uppercase", color:"#4f46e5", marginBottom:10, fontFamily:"'IBM Plex Mono',monospace" }}>Key Projects</div>
+                  <div style={{ width:36, height:3, background:"linear-gradient(90deg,#4f46e5,#7c3aed)", borderRadius:2, marginBottom:20 }} />
+                  <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+                    {[
+                      { name:"CAN Bus Intrusion Detection System", stack:"Python · Flask · SQLite · Raspberry Pi 5 · ELM327 · OBD-II", desc:"Real-time automotive network IDS monitoring CAN bus traffic, detecting anomalies via statistical baselines. Capstone for ISAC317 IoT Embedded Systems Security." },
+                      { name:"BusBreach — Automotive CTF Platform", stack:"Python · UDS Protocol · CAN Simulation", desc:"Educational CTF platform with UDS server simulation, CAN injection challenges, and progressive difficulty for hands-on automotive security learning." },
+                      { name:"Comic Forge — AI Comic Creator", stack:"React · Anthropic Claude API · JavaScript", desc:"React web app using Claude API for multi-panel AI comic book generation with real-time narrative and dialogue creation." },
+                      { name:"Ford ECU Modification Detector", stack:"Python · Flask · Raspberry Pi · OBD-II", desc:"Forensic analysis tool on Raspberry Pi scoring ECU modification likelihood via behavioral analysis with GPIO indicators." },
+                      { name:"AgentForge", stack:"Electron · React · Vite · Node.js", desc:"Cross-platform AI agent desktop app with 10 messaging channels, 17 connectors, skills marketplace, and persistent memory." },
+                    ].map((p,i) => (
+                      <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start" }}>
+                        <div style={{ width:6, height:6, borderRadius:"50%", background:"#4f46e5", flexShrink:0, marginTop:6 }} />
+                        <div>
+                          <span style={{ fontSize:13, fontWeight:700, color:"#0f172a" }}>{p.name}</span>
+                          <span style={{ fontSize:11, color:"#7c3aed", fontFamily:"'IBM Plex Mono',monospace", marginLeft:8 }}>{p.stack}</span>
+                          <div style={{ fontSize:12.5, color:"#475569", lineHeight:1.6, marginTop:2 }}>{p.desc}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Skills */}
+                <div>
+                  <div style={{ fontSize:10, fontWeight:700, letterSpacing:2.5, textTransform:"uppercase", color:"#4f46e5", marginBottom:10, fontFamily:"'IBM Plex Mono',monospace" }}>Skills</div>
+                  <div style={{ width:36, height:3, background:"linear-gradient(90deg,#4f46e5,#7c3aed)", borderRadius:2, marginBottom:20 }} />
+                  <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:16 }}>
+                    {[
+                      { cat:"Automotive Security", items:["ISO/SAE 21434 & TARA","CAN Bus Analysis","UDS Protocol","ECU Security","OBD-II Interface","SDV Security"] },
+                      { cat:"Development", items:["Python","React & JavaScript","Power Platform","Flask","Raspberry Pi","Electron / Node.js"] },
+                      { cat:"Security Tools", items:["Splunk / SIEM","Nessus / OpenVAS","Wireshark / Nmap","Burp Suite","Metasploit","pfSense"] },
+                      { cat:"Industry", items:["Ford OEM Programs","GM OEM Programs","Cross-Divisional Ops","Incident Response","ESCAR USA 2026","Tier 1 Supplier"] },
+                    ].map((s,i) => (
+                      <div key={i}>
+                        <div style={{ fontSize:11, fontWeight:700, color:"#0f172a", marginBottom:8 }}>{s.cat}</div>
+                        <div style={{ display:"flex", flexWrap:"wrap", gap:5 }}>
+                          {s.items.map((item,j) => (
+                            <span key={j} style={{ fontSize:10.5, color:"#475569", background:"#f1f5f9", border:"1px solid #e2e8f0", padding:"3px 9px", borderRadius:4, fontFamily:"'IBM Plex Mono',monospace" }}>{item}</span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div style={{ borderTop:"1px solid #e2e8f0", paddingTop:20, display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:8 }}>
+                  <span style={{ fontSize:11, color:"#94a3b8", fontFamily:"'IBM Plex Mono',monospace" }}>Last updated May 2026</span>
+                  <a href="/Micheal_Wolski_Resume_2026.pdf" download="Micheal_Wolski_Resume_2026.pdf" style={{ display:"inline-flex", alignItems:"center", gap:7, fontSize:12, fontWeight:700, color:"#4f46e5", textDecoration:"none" }}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download PDF
+                  </a>
+                </div>
+
+              </div>
             </div>
           </div>
         </section>
