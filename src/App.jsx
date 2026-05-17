@@ -1153,7 +1153,7 @@ export default function App() {
           <div style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:11, color:"#3fb950", marginBottom:10, display:"flex", alignItems:"center", gap:6 }}>
             <span style={{ animation:"termBlink 1.2s infinite" }}>▌</span> system_status --live
           </div>
-          {[{k:"IQPC_2026",v:"ATTENDED",c:"#a78bfa"},{k:"CLEARANCE",v:"PROD_SEC_INTERN",c:"#fbbf24"},{k:"STATUS",v:"OPEN_TO_WORK",c:"#f87171"},{k:"CERTS",v:"IN_PROGRESS",c:"#34d399"}].map(({k,v,c}) => (
+          {[{k:"EMPLOYER",v:"ROBERT_BOSCH",c:"#E20015"},{k:"IQPC_2026",v:"ATTENDED",c:"#a78bfa"},{k:"CLEARANCE",v:"PROD_SEC_INTERN",c:"#fbbf24"},{k:"STATUS",v:"OPEN_TO_WORK",c:"#f87171"},{k:"CERTS",v:"IN_PROGRESS",c:"#34d399"}].map(({k,v,c}) => (
             <div key={k} style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:11, lineHeight:1.9, display:"flex", justifyContent:"space-between" }}>
               <span style={{ color:"#8b949e" }}>{k}</span>
               <span style={{ color:c, fontWeight:700 }}>{v}</span>
