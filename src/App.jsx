@@ -1370,7 +1370,7 @@ export default function App() {
                       { cat:"Automotive Security", items:["ISO/SAE 21434 & TARA","CAN Bus Analysis","UDS Protocol","ECU Security","OBD-II Interface","SDV Security"] },
                       { cat:"Development", items:["Python","React & JavaScript","Power Platform","Flask","Raspberry Pi","Electron / Node.js"] },
                       { cat:"Security Tools", items:["Splunk / SIEM","Nessus / OpenVAS","Wireshark / Nmap","Burp Suite","Metasploit","pfSense"] },
-                      { cat:"Industry", items:["Ford OEM Programs","GM OEM Programs","Cross-Divisional Ops","Incident Response","ESCAR USA 2026","Tier 1 Supplier"] },
+                      { cat:"Industry", items:["Ford OEM Programs","GM OEM Programs","Cross-Divisional Ops","Incident Response","IQPC Automotive IQ 2026","Tier 1 Supplier"] },
                     ].map((s,i) => (
                       <div key={i}>
                         <div style={{ fontSize:11, fontWeight:700, color:"#0f172a", marginBottom:8 }}>{s.cat}</div>
