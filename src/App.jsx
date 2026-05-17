@@ -49,12 +49,12 @@ const T = {
 const P = {
   name: "Micheal Wolski",
   title: "Automotive Cybersecurity Engineer | Product Security | AI Automation",
-  summary: "Cybersecurity professional specializing in automotive security and enterprise automation, currently serving as Product Cybersecurity Intern at Robert Bosch LLC. Created automated workflow infrastructure for GM programs and developed enterprise security visibility tools across multiple OEM initiatives. Graduating May 2026 from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense (3.9 GPA, Cum Laude) and an A.A.S. in Cybersecurity from Henry Ford College. Experienced in developing enterprise security automation tools, conducting automotive threat analysis, and building embedded security systems. Passionate about Software-Defined Vehicle security, CAN bus intrusion detection, and applying AI/ML to cybersecurity challenges. Attended ESCAR USA 2026 conference focused on automotive cybersecurity and SDV threat landscapes.",
+  summary: "Cybersecurity professional specializing in automotive security and enterprise automation, currently serving as Product Cybersecurity Intern at Robert Bosch LLC. Created automated workflow infrastructure for GM programs and developed enterprise security visibility tools across multiple OEM initiatives. Graduated May 2026 from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense (3.9 GPA, Cum Laude) and an A.A.S. in Cybersecurity from Henry Ford College. Experienced in developing enterprise security automation tools, conducting automotive threat analysis, and building embedded security systems. Passionate about Software-Defined Vehicle security, CAN bus intrusion detection, and applying AI/ML to cybersecurity challenges. Attended ESCAR USA 2026 conference focused on automotive cybersecurity and SDV threat landscapes.",
   location: "Woodhaven, MI", email: "michealswolski@gmail.com",
   focus: ["Automotive Cybersecurity","Software-Defined Vehicle Security","Enterprise Security Automation","CAN Bus Intrusion Detection","AI/LLM Integration"],
 };
 const EDU = [
-  { degree:"B.S. Information Assurance & Cyber Defense", school:"Eastern Michigan University", status:"Graduating May 2026", loc:"Ypsilanti, MI", honors:"GPA: 3.9 • Cum Laude" },
+  { degree:"B.S. Information Assurance & Cyber Defense", school:"Eastern Michigan University", status:"Graduated May 2026", loc:"Ypsilanti, MI", honors:"GPA: 3.9 • Cum Laude" },
   { degree:"A.A.S. Cybersecurity", school:"Henry Ford College", status:"Graduated 2023", loc:"Dearborn, MI", honors:"GPA: 3.6 • Dean's List" },
 ];
 const CERTS = [
@@ -1230,7 +1230,7 @@ export default function App() {
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:12, marginBottom:32, background:th.card, border:`1px solid ${th.border}`, borderRadius:14, padding:"16px 24px", boxShadow:th.shadow }}>
               <div style={{ display:"flex", alignItems:"center", gap:10 }}>
                 <Dot color={th.green} animated />
-                <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:11, color:th.accent, fontWeight:600 }}>Open to full-time opportunities · Graduating May 2026</span>
+                <span style={{ fontFamily:"'IBM Plex Mono',monospace", fontSize:11, color:th.accent, fontWeight:600 }}>Open to full-time opportunities · Graduated May 2026</span>
               </div>
               <a href="/Micheal_Wolski_Resume_2026.pdf" download="Micheal_Wolski_Resume_2026.pdf" style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'Inter',sans-serif", fontSize:13, fontWeight:700, color:"#fff", background:th.btnBg, borderRadius:9, padding:"10px 22px", textDecoration:"none", boxShadow:th.btnShadow, whiteSpace:"nowrap" }}>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -1260,7 +1260,7 @@ export default function App() {
                   <div style={{ fontSize:10, fontWeight:700, letterSpacing:2.5, textTransform:"uppercase", color:"#4f46e5", marginBottom:10, fontFamily:"'IBM Plex Mono',monospace" }}>Summary</div>
                   <div style={{ width:36, height:3, background:"linear-gradient(90deg,#4f46e5,#7c3aed)", borderRadius:2, marginBottom:16 }} />
                   <p style={{ fontSize:14, lineHeight:1.8, color:"#334155" }}>
-                    Cybersecurity professional specializing in automotive security and enterprise automation, currently serving as Product Cybersecurity Intern at Robert Bosch LLC. Created automated workflow infrastructure for GM programs and developed enterprise security visibility tools across multiple OEM initiatives. Graduating May 2026 from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense (3.9 GPA, Cum Laude). Experienced in enterprise security automation, automotive threat analysis, and embedded security systems. Attended ESCAR USA 2026.
+                    Cybersecurity professional specializing in automotive security and enterprise automation, currently serving as Product Cybersecurity Intern at Robert Bosch LLC. Created automated workflow infrastructure for GM programs and developed enterprise security visibility tools across multiple OEM initiatives. Graduated May 2026 from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense (3.9 GPA, Cum Laude). Experienced in enterprise security automation, automotive threat analysis, and embedded security systems. Attended ESCAR USA 2026.
                   </p>
                 </div>
 
@@ -1313,7 +1313,7 @@ export default function App() {
                   <div style={{ width:36, height:3, background:"linear-gradient(90deg,#4f46e5,#7c3aed)", borderRadius:2, marginBottom:20 }} />
                   <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:16 }}>
                     {[
-                      { deg:"B.S. Information Assurance & Cyber Defense", school:"Eastern Michigan University", detail:"GPA 3.9 · Cum Laude · Graduating May 2026" },
+                      { deg:"B.S. Information Assurance & Cyber Defense", school:"Eastern Michigan University", detail:"GPA 3.9 · Cum Laude · Graduated May 2026" },
                       { deg:"A.A.S. Cybersecurity", school:"Henry Ford College", detail:"GPA 3.6 · Dean's List · Graduated 2023" },
                     ].map((e,i) => (
                       <div key={i} style={{ background:"#f8fafc", borderRadius:12, padding:"16px 20px", borderLeft:"3px solid #4f46e5" }}>
@@ -1394,7 +1394,7 @@ export default function App() {
               Let's Work <span style={{ color:th.accent }}>Together</span>
             </h2>
             <p style={{ fontFamily:"'Inter',sans-serif", fontSize:16, color:th.textMid, lineHeight:1.8, marginBottom:44 }}>
-              Graduating May 2026 and open to full-time roles in automotive cybersecurity, product security, and enterprise security engineering. Let's connect.
+              Recent graduate (B.S. Information Assurance & Cyber Defense, May 2026) actively seeking full-time roles in automotive cybersecurity, product security, and enterprise security engineering. Let's connect.
             </p>
 
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))", gap:14, marginBottom:44 }}>
