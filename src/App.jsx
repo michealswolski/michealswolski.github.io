@@ -1328,10 +1328,9 @@ export default function App() {
                   <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
                     {[
                       { name:"CAN Bus Intrusion Detection System", stack:"Python · Flask · SQLite · Raspberry Pi 5 · ELM327 · OBD-II", desc:"Real-time automotive network IDS monitoring CAN bus traffic, detecting anomalies via statistical baselines. Capstone for ISAC317 IoT Embedded Systems Security." },
-                      { name:"BusBreach — Automotive CTF Platform", stack:"Python · UDS Protocol · CAN Simulation", desc:"Educational CTF platform with UDS server simulation, CAN injection challenges, and progressive difficulty for hands-on automotive security learning." },
-                      { name:"Comic Forge — AI Comic Creator", stack:"React · Anthropic Claude API · JavaScript", desc:"React web app using Claude API for multi-panel AI comic book generation with real-time narrative and dialogue creation." },
-                      { name:"Ford ECU Modification Detector", stack:"Python · Flask · Raspberry Pi · OBD-II", desc:"Forensic analysis tool on Raspberry Pi scoring ECU modification likelihood via behavioral analysis with GPIO indicators." },
-                      { name:"AgentForge", stack:"Electron · React · Vite · Node.js", desc:"Cross-platform AI agent desktop app with 10 messaging channels, 17 connectors, skills marketplace, and persistent memory." },
+                      { name:"Network Traffic Analysis", stack:"Wireshark · Kali Linux · tcpdump · TCP/IP", desc:"Deep packet inspection lab analyzing TCP handshakes, DNS queries, HTTP sessions, and identifying abnormal outbound traffic in an isolated environment." },
+                      { name:"Wolski Command Center", stack:"React · Node.js · Raspberry Pi · PowerShell", desc:"Full-stack Raspberry Pi home lab dashboard with real-time system monitoring, AI automation, file management, and one-click Windows deployment." },
+                      { name:"Home Lab Vulnerability Management", stack:"Nessus · Nmap · pfSense · VirtualBox", desc:"Full vulnerability management lifecycle: Nessus baseline scans, CVSS prioritization, patch remediation, pfSense rule enforcement, and re-scan validation." },
                     ].map((p,i) => (
                       <div key={i} style={{ display:"flex", gap:14, alignItems:"flex-start" }}>
                         <div style={{ width:6, height:6, borderRadius:"50%", background:"#4f46e5", flexShrink:0, marginTop:6 }} />
