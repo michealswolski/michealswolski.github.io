@@ -7,8 +7,8 @@ const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Outfit:wght
 const T = {
   light: {
     bg: "#ffffff", bgAlt: "#f8fafc", bgDeep: "#f1f5f9",
-    bgNav: "rgba(255,255,255,0.85)", text: "#0f172a", textMid: "#475569",
-    textDim: "#94a3b8", textFaint: "#cbd5e1",
+    bgNav: "rgba(255,255,255,0.85)", text: "#0f172a", textMid: "#2d3f55",
+    textDim: "#64748b", textFaint: "#94a3b8",
     accent: "#4f46e5", accentHov: "#4338ca",
     accentGlow: "rgba(79,70,229,0.15)", accentLight: "rgba(79,70,229,0.06)",
     accentMid: "rgba(79,70,229,0.12)", green: "#10b981", greenBg: "rgba(16,185,129,0.08)",
@@ -26,8 +26,8 @@ const T = {
   },
   dark: {
     bg: "#07090f", bgAlt: "#0d1117", bgDeep: "#111827",
-    bgNav: "rgba(7,9,15,0.92)", text: "#f1f5f9", textMid: "#94a3b8",
-    textDim: "#64748b", textFaint: "#334155",
+    bgNav: "rgba(7,9,15,0.92)", text: "#f1f5f9", textMid: "#c4cfdd",
+    textDim: "#8899aa", textFaint: "#475569",
     accent: "#818cf8", accentHov: "#a5b4fc",
     accentGlow: "rgba(129,140,248,0.18)", accentLight: "rgba(129,140,248,0.08)",
     accentMid: "rgba(129,140,248,0.14)", green: "#34d399", greenBg: "rgba(52,211,153,0.08)",
@@ -314,8 +314,8 @@ function useTilt() {
 const GCSS = `
 ${FONTS}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.7}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:#a5b4fc;border-radius:3px}
@@ -345,11 +345,12 @@ body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
 }
 .tilt-card:hover .card-shine{opacity:1}
 
-.desktop-nav{display:flex;align-items:center;gap:3px}
+section[id]{scroll-margin-top:80px}
+.desktop-nav{display:flex;align-items:center;gap:1px}
 .hamburger-btn{display:none;background:none;border:none;cursor:pointer;padding:4px}
 .mobile-overlay{display:none}
 .mobile-overlay.open{display:flex}
-@media(max-width:860px){
+@media(max-width:960px){
   .desktop-nav{display:none !important}
   .hamburger-btn{display:flex !important}
 }
@@ -972,12 +973,12 @@ export default function App() {
               <div className="desktop-nav">
                 {NAV.map(n => (
                   <a key={n.id} href={`#${n.id}`} style={{
-                    fontFamily:"'Inter',sans-serif", fontSize:13, fontWeight:500,
+                    fontFamily:"'Inter',sans-serif", fontSize:12, fontWeight:500,
                     color: activeNav === n.id ? th.accent : th.textMid,
-                    textDecoration:"none", padding:"6px 11px", borderRadius:8,
+                    textDecoration:"none", padding:"5px 9px", borderRadius:7,
                     background: activeNav === n.id ? th.accentLight : "transparent",
                     border:`1px solid ${activeNav === n.id ? th.accentMid : "transparent"}`,
-                    transition:"all 0.2s ease",
+                    transition:"all 0.2s ease", whiteSpace:"nowrap",
                   }}>
                     {n.label}
                   </a>
@@ -1179,6 +1180,4 @@ export default function App() {
 
         {/* ── ACTIVITY ───────────────────────────── */}
         <section id="activity" style={{ padding:"110px 28px", background: th.isDark ? th.bgAlt : th.bg }}>
-          <div style={{ maxWidth:1200, margin:"0 auto" }}>
-            <SecLabel th={th}>Activity</SecLabel>
-      
+          <di
