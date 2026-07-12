@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a0e14"/>
+      <stop offset="1" stop-color="#0e1a1f"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#22d3ee" stroke-opacity="0.10" stroke-width="1">
+    <path d="M120 470 L280 410 L470 380 L680 360 L880 372 L1020 400" fill="none" stroke-dasharray="8 6"/>
+    <circle cx="280" cy="410" r="6" fill="#22d3ee" fill-opacity="0.25"/>
+    <circle cx="470" cy="380" r="6" fill="#22d3ee" fill-opacity="0.25"/>
+    <circle cx="680" cy="360" r="6" fill="#22d3ee" fill-opacity="0.25"/>
+    <circle cx="880" cy="372" r="6" fill="#22d3ee" fill-opacity="0.25"/>
+  </g>
+  <rect x="80" y="86" width="150" height="150" rx="34" fill="#101820" stroke="#22d3ee" stroke-opacity="0.4"/>
+  <path d="M155 120 L196 137 V172 C196 202 178 224 155 233 C132 224 114 202 114 172 V137 Z" fill="rgba(34,211,238,0.12)" stroke="#22d3ee" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M137 173 L150 186 L176 160" stroke="#22d3ee" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="82" y="330" font-family="'Segoe UI',Arial,sans-serif" font-size="76" font-weight="800" fill="#e6edf3">Micheal Wolski</text>
+  <text x="86" y="398" font-family="'Segoe UI',Arial,sans-serif" font-size="40" font-weight="700" fill="url(#acc)">Automotive Cybersecurity, Digitalization &amp; AI</text>
+  <text x="86" y="452" font-family="'Consolas',monospace" font-size="25" fill="#78899a">Cybersecurity Graduate  ·  Former Bosch Product Cybersecurity Intern</text>
+  <rect x="86" y="500" width="1028" height="1" fill="#1c2531"/>
+  <text x="86" y="548" font-family="'Consolas',monospace" font-size="22" fill="#22d3ee">michealswolski.github.io</text>
+</svg>
