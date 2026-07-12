@@ -171,6 +171,23 @@ function SecTitle({ children, sub, th }) {
 /* ─── PROJECT CARD + MODAL ──────────────────────────────────────── */
 function ExtIcon({ s = 11 }) { return <svg width={s} height={s} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><path d="M2 10L10 2M10 2H5M10 2V7" /></svg>; }
 
+/* Category watermark icon for project-card headers */
+function CatIcon({ p, size = 60, color }) {
+  const paths = {
+    INTERNSHIP: <><path d="M3 21h18" /><path d="M5 21V8l7-4 7 4v13" /><path d="M9 21v-4h6v4" /><path d="M9 10h.01M15 10h.01M9 13.5h.01M15 13.5h.01" /></>,
+    AI: <><rect x="4" y="4" width="16" height="16" rx="3" /><rect x="9" y="9" width="6" height="6" rx="1" /><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2" /></>,
+    AUTOMOTIVE: <><path d="M3 12h18l-2-5H5z" /><path d="M3 12v4h2M21 12v4h-2M7 16h10" /><circle cx="7" cy="16.5" r="1.6" /><circle cx="17" cy="16.5" r="1.6" /></>,
+    SECURITY: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" /></>,
+    PERSONAL: <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 9l3 3-3 3M13 15h4" /></>,
+    ACADEMIC: <><path d="M22 10L12 5 2 10l10 5 10-5z" /><path d="M6 12v5c0 1.3 2.7 3 6 3s6-1.7 6-3v-5" /></>,
+  };
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {paths[p.cat[0]] || paths.PERSONAL}
+    </svg>
+  );
+}
+
 function ProjCard({ p, i, onOpen, th }) {
   const [r, v] = useReveal();
   const [hov, setHov] = useState(false);
@@ -192,11 +209,16 @@ function ProjCard({ p, i, onOpen, th }) {
         opacity: v ? 1 : 0, transitionDelay: v ? `${(i % 3) * 50}ms` : "0ms",
       }}
     >
-      <div style={{ height: 3, background: bc, opacity: hov ? 1 : 0.55, transition: "opacity .3s" }} />
-      <div style={{ padding: "20px 22px 22px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 12 }}>
+      <div style={{ position: "relative", height: 74, overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(120deg, ${bc}2b, ${bc}0d 55%, transparent)` }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(${th.isDark ? "rgba(255,255,255,0.05)" : "rgba(15,30,50,0.05)"} 1px, transparent 1px)`, backgroundSize: "13px 13px", opacity: 0.6 }} />
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: bc, opacity: hov ? 1 : 0.6, transition: "opacity .3s" }} />
+        <div style={{ position: "absolute", right: -4, top: "50%", transform: `translateY(-50%) scale(${hov ? 1.05 : 1})`, color: bc, opacity: hov ? 0.5 : 0.34, transition: "all .3s" }}><CatIcon p={p} size={62} color={bc} /></div>
+        <div style={{ position: "absolute", left: 16, bottom: 11 }}><Badge p={p} th={th} /></div>
+      </div>
+      <div style={{ padding: "16px 22px 22px" }}>
+        <div style={{ marginBottom: 10 }}>
           <span style={{ ...Mono, fontSize: 10.5, color: th.textDim }}>{p.id} · {p.domain}</span>
-          <Badge p={p} th={th} />
         </div>
         <h3 style={{ ...Head, fontSize: 16.5, fontWeight: 700, color: hov ? th.accent : th.text, marginBottom: 3, transition: "color .2s", lineHeight: 1.3 }}>{p.title}</h3>
         <p style={{ ...Mono, fontSize: 11, color: th.accent, marginBottom: 10, opacity: 0.85 }}>{p.sub}</p>
