@@ -359,7 +359,7 @@ export default function App() {
                 </div>
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap", animation: "fadeUp .7s ease .32s both" }}>
                   <a href="#projects" style={{ fontSize: 14, fontWeight: 700, color: th.btnText, background: `linear-gradient(135deg,${th.accent},${th.accent2})`, textDecoration: "none", padding: "13px 26px", borderRadius: 11, display: "inline-flex", alignItems: "center", gap: 8 }}>View My Work<ExtIcon s={12} /></a>
-                  <a href="#resume" style={{ fontSize: 14, fontWeight: 600, color: th.text, background: th.card, textDecoration: "none", padding: "13px 26px", borderRadius: 11, border: `1px solid ${th.border}` }}>Résumé</a>
+                  <a href="#resume" style={{ fontSize: 14, fontWeight: 600, color: th.text, background: th.card, textDecoration: "none", padding: "13px 26px", borderRadius: 11, border: `1px solid ${th.border}` }}>Resume</a>
                   {SOCIALS.map((s) => { const Ic = SOCIAL_ICON[s.label]; return (
                     <a key={s.label} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" aria-label={s.label} style={{ width: 46, height: 46, borderRadius: 11, background: th.card, border: `1px solid ${th.border}`, display: "inline-flex", alignItems: "center", justifyContent: "center", color: th.textMid }}><Ic s={17} c={th.accent} /></a>
                   ); })}
@@ -444,7 +444,7 @@ export default function App() {
         {/* ── DEVELOPMENT ── */}
         <Section id="development" alt th={th}>
           <SecLabel th={th}>Professional Development</SecLabel>
-          <SecTitle th={th} sub="Conferences, internal events, training, and what I'm currently exploring.">Beyond the Résumé</SecTitle>
+          <SecTitle th={th} sub="Conferences, internal events, training, and what I'm currently exploring.">Beyond the Resume</SecTitle>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 26 }}>
             <ListCard title="Development & Events" items={DEVELOPMENT} th={th} tone={th.accent} />
             <ListCard title="Currently Exploring" items={EXPLORING} th={th} tone={th.teal} />
@@ -453,8 +453,8 @@ export default function App() {
 
         {/* ── RESUME ── */}
         <Section id="resume" th={th}>
-          <SecLabel th={th}>Résumé</SecLabel>
-          <SecTitle th={th} sub="A one-page summary. Use “Save as PDF” in the print dialog for a clean copy.">Professional Résumé</SecTitle>
+          <SecLabel th={th}>Resume</SecLabel>
+          <SecTitle th={th} sub="A one-page summary. Use “Save as PDF” in the print dialog for a clean copy.">Professional Resume</SecTitle>
           <div className="no-print" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 26, background: th.card, border: `1px solid ${th.border}`, borderRadius: 12, padding: "14px 20px", boxShadow: th.shadow }}>
             <span style={{ ...Mono, fontSize: 11.5, color: th.accent, fontWeight: 600 }}>{P.availability} · Graduated May 2026</span>
             <button onClick={() => window.print()} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 700, color: th.btnText, background: `linear-gradient(135deg,${th.accent},${th.accent2})`, border: "none", borderRadius: 9, padding: "10px 20px", cursor: "pointer" }}>
