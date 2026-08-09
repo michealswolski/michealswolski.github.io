@@ -1,0 +1,125 @@
+/*
+  Design tokens. Dark is the primary, default experience (no attribute needed);
+  [data-theme="light"] on <html> overrides the palette for light mode.
+*/
+
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --bg: #060910;
+  --bg-alt: #0a0e18;
+  --bg-deep: #0d1220;
+  --nav-bg: rgba(6, 9, 16, 0.82);
+  --surface: #0e1420;
+  --surface-hover: #131b2c;
+  --border: rgba(210, 224, 255, 0.09);
+  --border-hover: rgba(94, 234, 255, 0.35);
+
+  /* Text */
+  --text: #eef3fb;
+  --text-mid: #aab8cf;
+  --text-dim: #7c8aa3;
+  --text-faint: #4d5972;
+
+  /* Accents */
+  --accent: #3fd9f2;
+  --accent-strong: #7be8fa;
+  --accent-ink: #04222b;
+  --accent-soft: rgba(63, 217, 242, 0.1);
+  --accent-mid: rgba(63, 217, 242, 0.22);
+  --accent-border: rgba(63, 217, 242, 0.32);
+  --accent2: #9c8cff;
+  --accent2-soft: rgba(156, 140, 255, 0.12);
+  --accent2-mid: rgba(156, 140, 255, 0.28);
+
+  --success: #3ddc97;
+  --success-soft: rgba(61, 220, 151, 0.12);
+  --warning: #f2b84f;
+
+  /* Category accents (used sparingly, small badges only) */
+  --cat-ai-security: #a78bfa;
+  --cat-ai-auto: #8b93ff;
+  --cat-fullstack: #3fd9f2;
+  --cat-enterprise: #e3ac52;
+  --cat-automotive: #f0765f;
+  --cat-systems: #3ddc97;
+  --cat-analytics: #62a6ff;
+
+  --brand-bosch: #e2515f;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 0 1px var(--accent-border), 0 8px 30px rgba(63, 217, 242, 0.12);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Type */
+  --font-display: "Outfit", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Layout */
+  --container: 1180px;
+  --nav-h: 68px;
+  --section-pad: clamp(64px, 9vw, 112px);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f7f9fc;
+  --bg-alt: #eef2f8;
+  --bg-deep: #e9eef6;
+  --nav-bg: rgba(247, 249, 252, 0.82);
+  --surface: #ffffff;
+  --surface-hover: #f7f9fd;
+  --border: #e2e8f0;
+  --border-hover: #9fd8e3;
+
+  --text: #0d1526;
+  --text-mid: #3d4a61;
+  --text-dim: #576479;
+  --text-faint: #97a1b5;
+
+  /* Darker than the dark-theme cyan on purpose — #0891b2 only hits 3.5:1 on
+     this light background, which fails WCAG AA at the small text sizes this
+     color is used at (eyebrows, badges, nav). #046380 clears 6.4:1. */
+  --accent: #046380;
+  --accent-strong: #024a5e;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(4, 99, 128, 0.08);
+  --accent-mid: rgba(4, 99, 128, 0.15);
+  --accent-border: rgba(4, 99, 128, 0.32);
+  --accent2: #6d28d9;
+  --accent2-soft: rgba(109, 40, 217, 0.08);
+  --accent2-mid: rgba(109, 40, 217, 0.16);
+
+  --success: #0a6b43;
+  --success-soft: rgba(15, 157, 99, 0.1);
+  --warning: #8a5a14;
+
+  /* Category accents — darkened from the dark-theme values, which fall to
+     ~2:1 on a light background. Each still reads as the same hue family. */
+  --cat-ai-security: #6d28d9;
+  --cat-ai-auto: #4f46e5;
+  --cat-fullstack: var(--accent);
+  --cat-enterprise: #7a5209;
+  --cat-automotive: #b23a26;
+  --cat-systems: #0c6b45;
+  --cat-analytics: #1d5fd1;
+  --brand-bosch: #a3172a;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 0 1px var(--accent-border), 0 8px 30px rgba(4, 99, 128, 0.1);
+}
