@@ -112,6 +112,19 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+/* Cybersecurity is the identity; automotive/AI are focus areas within it —
+   sized and colored as a visibly secondary tier, not equal-weight pillars. */
+.hero-tagline-pill--primary {
+  font-weight: 700;
+}
+.hero-tagline-pill--secondary {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: var(--surface);
+  border-color: var(--border);
+  padding: 6px 13px;
+}
 
 .hero-name {
   font-family: var(--font-display);
