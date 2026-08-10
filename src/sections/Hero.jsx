@@ -30,9 +30,10 @@ export default function Hero() {
       <div className="container hero-inner">
         <div className="hero-main">
           <div className="hero-tagline-row">
-            {profile.taglineParts.map((part, i) => (
-              <span key={part} className="pill hero-tagline-pill">
-                {part}
+            <span className="pill hero-tagline-pill hero-tagline-pill--primary">{profile.identity}</span>
+            {profile.focusAreas.map((area) => (
+              <span key={area} className="pill hero-tagline-pill hero-tagline-pill--secondary">
+                {area}
               </span>
             ))}
           </div>
@@ -71,7 +72,9 @@ export default function Hero() {
             <span className="dot dot--live" style={{ color: "var(--success)" }} aria-hidden="true" />
             <div>
               <p className="hero-status-title">Open to full-time roles</p>
-              <p className="hero-status-sub mono">Cybersecurity · Automotive Security · AI Engineering</p>
+              <p className="hero-status-sub mono">
+                {profile.identity} — {profile.focusAreas.join(" & ")} focus
+              </p>
             </div>
           </div>
 
@@ -93,6 +96,13 @@ export default function Hero() {
           <p className="hero-location mono">{profile.location}</p>
         </aside>
       </div>
+
+      <a href="#about" className="scroll-cue" aria-label="Scroll to About section">
+        <span className="scroll-cue-track">
+          <span className="scroll-cue-dot" />
+        </span>
+        <span className="mono">Scroll</span>
+      </a>
     </section>
   );
 }

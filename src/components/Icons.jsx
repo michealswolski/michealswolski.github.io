@@ -18,7 +18,7 @@ export function IconLinkedIn({ size = 16 }) {
 
 export function IconArrowUpRight({ size = 12 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
+    <svg className="icon-arrow" width={size} height={size} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
       <path d="M2 10L10 2M10 2H5M10 2V7" />
     </svg>
   );
@@ -26,7 +26,7 @@ export function IconArrowUpRight({ size = 12 }) {
 
 export function IconArrowRight({ size = 14 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg className="icon-arrow" width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M3 13L13 3M13 3H7M13 3V9" />
     </svg>
   );
