@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { CATEGORY_COLORS } from "../data/projects";
 import { IconArrowUpRight, IconClose, IconGitHub } from "./Icons";
+import ScreenshotFrame from "./ScreenshotFrame";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
@@ -76,6 +77,8 @@ export default function ProjectModal({ project, onClose }) {
           </h2>
           <p className="modal-summary">{project.summary}</p>
         </div>
+
+        {project.screenshot && <ScreenshotFrame screenshot={project.screenshot} size="modal" />}
 
         {project.disclaimer && <p className="modal-disclaimer">{project.disclaimer}</p>}
         {project.inProgressNote && <p className="modal-disclaimer modal-disclaimer--progress">{project.inProgressNote}</p>}

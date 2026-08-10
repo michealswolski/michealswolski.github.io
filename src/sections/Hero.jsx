@@ -96,6 +96,13 @@ export default function Hero() {
           <p className="hero-location mono">{profile.location}</p>
         </aside>
       </div>
+
+      <a href="#about" className="scroll-cue" aria-label="Scroll to About section">
+        <span className="scroll-cue-track">
+          <span className="scroll-cue-dot" />
+        </span>
+        <span className="mono">Scroll</span>
+      </a>
     </section>
   );
 }

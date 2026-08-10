@@ -18,6 +18,7 @@ export const featuredProjects = [
     title: "AI Agent Governance Dashboard",
     category: "AI Security",
     status: "public",
+    screenshot: { src: "/screenshots/ai-agent-governance.webp", alt: "AI Agent Governance Dashboard showing risk KPIs, a risk breakdown chart, and a human approval queue" },
     summary:
       "A self-hosted governance service that scores AI agent traces for risk — prompt injection, unapproved write actions, sensitive data — and routes anything risky into a human approval queue with a durable audit trail.",
     tech: ["Node.js", "node:sqlite", "Vanilla JS", "Docker"],
@@ -52,6 +53,7 @@ export const featuredProjects = [
     title: "AutoJob Intel",
     category: "Full Stack",
     status: "public",
+    screenshot: { src: "/screenshots/auto-job-intel.webp", alt: "AutoJob Intel ranked-matches view showing fit scores, verification badges, and cited requirement evidence" },
     summary:
       "A job-search pipeline that only trusts official employer postings — every requirement is cited back to the exact sentence it came from, and every alert is re-verified as still active before it reaches you.",
     tech: ["Next.js", "React", "TypeScript", "Zod"],
@@ -247,6 +249,7 @@ export const featuredProjects = [
     title: "ForecastAI",
     category: "Analytics",
     status: "public",
+    screenshot: { src: "/screenshots/forecast-ai.webp", alt: "ForecastAI dashboard showing forecast vs. actual KPIs and an executive summary" },
     summary:
       "A forecast-vs-actual dashboard that computes variance, accuracy (MAPE), and bias, ranks the biggest customer and product drivers, and writes a grounded plain-language explanation — every sentence maps back to a number on the page.",
     tech: ["Vanilla JS"],
