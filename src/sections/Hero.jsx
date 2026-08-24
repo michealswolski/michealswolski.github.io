@@ -1,7 +1,10 @@
 import { useCallback, useRef } from "react";
-import { profile, heroStats } from "../data/profile";
+import { profile, getHeroStats } from "../data/profile";
+import { totalProjectCount } from "../data/projects";
 import HeroBackground from "../components/HeroBackground";
-import { IconArrowRight, IconGitHub, IconLinkedIn } from "../components/Icons";
+import { IconArrowRight, IconArrowUpRight, IconGitHub, IconLinkedIn } from "../components/Icons";
+
+const heroStats = getHeroStats(totalProjectCount);
 
 export default function Hero() {
   const glowRef = useRef(null);
@@ -67,33 +70,51 @@ export default function Hero() {
           </dl>
         </div>
 
-        <aside className="hero-panel" aria-label="Availability">
+        <aside className="hero-panel" aria-label="Current status">
           <div className="hero-status-card">
-            <span className="dot dot--live" style={{ color: "var(--success)" }} aria-hidden="true" />
+            <span className="dot dot--live" aria-hidden="true" />
             <div>
               <p className="hero-status-title">Open to full-time roles</p>
-              <p className="hero-status-sub mono">
-                {profile.identity} — {profile.focusAreas.join(" & ")} focus
-              </p>
+              <p className="hero-status-sub mono">Cybersecurity · full-time · Michigan or remote</p>
             </div>
           </div>
+
+          <dl className="hero-readout">
+            <div>
+              <dt className="mono">Focus</dt>
+              {/* Rendered as separate items rather than one joined string so a
+                  narrow panel wraps between focus areas instead of inside
+                  "Full-Stack". */}
+              <dd className="hero-readout-tags">
+                {profile.focusAreas.map((area) => (
+                  <span key={area}>{area}</span>
+                ))}
+              </dd>
+            </div>
+            <div>
+              <dt className="mono">Based</dt>
+              <dd>{profile.location}</dd>
+            </div>
+            <div>
+              <dt className="mono">Degree</dt>
+              <dd>B.S. Information Assurance &amp; Cyber Defense</dd>
+            </div>
+          </dl>
 
           <div className="hero-link-list">
             <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="hero-link-item">
               <span>
                 <IconGitHub size={14} /> GitHub
               </span>
-              <IconArrowRight size={11} />
+              <IconArrowUpRight size={11} />
             </a>
             <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hero-link-item">
               <span>
                 <IconLinkedIn size={14} /> LinkedIn
               </span>
-              <IconArrowRight size={11} />
+              <IconArrowUpRight size={11} />
             </a>
           </div>
-
-          <p className="hero-location mono">{profile.location}</p>
         </aside>
       </div>
 
