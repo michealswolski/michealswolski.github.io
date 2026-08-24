@@ -342,13 +342,18 @@ button:hover .icon-arrow {
   align-items: start;
   gap: 20px;
 }
+/* Project grids stretch so every card in a row shares one bottom edge. The
+   default `align-items: start` above is right for the skills and education
+   grids, but on project cards it left a ragged gap under the shorter ones. */
 .grid-projects {
   grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
   gap: 22px;
+  align-items: stretch;
 }
 .grid-secondary {
   grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
   gap: 16px;
+  align-items: stretch;
 }
 .grid-2 {
   grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));

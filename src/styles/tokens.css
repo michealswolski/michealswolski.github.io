@@ -20,6 +20,9 @@
   --text: #eef3fb;
   --text-mid: #aab8cf;
   --text-dim: #7c8aa3;
+  /* Decoration only — this fails WCAG AA against every surface by design, so
+     it may only be used on aria-hidden ornament (the card index numbers, the
+     dot separators), never on text a reader needs. */
   --text-faint: #4d5972;
 
   /* Accents */
@@ -45,6 +48,8 @@
   --cat-automotive: #f0765f;
   --cat-systems: #3ddc97;
   --cat-analytics: #62a6ff;
+  --cat-awareness: #f4a15d;
+  --cat-research: #8fb8ff;
 
   --brand-bosch: #e2515f;
 
@@ -88,6 +93,7 @@
   --text: #0d1526;
   --text-mid: #3d4a61;
   --text-dim: #576479;
+  /* Decoration only — see the note on the dark-theme value. */
   --text-faint: #97a1b5;
 
   /* Darker than the dark-theme cyan on purpose — #0891b2 only hits 3.5:1 on
@@ -116,6 +122,8 @@
   --cat-automotive: #b23a26;
   --cat-systems: #0c6b45;
   --cat-analytics: #1d5fd1;
+  --cat-awareness: #96550c;
+  --cat-research: #24559e;
   --brand-bosch: #a3172a;
 
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);

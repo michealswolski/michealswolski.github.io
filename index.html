@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Micheal Wolski | Cybersecurity · Automotive & AI Security</title>
+    <title>Micheal Wolski | Cybersecurity · AI &amp; Automotive Security</title>
     <meta
       name="description"
-      content="Portfolio of Micheal Wolski — cybersecurity and software professional focused on automotive security, AI systems, automation, embedded technologies, and full-stack engineering."
+      content="Portfolio of Micheal Wolski — cybersecurity engineer building secure, practical software, with a specialty focus in AI agents and automotive/embedded systems, alongside full-stack and enterprise tooling."
     />
     <meta name="author" content="Micheal Wolski" />
     <meta name="robots" content="index, follow" />
@@ -17,10 +17,10 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://michealswolski.github.io/" />
     <meta property="og:site_name" content="Micheal Wolski" />
-    <meta property="og:title" content="Micheal Wolski | Cybersecurity · Automotive & AI Security" />
+    <meta property="og:title" content="Micheal Wolski | Cybersecurity · AI &amp; Automotive Security" />
     <meta
       property="og:description"
-      content="Cybersecurity and software professional focused on automotive security, AI systems, automation, embedded technologies, and full-stack engineering."
+      content="Cybersecurity engineer with a specialty focus in AI agents and automotive/embedded systems, alongside full-stack and enterprise tooling."
     />
     <meta property="og:image" content="https://michealswolski.github.io/og-image.png" />
     <meta property="og:image:width" content="1200" />
@@ -28,10 +28,10 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Micheal Wolski | Cybersecurity · Automotive & AI Security" />
+    <meta name="twitter:title" content="Micheal Wolski | Cybersecurity · AI &amp; Automotive Security" />
     <meta
       name="twitter:description"
-      content="Cybersecurity and software professional focused on automotive security, AI systems, automation, embedded technologies, and full-stack engineering."
+      content="Cybersecurity engineer with a specialty focus in AI agents and automotive/embedded systems, alongside full-stack and enterprise tooling."
     />
     <meta name="twitter:image" content="https://michealswolski.github.io/og-image.png" />
 
@@ -39,12 +39,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts are self-hosted (see src/styles/fonts.css) — no third-party
+         request, no render-blocking stylesheet. Preload only the two variable
+         faces used above the fold; the mono weights load with the CSS. -->
+    <link rel="preload" href="/fonts/outfit-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
 
     <script type="application/ld+json">
       {
@@ -54,8 +53,18 @@
             "@type": "Person",
             "name": "Micheal Wolski",
             "url": "https://michealswolski.github.io/",
-            "jobTitle": "Cybersecurity & Software Engineer",
-            "description": "Cybersecurity and software professional focused on automotive security, AI systems, and full-stack engineering.",
+            "jobTitle": "Cybersecurity Engineer",
+            "knowsAbout": [
+              "AI Security",
+              "AI Agent Governance",
+              "Automotive Cybersecurity",
+              "Embedded Systems Security",
+              "Secure Boot",
+              "Vulnerability Management",
+              "SIEM and Detection Engineering",
+              "Full-Stack Development"
+            ],
+            "description": "Cybersecurity engineer with a specialty focus in AI agents and automotive/embedded systems, alongside full-stack and enterprise tooling.",
             "alumniOf": [
               { "@type": "CollegeOrUniversity", "name": "Eastern Michigan University" },
               { "@type": "CollegeOrUniversity", "name": "Henry Ford College" }

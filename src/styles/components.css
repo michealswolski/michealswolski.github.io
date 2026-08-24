@@ -186,8 +186,20 @@
   max-width: 160px;
 }
 
+@media (max-width: 640px) {
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 16px;
+  }
+  .hero-stat {
+    padding: 0;
+    border-left: none;
+  }
+}
+
 .hero-panel {
-  width: 272px;
+  width: 292px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -206,6 +218,7 @@
 }
 .hero-status-card .dot {
   margin-top: 5px;
+  color: var(--success);
 }
 .hero-status-title {
   font-size: 13.5px;
@@ -250,14 +263,50 @@
   color: var(--accent);
 }
 
-.hero-location {
-  text-align: center;
-  font-size: 11px;
-  color: var(--text-dim);
-  background: var(--surface-hover);
+.hero-readout {
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 10px;
+  border-radius: var(--radius-md);
+  padding: 6px 16px;
+  box-shadow: var(--shadow-sm);
+}
+.hero-readout > div {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.hero-readout > div:last-child {
+  border-bottom: 0;
+}
+.hero-readout dt {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  width: 52px;
+  flex-shrink: 0;
+}
+.hero-readout dd {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-mid);
+  margin: 0;
+}
+.hero-readout-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+.hero-readout-tags span {
+  position: relative;
+}
+.hero-readout-tags span + span::before {
+  content: "·";
+  position: absolute;
+  left: -6px;
+  color: var(--text-faint);
 }
 
 @media (max-width: 900px) {
@@ -277,7 +326,7 @@
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: var(--text-faint);
+  color: var(--text-dim);
   transition: color 0.2s;
 }
 .scroll-cue:hover {
@@ -667,9 +716,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--text-faint);
+  color: var(--text-dim);
 }
-.secondary-card h4 {
+.secondary-card h5 {
   font-family: var(--font-display);
   font-size: 14.5px;
   font-weight: 700;
@@ -679,6 +728,21 @@
   font-size: 12.5px;
   line-height: 1.6;
   color: var(--text-mid);
+}
+.secondary-card .project-tags {
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: 4px;
+}
+/* The group heading above already says "Security Labs" / "Research"; repeating
+   a category badge on all nine cards underneath added noise, not information.
+   The colour rail and the tech tags carry it instead. */
+.secondary-card-rail {
+  height: 2px;
+  width: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--cat, var(--accent));
+  opacity: 0.8;
 }
 
 /* ── Modal ─────────────────────────────────────────────────────── */
@@ -817,14 +881,21 @@
 
 /* ── Skills ────────────────────────────────────────────────────── */
 .skill-group-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 16px;
-  padding-left: 14px;
+  margin-bottom: 14px;
+  padding-left: 12px;
   border-left: 2px solid var(--accent);
+}
+.skill-group-title svg {
+  flex-shrink: 0;
+  opacity: 0.85;
 }
 
 /* ── Education ─────────────────────────────────────────────────── */
@@ -940,4 +1011,465 @@
   gap: 14px;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* ── Skill badges ──────────────────────────────────────────────── */
+/*
+  Brand colour is used as tint, dot, and border only — never as text colour, so
+  a chip for a near-black brand and a near-white one keep identical text
+  contrast in both themes. --brand falls back to the accent when a skill has no
+  brand of its own (concepts like "TARA" or "Prompt Engineering").
+*/
+.skill-tier {
+  margin-bottom: 56px;
+}
+.skill-tier:last-child {
+  margin-bottom: 0;
+}
+.skill-tier-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.skill-tier-label {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.skill-tier-note {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 62ch;
+}
+
+.skill-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.skill-badge {
+  --brand: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text-mid);
+  background: color-mix(in srgb, var(--brand) 9%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--brand) 26%, var(--border));
+  border-radius: var(--radius-pill);
+  padding: 7px 12px;
+  text-align: left;
+}
+.skill-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand);
+  flex-shrink: 0;
+  /* Keeps a pure-black or pure-white brand dot visible against either theme. */
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+:root[data-theme="light"] .skill-badge-dot {
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.18);
+}
+
+.skill-badge--linked {
+  cursor: pointer;
+  color: var(--text);
+  font-family: inherit;
+  transition: background-color 0.18s var(--ease), border-color 0.18s var(--ease), transform 0.18s var(--ease);
+}
+.skill-badge--linked:hover {
+  background: color-mix(in srgb, var(--brand) 20%, var(--surface));
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--border));
+  transform: translateY(-1px);
+}
+.skill-badge--linked.is-active {
+  background: color-mix(in srgb, var(--brand) 26%, var(--surface));
+  border-color: color-mix(in srgb, var(--brand) 70%, var(--border));
+  color: var(--text);
+  font-weight: 600;
+}
+.skill-badge-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: color-mix(in srgb, var(--brand) 16%, transparent);
+  border-radius: var(--radius-pill);
+  min-width: 17px;
+  padding: 2px 5px;
+  text-align: center;
+}
+.skill-badge--linked.is-active .skill-badge-count {
+  color: var(--text);
+}
+
+/* ── Project filter bar ────────────────────────────────────────── */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.filter-chip {
+  --cat: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease), background-color 0.18s var(--ease);
+}
+.filter-chip:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--cat) 45%, var(--border));
+}
+.filter-chip.is-active {
+  color: var(--text);
+  background: color-mix(in srgb, var(--cat) 16%, var(--surface));
+  border-color: color-mix(in srgb, var(--cat) 60%, var(--border));
+}
+
+.filter-bar--skill {
+  padding: 12px 16px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius-md);
+}
+.filter-bar-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.filter-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: border-color 0.18s var(--ease), background-color 0.18s var(--ease);
+}
+.filter-clear:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+}
+.filter-bar-count {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-left: auto;
+}
+.filter-empty {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  padding: 32px 0;
+}
+
+/* ── Project grid: spotlight lead card ─────────────────────────── */
+/*
+  Only the lead card carries a screenshot. Every other card has an identical
+  internal structure, which is what keeps the grid even — the previous layout
+  mixed screenshot and text-only cards in the same row and left large gaps
+  inside the short ones.
+*/
+.project-card-media {
+  margin: -1px -1px 0;
+  overflow: hidden;
+}
+.project-index {
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+}
+.project-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+/* Tags and actions travel together to the bottom of the card. Pushing only the
+   actions down left the tag row stranded mid-card on the shorter entries in a
+   stretched row. */
+.project-card .project-tags {
+  margin-top: auto;
+  padding-top: 6px;
+}
+.project-card .project-actions {
+  padding-top: 2px;
+}
+
+@media (min-width: 900px) {
+  .grid-projects--spotlight .project-card--spotlight {
+    grid-column: span 2;
+    flex-direction: row;
+  }
+  .grid-projects--spotlight .project-card--spotlight .project-card-media {
+    width: 52%;
+    flex-shrink: 0;
+    margin: -1px 0 -1px -1px;
+  }
+  .grid-projects--spotlight .project-card--spotlight .shot-frame {
+    width: 100%;
+    height: 100%;
+    /* Must be cleared: with a definite height, aspect-ratio would size the
+       frame's WIDTH from its height and overflow the column. */
+    aspect-ratio: auto;
+    border-radius: 0;
+    border: 0;
+    border-right: 1px solid var(--border);
+  }
+  .grid-projects--spotlight .project-card--spotlight .shot-frame img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+  }
+}
+
+/* ── Secondary project groups ──────────────────────────────────── */
+.secondary-group {
+  margin-bottom: 36px;
+}
+.secondary-group:last-child {
+  margin-bottom: 0;
+}
+.secondary-group-head {
+  margin-bottom: 16px;
+}
+.secondary-group-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.secondary-group-note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 70ch;
+}
+
+/* ── Proof of work ─────────────────────────────────────────────── */
+.proof-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.proof-stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 22px 22px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.proof-stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.proof-stat-label {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.proof-stat-note {
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+}
+
+.proof-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 16px;
+}
+.proof-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.proof-panel-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.proof-panel-sub {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+}
+
+.proof-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.proof-bar-row {
+  --cat: var(--accent);
+  display: grid;
+  grid-template-columns: minmax(96px, auto) 1fr 24px;
+  align-items: center;
+  gap: 12px;
+}
+.proof-bar-label {
+  font-size: 12px;
+  color: var(--text-mid);
+}
+.proof-bar-track {
+  height: 7px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--cat) 12%, transparent);
+  overflow: hidden;
+}
+.proof-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--cat);
+  transform-origin: left center;
+  animation: bar-grow 0.7s var(--ease) both;
+}
+.proof-bar-value {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: right;
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.proof-langbar {
+  display: flex;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  background: var(--bg-alt);
+  margin-bottom: 16px;
+}
+.proof-langbar-seg {
+  height: 100%;
+  background: var(--lang-color, var(--accent));
+}
+.proof-langbar-seg,
+.proof-langdot {
+  --lang-color: var(--accent);
+}
+.proof-langbar-seg:nth-child(1),
+.proof-langlist li:nth-child(1) {
+  --lang-color: var(--accent);
+}
+.proof-langbar-seg:nth-child(2),
+.proof-langlist li:nth-child(2) {
+  --lang-color: var(--cat-analytics);
+}
+.proof-langbar-seg:nth-child(3),
+.proof-langlist li:nth-child(3) {
+  --lang-color: var(--cat-ai-security);
+}
+.proof-langbar-seg:nth-child(4),
+.proof-langlist li:nth-child(4) {
+  --lang-color: var(--cat-automotive);
+}
+.proof-langbar-seg:nth-child(5),
+.proof-langlist li:nth-child(5) {
+  --lang-color: var(--cat-systems);
+}
+.proof-langbar-seg:nth-child(n + 6),
+.proof-langlist li:nth-child(n + 6) {
+  --lang-color: var(--cat-enterprise);
+}
+
+.proof-langlist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  list-style: none;
+}
+.proof-langlist li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--text-mid);
+}
+.proof-langlist li .mono {
+  font-size: 10.5px;
+  color: var(--text-dim);
+}
+.proof-langdot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lang-color, var(--accent));
+  flex-shrink: 0;
+}
+
+.proof-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 18px;
+  font-size: 10.5px;
+  color: var(--text-dim);
+}
+.proof-meta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.18s var(--ease);
+}
+.proof-meta-link:hover {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-bar-fill {
+    animation: none;
+  }
 }

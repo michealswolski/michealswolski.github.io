@@ -10,6 +10,8 @@ export const CATEGORY_COLORS = {
   Automotive: "var(--cat-automotive)",
   Systems: "var(--cat-systems)",
   Analytics: "var(--cat-analytics)",
+  "Security Awareness": "var(--cat-awareness)",
+  Research: "var(--cat-research)",
 };
 
 export const featuredProjects = [
@@ -28,6 +30,7 @@ export const featuredProjects = [
       "Full audit export bundling trace + governance score + decision",
       "Zero runtime npm dependencies; 32 passing tests",
     ],
+    metrics: { tests: 32 },
     links: { github: "https://github.com/michealswolski/ai-agent-governance" },
     detail: {
       problem:
@@ -49,6 +52,42 @@ export const featuredProjects = [
     },
   },
   {
+    id: "llm-onboarding-agent",
+    title: "LLM Onboarding Agent",
+    category: "AI Security",
+    status: "case-study",
+    summary:
+      "An AI onboarding assistant built at an internal AI hackathon, designed to answer new cybersecurity hires' procedural questions from an internal knowledge base instead of routing every one of them to a senior engineer.",
+    tech: ["LLM Integration", "Prompt Engineering", "Knowledge Base Retrieval"],
+    highlights: [
+      "System prompts tuned for cybersecurity domain knowledge transfer",
+      "Conversational flows mapped to the questions new hires actually repeat",
+      "Answers sourced from an internal procedures knowledge base",
+      "Feedback loop driving iterative prompt refinement",
+    ],
+    links: { github: "https://github.com/michealswolski/365-whitepaper-agent" },
+    disclaimer:
+      "Public-facing case study. No confidential company information, internal data, source code, or proprietary material is disclosed.",
+    detail: {
+      problem:
+        "Onboarding a new cybersecurity team member meant senior engineers answering the same procedural questions over and over — expensive for them, and slow for the person waiting on an answer.",
+      whatIBuilt:
+        "A conversational onboarding assistant that handles the repeated procedural questions directly, grounded in the team's own documented procedures, with anything it can't answer falling through to a human.",
+      architecture:
+        "An LLM front end over a set of domain-tuned system prompts, reading from the internal procedures knowledge base rather than from model memory — so answers track the documentation instead of drifting from it.",
+      keyFeatures: [
+        "Domain-specific system prompt design for security procedures",
+        "Conversational flows for the highest-frequency onboarding questions",
+        "Knowledge-base lookups for procedural answers",
+        "Structured feedback loop for refining prompts against real usage",
+      ],
+      challenges:
+        "Designing an assistant that handles sensitive procedural knowledge responsibly — being deliberate about what it should answer confidently, and what it should hand to a person instead of guessing at.",
+      whatILearned:
+        "Enterprise prompt engineering is mostly scoping, not wording: the useful work was deciding which questions the assistant owns and which ones it must escalate.",
+    },
+  },
+  {
     id: "auto-job-intel",
     title: "AutoJob Intel",
     category: "Full Stack",
@@ -63,6 +102,7 @@ export const featuredProjects = [
       "Status re-verification (verified / uncertain / closed) plus dedupe and change history",
       "Runs end-to-end with zero external services; 24 passing tests",
     ],
+    metrics: { tests: 24 },
     links: { github: "https://github.com/michealswolski/auto-job-intel" },
     detail: {
       problem:
@@ -151,6 +191,44 @@ export const featuredProjects = [
     inProgressNote: "Active coursework project — this case study will grow as the build continues.",
   },
   {
+    id: "quishing-awareness",
+    title: "Quishing Awareness Demo",
+    category: "Security Awareness",
+    status: "public",
+    summary:
+      "A security-awareness training piece that shows people two attacks they can't evaluate by eye — a convincing fake \"you've been hacked\" terminal, and the QR code that silently delivers it.",
+    tech: ["HTML", "CSS", "JavaScript", "Security Awareness"],
+    highlights: [
+      "Live, hosted demo — the point only lands when people see it full-screen themselves",
+      "Paired QR page demonstrating quishing: a code nobody can read before scanning",
+      "Written as training material, with the defensive takeaways alongside the demo",
+      "Static, dependency-free, and safe to hand to a non-technical audience",
+    ],
+    links: {
+      github: "https://github.com/michealswolski/hacked-terminal-wallpaper",
+      demo: "https://michealswolski.github.io/hacked-terminal-wallpaper/",
+      demoLabel: "Live demo",
+    },
+    detail: {
+      problem:
+        "Two social-engineering techniques defeat people's normal instincts. A fake compromise screen panics someone into calling a bogus support line or paying a ransom. And a QR code can't be read by eye, so the habit of checking a link before clicking it simply doesn't apply — attackers sticker over real codes, or embed them in email as images that text-based link scanners never inspect.",
+      whatIBuilt:
+        "A hosted, full-screen fake hacked-terminal animation plus a companion QR page, written as awareness training: show people how convincing the attack looks, then walk through how to recognise and resist it.",
+      architecture:
+        "Static HTML, CSS, and JavaScript — no build step, no dependencies, no data collection. The terminal page and the QR page are independent so either can be used on its own in a session.",
+      keyFeatures: [
+        "Realistic hacked-terminal animation, convincing enough to make the lesson land",
+        "Quishing demonstration page showing where malicious codes get placed",
+        "Written explanation of what a scanned malicious code can actually do",
+        "Nothing to install — a link is enough to run the exercise",
+      ],
+      challenges:
+        "Making the demo realistic enough to be persuasive while keeping it unambiguously an educational artifact: it's hosted openly, it collects nothing, and the explanation of the attack ships in the same repo as the demo of it.",
+      whatILearned:
+        "Awareness training works on demonstration, not description. People who have just been briefly fooled by a fake terminal remember the lesson; people who were only told about one do not.",
+    },
+  },
+  {
     id: "wolski-command-center",
     title: "Wolski Command Center",
     category: "Systems",
@@ -194,6 +272,7 @@ export const featuredProjects = [
       "Human review workflow — Approve / Needs Info / Reject — with override flags",
       "Persistent reviewer queue; JSON / CSV / CRM-style export",
     ],
+    metrics: { tests: 23 },
     links: { github: "https://github.com/michealswolski/document-analyzer-ai" },
     detail: {
       problem:
@@ -276,69 +355,139 @@ export const featuredProjects = [
   },
 ];
 
-export const secondaryProjects = [
+
+// Secondary work, grouped so the reader gets structure instead of a wall of
+// thirteen identical cards. Every entry links to a real public repository;
+// summaries are drawn from each repo's own description.
+export const secondaryGroups = [
   {
-    id: "meshlink-ios",
-    title: "MeshLink",
-    category: "Systems",
-    summary: "Native iOS app for encrypted peer-to-peer messaging over a Bluetooth Low Energy mesh — AES-256-GCM encryption with NFC or QR key exchange.",
-    tech: ["Swift", "SwiftUI", "CoreBluetooth", "CryptoKit"],
-    links: { github: "https://github.com/michealswolski/meshlink-ios" },
+    id: "security-labs",
+    title: "Security Labs",
+    note: "Hands-on lab work — build the environment, run the attack or the scan, then fix what it found.",
+    projects: [
+      {
+        id: "homelab-vuln-management",
+        title: "Home Lab Vulnerability Management",
+        category: "Systems",
+        summary: "Full detect-to-validate lifecycle: Nessus scans, CVSS-based prioritization, pfSense enforcement, and re-scan validation.",
+        tech: ["Nessus", "Nmap", "pfSense"],
+        links: { github: "https://github.com/michealswolski/homelab-vuln-management" },
+      },
+      {
+        id: "offensive-security-lab",
+        title: "Offensive Security Lab",
+        category: "Systems",
+        summary: "End-to-end offensive lab in an isolated environment — reconnaissance, Nmap enumeration, Metasploit exploitation, privilege escalation, and Hydra credential attacks.",
+        tech: ["Nmap", "Metasploit", "Hydra", "Kali Linux"],
+        links: { github: "https://github.com/michealswolski/offensive-security-lab" },
+      },
+      {
+        id: "web-app-security-lab",
+        title: "Web App Security Lab",
+        category: "Systems",
+        summary: "Web application testing with Burp Suite — route discovery, input validation probing, and misconfigured endpoint identification.",
+        tech: ["Burp Suite", "OWASP"],
+        links: { github: "https://github.com/michealswolski/web-app-security-lab" },
+      },
+      {
+        id: "openvas-scanning",
+        title: "OpenVAS Scanning Lab",
+        category: "Systems",
+        summary: "Vulnerability scanning with OpenVAS, turned into CVE/CVSS analysis and risk-prioritized mitigation reports rather than a raw finding dump.",
+        tech: ["OpenVAS", "CVE / CVSS"],
+        links: { github: "https://github.com/michealswolski/openvas-scanning" },
+      },
+      {
+        id: "system-hardening-lab",
+        title: "System Hardening Lab",
+        category: "Systems",
+        summary: "Endpoint hardening baselines across Windows and Linux — SSH and RDP restrictions, auditd configuration, and patch management.",
+        tech: ["Linux", "Windows", "auditd"],
+        links: { github: "https://github.com/michealswolski/system-hardening-lab" },
+      },
+      {
+        id: "firewall-vpn-lab",
+        title: "Firewall & VPN Lab",
+        category: "Systems",
+        summary: "pfSense network segmentation built on deny-by-default rules, with OpenVPN for secure remote access.",
+        tech: ["pfSense", "OpenVPN"],
+        links: { github: "https://github.com/michealswolski/firewall-vpn-lab" },
+      },
+      {
+        id: "network-traffic-analysis",
+        title: "Network Traffic Analysis Lab",
+        category: "Systems",
+        summary: "Isolated VM lab capturing live traffic; TCP handshake, DNS, and HTTP session analysis with stream reconstruction in Wireshark.",
+        tech: ["Wireshark", "tcpdump", "Kali Linux"],
+        links: { github: "https://github.com/michealswolski/network-traffic-analysis" },
+      },
+      {
+        id: "splunk-siem-lab",
+        title: "Splunk SIEM Lab",
+        category: "Systems",
+        summary: "Centralized log ingestion from Linux and Windows with SPL detection queries, dashboards, and tuned spike-based alerting.",
+        tech: ["Splunk", "SPL"],
+        links: { github: "https://github.com/michealswolski/splunk-siem-lab" },
+      },
+      {
+        id: "python-log-automation",
+        title: "Python Log Automation",
+        category: "Systems",
+        summary: "A regex-based brute-force detection engine that parses auth logs and fires threshold alerts — the same logic a SIEM uses, built from scratch.",
+        tech: ["Python", "Regex"],
+        links: { github: "https://github.com/michealswolski/python-log-automation" },
+      },
+    ],
   },
   {
-    id: "network-utility-tool",
-    title: "Network Utility Tool v6.0",
-    category: "Systems",
-    summary: "A 14-menu Windows PowerShell toolkit — DNS benchmarking, adapter tuning, bufferbloat testing, DFIR tools, and full revert on every change.",
-    tech: ["PowerShell"],
-    links: { github: "https://github.com/michealswolski/network-utility-tool" },
+    id: "research",
+    title: "Research",
+    note: "Written work rather than shipped code — the reading behind the automotive and cryptography side.",
+    projects: [
+      {
+        id: "secure-boot-research",
+        title: "Secure Boot & Hardware Security",
+        category: "Research",
+        summary: "Research on chain-of-trust boot verification, TPM 2.0 attestation, and MISRA C standards for automotive ECUs.",
+        tech: ["Secure Boot", "TPM 2.0", "MISRA C"],
+        links: { github: "https://github.com/michealswolski/secure-boot-research" },
+      },
+      {
+        id: "pki-ca-research",
+        title: "PKI & Certificate Authority",
+        category: "Research",
+        summary: "Research on PKI trust chains, certificate-authority attack vectors, and real-world CA compromise case studies.",
+        tech: ["PKI", "Cryptography"],
+        links: { github: "https://github.com/michealswolski/pki-ca-research" },
+      },
+    ],
   },
   {
-    id: "secure-boot-research",
-    title: "Secure Boot & Hardware Security Research",
-    category: "Automotive",
-    summary: "Academic research on chain-of-trust boot verification, TPM 2.0 attestation, and MISRA C standards for automotive ECUs.",
-    tech: ["Research"],
-    links: { github: "https://github.com/michealswolski/secure-boot-research" },
-  },
-  {
-    id: "pki-ca-research",
-    title: "PKI & Certificate Authority Research",
-    category: "AI Security",
-    summary: "Research on PKI trust chains, certificate-authority attack vectors, and real-world CA compromise case studies.",
-    tech: ["Research"],
-    links: { github: "https://github.com/michealswolski/pki-ca-research" },
-  },
-  {
-    id: "network-traffic-analysis",
-    title: "Network Traffic Analysis Lab",
-    category: "Systems",
-    summary: "Isolated VM lab capturing live traffic; TCP handshake, DNS, and HTTP session analysis with stream reconstruction in Wireshark.",
-    tech: ["Wireshark", "tcpdump", "Kali Linux"],
-    links: { github: "https://github.com/michealswolski/network-traffic-analysis" },
-  },
-  {
-    id: "splunk-siem-lab",
-    title: "Splunk SIEM Lab",
-    category: "Systems",
-    summary: "Centralized log ingestion from Linux and Windows with SPL detection queries, dashboards, and tuned spike-based alerting.",
-    tech: ["Splunk", "SPL"],
-    links: { github: "https://github.com/michealswolski/splunk-siem-lab" },
-  },
-  {
-    id: "homelab-vuln-management",
-    title: "Home Lab Vulnerability Management",
-    category: "Systems",
-    summary: "Full detect-to-validate lifecycle: Nessus scans, CVSS-based prioritization, pfSense enforcement, and re-scan validation.",
-    tech: ["Nessus", "Nmap", "pfSense"],
-    links: { github: "https://github.com/michealswolski/homelab-vuln-management" },
-  },
-  {
-    id: "python-log-automation",
-    title: "Python Log Automation",
-    category: "AI Security",
-    summary: "A regex-based brute-force detection engine that parses auth logs and fires threshold alerts — the same logic a SIEM uses, built from scratch.",
-    tech: ["Python", "Regex"],
-    links: { github: "https://github.com/michealswolski/python-log-automation" },
+    id: "other-builds",
+    title: "Other Builds",
+    note: "Things built to scratch an itch, kept here because the engineering is still worth a look.",
+    projects: [
+      {
+        id: "meshlink-ios",
+        title: "MeshLink",
+        category: "Systems",
+        summary: "Native iOS app for encrypted peer-to-peer messaging over a Bluetooth Low Energy mesh — AES-256-GCM encryption with NFC or QR key exchange.",
+        tech: ["Swift", "SwiftUI", "CryptoKit"],
+        links: { github: "https://github.com/michealswolski/meshlink-ios" },
+      },
+      {
+        id: "network-utility-tool",
+        title: "Network Utility Tool v6.0",
+        category: "Systems",
+        summary: "A 14-menu Windows PowerShell toolkit — DNS benchmarking, adapter tuning, bufferbloat testing, DFIR tools, and full revert on every change.",
+        tech: ["PowerShell"],
+        links: { github: "https://github.com/michealswolski/network-utility-tool" },
+      },
+    ],
   },
 ];
+
+// Flat view, for anything that just needs the count or a lookup.
+export const secondaryProjects = secondaryGroups.flatMap((g) => g.projects);
+
+export const totalProjectCount = featuredProjects.length + secondaryProjects.length;
