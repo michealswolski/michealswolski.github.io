@@ -24,6 +24,7 @@ const {
   secondaryProjects,
   secondaryGroups,
   CATEGORY_COLORS,
+  SECURITY_DOMAINS,
   totalProjectCount,
   REPOS_WITH_PUBLISHED_SOURCE,
 } = await load("src/data/projects.js");
@@ -222,4 +223,37 @@ test("education and experience carry the fields their cards render", () => {
   for (const job of additionalExperience) {
     assert.ok(job.role && job.company && job.period, "incomplete earlier-experience entry");
   }
+});
+
+test("every project belongs to exactly one security domain", () => {
+  const ids = SECURITY_DOMAINS.flatMap((d) => d.ids);
+  assert.equal(new Set(ids).size, ids.length, "a project id is listed under two domains");
+
+  const known = new Set(allProjects.map((p) => p.id));
+  for (const id of ids) assert.ok(known.has(id), `security domain lists unknown project "${id}"`);
+  for (const id of known) assert.ok(ids.includes(id), `project "${id}" is in no security domain`);
+});
+
+test("security domain colours are real tokens", () => {
+  const tokens = readFileSync(resolve(root, "src/styles/tokens.css"), "utf8");
+  for (const d of SECURITY_DOMAINS) {
+    const name = d.color.match(/var\((--[a-z0-9-]+)\)/)?.[1];
+    assert.ok(name, `domain "${d.name}" colour is not a var() reference`);
+    assert.ok(tokens.includes(`${name}:`), `domain colour ${name} is not defined in tokens.css`);
+  }
+});
+
+test("the hero's cycling roles and credential text are present", () => {
+  assert.ok(profile.roles.length >= 2, "the role cycle needs more than one entry");
+  for (const role of profile.roles) {
+    assert.ok(role.text?.trim(), "a role is missing its text");
+    assert.ok(role.detail?.trim(), "a role is missing its detail");
+  }
+  // The first entry is the resting state — with the cycle disabled it is the
+  // only one on screen, so it has to be the identity, not a supporting area.
+  assert.equal(profile.roles[0].text, profile.identity);
+
+  assert.equal(profile.motto.length, 3);
+  for (const value of Object.values(profile.credential)) assert.ok(value.trim(), "a credential field is empty");
+  assert.ok(profile.shell.command.startsWith("./"), "the hero prompt should run something");
 });

@@ -7,8 +7,9 @@ export default function About() {
   return (
     <section id="about" className="section">
       <div className="container">
-        <SectionHeader eyebrow="About" title="Who I am" />
+        <SectionHeader command="./whoami --verbose" title="Who I am" />
         <div ref={ref} className="about-body reveal" data-visible={visible}>
+          <p className="about-lead">{profile.leadIn}</p>
           {profile.aboutParagraphs.map((p, i) => (
             <p key={i}>{p}</p>
           ))}

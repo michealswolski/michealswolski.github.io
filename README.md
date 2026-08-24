@@ -13,12 +13,43 @@ A portfolio built to support a job search in automotive and product cybersecurit
 - Self-hosted fonts — zero third-party requests at runtime
 - GitHub Pages, deployed via GitHub Actions on every push to `main`
 
+## Design language
+
+The visual language is deliberately shared with the [profile README](https://github.com/michealswolski/michealswolski),
+so the two read as one body of work rather than two unrelated pages. Everything
+below was rebuilt in the page rather than embedded as an image, so it scales,
+themes, and stays selectable:
+
+| Device                                                                                                     | Where it lives      |
+| ---------------------------------------------------------------------------------------------------------- | ------------------- |
+| Terminal chrome — window controls, `micheal@secops — zsh`, a typed `./whoami` and a blinking caret         | `Hero`              |
+| Gradient-animated name over a rule that draws itself in                                                    | `Hero`              |
+| Cycling role line, `>`-prefixed                                                                            | `Hero`              |
+| Status bar — pulsing "open to work", location, availability, scrolling CAN 500 kbps waveform               | `Hero` / `CanWave`  |
+| Lanyard security credential — LED, hex monogram, field grid, chip, barcode with a scanning bar, holo sweep | `CredentialCard`    |
+| Rotating security seal — counter-rotating rings, radar sweep, hex shield, padlock                          | `SecurityEmblem`    |
+| Animated section rule — gradient hairline, twinkling ticks, travelling pulse                               | `SectionDivider`    |
+| Shell-prompt section eyebrows (`$ ls -la ~/projects`)                                                      | `SectionHeader`     |
+| `Trust · Verify · Ship` sign-off                                                                           | `Contact`, `Footer` |
+
+Two rules keep all of it safe:
+
+- **Every animation has a readable resting state.** With `prefers-reduced-motion`
+  set, the global rule collapses every animation to its end state — the command
+  is fully typed, the badge hangs straight, the first role is the one on screen.
+  Nothing that matters is only visible mid-animation.
+- **Ornament is ornament.** The terminal, the credential badge, the seal and the
+  waveform are `aria-hidden`. Every fact any of them shows also appears in
+  readable form elsewhere on the page, so a screen reader gets the content once
+  rather than twice.
+
 ## Features
 
 - Dark-first theme (light mode fully supported, persisted, no flash-of-wrong-theme on load)
 - **Skill → project evidence links.** Skills that were used to build something carry a count; pressing one filters the project grid to exactly the projects that used it. Skills without a public repo behind them live in a separate "working knowledge" tier rather than being mixed in.
 - **Category filtering** across the featured project grid
 - **Proof of Work section** — a native replacement for third-party GitHub stat widgets. Repository and language counts come from the GitHub API at build time; project and test counts are derived at render time from the same data that renders the grid, so they can't drift from what the page shows.
+- **Security-domain breakdown** — the same five-domain taxonomy the profile README's focus card uses. It's a second axis over the projects: `category` is what a project _is_, the domain is which part of security it belongs to. Categories alone summarise poorly (twelve of twenty-three are "Systems"); a test enforces that every project sits in exactly one domain.
 - **Shareable case-study URLs.** Every project has a real page at `/projects/<id>/`, prerendered at build time with its own title, description, canonical URL, and `SoftwareSourceCode` JSON-LD, plus a `<noscript>` copy of the case study. A recruiter can send a single project link and it previews correctly. The modal stays as a quick preview and links through to the full page.
 - Accessible project case-study modal — focus trap, `Escape` to close, focus returns to the trigger
 - Branded 404, and a résumé CTA in the hero, navbar, and contact section that renders only when `resumeUrl` is set — so there's never a button that 404s
@@ -31,7 +62,8 @@ A portfolio built to support a job search in automotive and product cybersecurit
 
 ```
 src/
-  components/     # Navbar, ProjectCard, ProjectModal, SkillChip, GlyphIcon, etc.
+  components/     # Navbar, ProjectCard, ProjectModal, SkillChip, CredentialCard,
+                  # SecurityEmblem, SectionDivider, CanWave, GlyphIcon, etc.
   sections/       # Hero, About, Experience, FeaturedProjects, Proof, Skills, Education, Contact
   data/           # profile, experience, education, skills, projects, activity — content lives here
   hooks/          # useScrollReveal, useActiveSection, useTheme, useReducedMotion
@@ -84,9 +116,11 @@ npm run check     # all of the above
 
 `npm test` guards the things the components trust but the build doesn't verify:
 unique project ids, every skill `evidence` id resolving to a real project,
-category colours existing as tokens in `tokens.css`, screenshot files being
-present, status values coming from the controlled list, and only private
-projects omitting a repository link.
+category and security-domain colours existing as tokens in `tokens.css`, every
+project belonging to exactly one security domain, screenshot files being
+present, status values coming from the controlled list, only private projects
+omitting a repository link, and the hero's first cycling role matching the
+stated identity — since that one is the resting state when the cycle is off.
 
 CI (`.github/workflows/ci.yml`) runs those on every pull request, plus an
 axe-core audit across both themes at two breakpoints on both the home page and
@@ -114,7 +148,8 @@ Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm ci`, 
 - Verified with axe-core (WCAG 2.1 A + AA) in both themes at 390px and 1440px, on the home page and a case-study page — zero violations, enforced in CI.
 - `--text-faint` fails AA by design and is restricted to `aria-hidden` ornament; anything carrying text uses `--text-dim` or stronger.
 - Brand colours on skill chips are used only as tint, dot, and border — never as text colour — so chips for near-black and near-white brands keep identical text contrast in both themes.
-- No canvas/WebGL effects; all motion is CSS transforms/opacity, gated by `prefers-reduced-motion`.
+- No canvas/WebGL effects and no animation libraries; all motion is CSS, gated by `prefers-reduced-motion`.
+- The hero's cycling roles are stacked in a single CSS grid cell rather than positioned absolutely, so the line is exactly as tall as the longest role at any width — no fixed height to outgrow, and no reflow as the cycle advances.
 - Zero runtime third-party requests. Fonts are self-hosted (~132 KB of latin woff2), and React is the only runtime dependency.
 
 ---

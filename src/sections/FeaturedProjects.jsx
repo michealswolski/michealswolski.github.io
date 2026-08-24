@@ -52,7 +52,7 @@ export default function FeaturedProjects({ skillFilter, onClearSkillFilter, link
     <section id="projects" className="section">
       <div className="container">
         <SectionHeader
-          eyebrow="Projects"
+          command="ls -la ~/projects"
           title="What I've Built"
           subtitle={`${featuredProjects.length + secondaryProjects.length} projects and labs. Every one links to public source, implementation artifacts, or a clearly labeled technical case study.`}
         />

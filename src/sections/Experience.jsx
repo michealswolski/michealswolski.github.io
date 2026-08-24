@@ -7,7 +7,7 @@ export default function Experience() {
     <section id="experience" className="section section--alt">
       <div className="container">
         <SectionHeader
-          eyebrow="Experience"
+          command="cat experience.md"
           title="Work Experience"
           subtitle="A Product Cybersecurity internship at an automotive Tier 1 supplier, plus earlier operations work."
         />
