@@ -4,7 +4,12 @@ import { IconCap } from "./Icons";
 export default function EducationCard({ item, index }) {
   const [ref, visible] = useScrollReveal();
   return (
-    <div ref={ref} className="edu-card card reveal" data-visible={visible} style={{ transitionDelay: visible ? "0ms" : `${index * 90}ms` }}>
+    <div
+      ref={ref}
+      className="edu-card card reveal"
+      data-visible={visible}
+      style={{ transitionDelay: visible ? "0ms" : `${index * 90}ms` }}
+    >
       <div className="edu-card-icon" aria-hidden="true">
         <IconCap size={20} />
       </div>

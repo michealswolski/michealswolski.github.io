@@ -251,7 +251,9 @@
   padding: 11px 15px;
   text-decoration: none;
   box-shadow: var(--shadow-sm);
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
 .hero-link-item span {
   display: flex;
@@ -412,7 +414,9 @@
   border: 1px solid var(--border);
   padding: 8px 14px;
   border-radius: 9px;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
 .skill-chip:hover {
   border-color: var(--border-hover);
@@ -627,7 +631,9 @@
 }
 .project-card:hover,
 .secondary-card:hover {
-  box-shadow: var(--shadow-md), 0 16px 44px -14px color-mix(in srgb, var(--cat, var(--accent)) 55%, transparent);
+  box-shadow:
+    var(--shadow-md),
+    0 16px 44px -14px color-mix(in srgb, var(--cat, var(--accent)) 55%, transparent);
 }
 .project-card-body {
   padding: 22px 24px 22px;
@@ -1086,7 +1092,10 @@
   cursor: pointer;
   color: var(--text);
   font-family: inherit;
-  transition: background-color 0.18s var(--ease), border-color 0.18s var(--ease), transform 0.18s var(--ease);
+  transition:
+    background-color 0.18s var(--ease),
+    border-color 0.18s var(--ease),
+    transform 0.18s var(--ease);
 }
 .skill-badge--linked:hover {
   background: color-mix(in srgb, var(--brand) 20%, var(--surface));
@@ -1134,7 +1143,10 @@
   border-radius: var(--radius-pill);
   padding: 7px 14px;
   cursor: pointer;
-  transition: color 0.18s var(--ease), border-color 0.18s var(--ease), background-color 0.18s var(--ease);
+  transition:
+    color 0.18s var(--ease),
+    border-color 0.18s var(--ease),
+    background-color 0.18s var(--ease);
 }
 .filter-chip:hover {
   color: var(--text);
@@ -1170,7 +1182,9 @@
   border-radius: var(--radius-pill);
   padding: 6px 12px;
   cursor: pointer;
-  transition: border-color 0.18s var(--ease), background-color 0.18s var(--ease);
+  transition:
+    border-color 0.18s var(--ease),
+    background-color 0.18s var(--ease);
 }
 .filter-clear:hover {
   background: var(--surface-hover);
@@ -1472,4 +1486,137 @@
   .proof-bar-fill {
     animation: none;
   }
+}
+
+/* ── Professional development groups ───────────────────────────── */
+.prof-dev-group {
+  margin-bottom: 26px;
+}
+.prof-dev-group:last-child {
+  margin-bottom: 0;
+}
+.prof-dev-group-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+/* Lifecycle context on the Bosch entry — worded as exposure, and styled to
+   read as context rather than as another achievement bullet. */
+.experience-context {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--text-dim);
+  border-left: 2px solid var(--accent-border);
+  padding-left: 12px;
+  margin-top: 10px;
+  max-width: 78ch;
+}
+
+/* ── Standalone case-study page ────────────────────────────────── */
+.project-page {
+  padding: calc(var(--nav-h) + 48px) 0 var(--section-pad);
+  min-height: 70vh;
+}
+.project-page-inner {
+  max-width: 860px;
+}
+.project-page-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  text-decoration: none;
+  margin-bottom: 26px;
+  transition: color 0.18s var(--ease);
+}
+.project-page-back:hover {
+  color: var(--accent);
+}
+/* The arrow icon points right; flip it so it reads as "back". */
+.project-page-back svg {
+  transform: rotate(180deg);
+}
+.project-page-body {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--cat, var(--accent));
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-md);
+}
+.project-page-body .modal-title {
+  font-size: clamp(26px, 4vw, 36px);
+}
+
+@media (max-width: 640px) {
+  .project-page-body {
+    padding: 26px 20px;
+  }
+}
+
+/* Permalink out of the quick-preview modal into the full case study. */
+.modal-permalink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+  width: 100%;
+}
+.modal-permalink:hover {
+  text-decoration: underline;
+}
+
+.nav-resume {
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .nav-resume {
+    display: none;
+  }
+}
+
+/* ── 404 ───────────────────────────────────────────────────────── */
+.notfound {
+  display: flex;
+  align-items: center;
+  min-height: 76vh;
+  padding: calc(var(--nav-h) + 48px) 0 var(--section-pad);
+}
+.notfound-inner {
+  max-width: 620px;
+}
+.notfound-title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 6vw, 46px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 10px 0 14px;
+}
+.notfound-sub {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-mid);
+  margin-bottom: 30px;
+}
+.notfound-sub code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 2px 7px;
+  word-break: break-all;
 }

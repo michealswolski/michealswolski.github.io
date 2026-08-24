@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
 import { CATEGORY_COLORS } from "../data/projects";
-import { IconArrowUpRight, IconClose, IconGitHub } from "./Icons";
-import ScreenshotFrame from "./ScreenshotFrame";
+import { IconArrowUpRight, IconClose } from "./Icons";
+import CaseStudyBody from "./CaseStudyBody";
+import { projectPath } from "../hooks/useRoute";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
-export default function ProjectModal({ project, onClose }) {
+export default function ProjectModal({ project, onClose, onOpenFull }) {
   const overlayRef = useRef(null);
   const dialogRef = useRef(null);
   const previouslyFocused = useRef(null);
@@ -46,7 +47,6 @@ export default function ProjectModal({ project, onClose }) {
   }, [onClose]);
 
   if (!project) return null;
-  const { detail } = project;
   const accent = CATEGORY_COLORS[project.category] || "var(--accent)";
 
   return (
@@ -70,89 +70,12 @@ export default function ProjectModal({ project, onClose }) {
           <IconClose />
         </button>
 
-        <div className="modal-head">
-          <span className="badge">{project.category}</span>
-          <h2 id="project-modal-title" className="modal-title">
-            {project.title}
-          </h2>
-          <p className="modal-summary">{project.summary}</p>
-        </div>
+        <CaseStudyBody project={project} headingId="project-modal-title" />
 
-        {project.screenshot && <ScreenshotFrame screenshot={project.screenshot} size="modal" />}
-
-        {project.disclaimer && <p className="modal-disclaimer">{project.disclaimer}</p>}
-        {project.inProgressNote && <p className="modal-disclaimer modal-disclaimer--progress">{project.inProgressNote}</p>}
-
-        <div className="modal-body">
-          {detail?.problem && (
-            <section>
-              <h3>Problem</h3>
-              <p>{detail.problem}</p>
-            </section>
-          )}
-          {detail?.whatIBuilt && (
-            <section>
-              <h3>What I Built</h3>
-              <p>{detail.whatIBuilt}</p>
-            </section>
-          )}
-          {detail?.architecture && (
-            <section>
-              <h3>Architecture &amp; Approach</h3>
-              <p>{detail.architecture}</p>
-            </section>
-          )}
-          {detail?.keyFeatures?.length > 0 && (
-            <section>
-              <h3>Key Features</h3>
-              <ul className="modal-list">
-                {detail.keyFeatures.map((f) => (
-                  <li key={f}>{f}</li>
-                ))}
-              </ul>
-            </section>
-          )}
-          {detail?.challenges && (
-            <section>
-              <h3>Challenges &amp; Decisions</h3>
-              <p>{detail.challenges}</p>
-            </section>
-          )}
-          {detail?.whatILearned && (
-            <section>
-              <h3>What I Learned</h3>
-              <p>{detail.whatILearned}</p>
-            </section>
-          )}
-          <section>
-            <h3>Tech Stack</h3>
-            <div className="project-tags">
-              {project.tech.map((t) => (
-                <span key={t} className="tag">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </section>
-        </div>
-
-        <div className="modal-footer">
-          {project.links?.github && (
-            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-sm">
-              <IconGitHub size={14} />
-              View Source
-              <IconArrowUpRight />
-            </a>
-          )}
-          {project.links?.githubSecondary && (
-            <a href={project.links.githubSecondary} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-sm">
-              <IconGitHub size={14} />
-              {project.links.githubSecondaryLabel || "Related repo"}
-              <IconArrowUpRight />
-            </a>
-          )}
-          {project.privateLabel && !project.links?.github && <span className="project-private-tag">{project.privateLabel}</span>}
-        </div>
+        <a className="modal-permalink" href={projectPath(project.id)} onClick={onOpenFull}>
+          View full case study
+          <IconArrowUpRight />
+        </a>
       </div>
     </div>
   );

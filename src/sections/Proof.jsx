@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import SectionHeader from "../components/SectionHeader";
 import { useScrollReveal } from "../hooks/useScrollReveal";
-import { featuredProjects, secondaryProjects, CATEGORY_COLORS } from "../data/projects";
+import { featuredProjects, secondaryProjects, CATEGORY_COLORS, hasPublishedSource } from "../data/projects";
 import { activity } from "../data/activity";
 import { profile } from "../data/profile";
 import { IconArrowUpRight, IconGitHub } from "../components/Icons";
@@ -27,25 +27,26 @@ function formatDate(iso) {
 export default function Proof() {
   const [ref, visible] = useScrollReveal();
 
-  const { allProjects, testTotal, domains } = useMemo(() => {
+  const { allProjects, testTotal, sourceCount, domains } = useMemo(() => {
     const all = [...featuredProjects, ...secondaryProjects];
     const tests = all.reduce((n, p) => n + (p.metrics?.tests || 0), 0);
+    const withSource = all.filter(hasPublishedSource).length;
 
     const counts = new Map();
     for (const p of all) counts.set(p.category, (counts.get(p.category) || 0) + 1);
     const ordered = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([name, count]) => ({ name, count }));
 
-    return { allProjects: all, testTotal: tests, domains: ordered };
+    return { allProjects: all, testTotal: tests, sourceCount: withSource, domains: ordered };
   }, []);
 
   const languageTotal = activity.languages.reduce((n, l) => n + l.count, 0);
   const lastPush = formatDate(activity.lastPush);
 
   const stats = [
-    { value: activity.publicRepos, label: "Public repositories", note: "live from GitHub" },
-    { value: allProjects.length, label: "Projects & labs on this page", note: "every one links to source" },
     { value: testTotal, label: "Passing tests across public projects", note: "counted from their test suites" },
-    { value: domains.length, label: "Domains covered", note: "AI security through automotive" },
+    { value: sourceCount, label: "Projects with published source", note: "implementation, not just a README" },
+    { value: domains.length, label: "Security domains covered", note: "automotive through AI security" },
+    { value: activity.publicRepos, label: "Public repositories", note: "live from GitHub" },
   ];
 
   return (
@@ -54,7 +55,7 @@ export default function Proof() {
         <SectionHeader
           eyebrow="By the numbers"
           title="Proof of Work"
-          subtitle="Counts pulled from GitHub at build time and from this page's own project data — not screenshots of a dashboard."
+          subtitle="Depth rather than volume. Counts come from this page's own project data and from GitHub at build time — not screenshots of a dashboard."
         />
 
         <div ref={ref} className="reveal" data-visible={visible}>
@@ -74,13 +75,14 @@ export default function Proof() {
               <p className="proof-panel-sub">Every project on this page, by domain.</p>
               <ul className="proof-bars">
                 {domains.map((d) => (
-                  <li key={d.name} className="proof-bar-row" style={{ "--cat": CATEGORY_COLORS[d.name] || "var(--accent)" }}>
+                  <li
+                    key={d.name}
+                    className="proof-bar-row"
+                    style={{ "--cat": CATEGORY_COLORS[d.name] || "var(--accent)" }}
+                  >
                     <span className="proof-bar-label">{d.name}</span>
                     <span className="proof-bar-track">
-                      <span
-                        className="proof-bar-fill"
-                        style={{ width: `${(d.count / allProjects.length) * 100}%` }}
-                      />
+                      <span className="proof-bar-fill" style={{ width: `${(d.count / allProjects.length) * 100}%` }} />
                     </span>
                     <span className="proof-bar-value mono">{d.count}</span>
                   </li>
@@ -96,7 +98,11 @@ export default function Proof() {
               </p>
               {languageTotal > 0 ? (
                 <>
-                  <div className="proof-langbar" role="img" aria-label={activity.languages.map((l) => `${l.name}: ${l.count} repositories`).join(", ")}>
+                  <div
+                    className="proof-langbar"
+                    role="img"
+                    aria-label={activity.languages.map((l) => `${l.name}: ${l.count} repositories`).join(", ")}
+                  >
                     {activity.languages.map((l, i) => (
                       <span
                         key={l.name}

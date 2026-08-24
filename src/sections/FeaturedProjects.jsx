@@ -5,26 +5,37 @@ import ProjectModal from "../components/ProjectModal";
 import { featuredProjects, secondaryGroups, secondaryProjects, CATEGORY_COLORS } from "../data/projects";
 import { skillEvidenceMap } from "../data/skills";
 import { IconArrowUpRight, IconClose } from "../components/Icons";
+import { projectPath } from "../hooks/useRoute";
 
 const ALL = "All";
 
-export default function FeaturedProjects({ skillFilter, onClearSkillFilter }) {
+export default function FeaturedProjects({ skillFilter, onClearSkillFilter, linkTo }) {
   const [openProject, setOpenProject] = useState(null);
   const [category, setCategory] = useState(ALL);
 
   const categories = useMemo(() => [ALL, ...new Set(featuredProjects.map((p) => p.category))], []);
 
+  // The featured six carry the page; the additional tier keeps its full case
+  // studies but renders below them, so the strongest work dominates (audit #18).
+  const isAdditional = (p) => p.tier === "additional";
+
   // A skill filter comes from the Skills section and spans both the featured and
   // secondary lists; the category chips only apply to the featured grid. When a
   // skill is active it wins, and the category chips are hidden rather than left
   // on screen doing nothing.
-  const skillMatchIds = useMemo(() => (skillFilter ? new Set(skillEvidenceMap[skillFilter] || []) : null), [skillFilter]);
+  const skillMatchIds = useMemo(
+    () => (skillFilter ? new Set(skillEvidenceMap[skillFilter] || []) : null),
+    [skillFilter]
+  );
 
-  const visibleFeatured = useMemo(() => {
+  const matching = useMemo(() => {
     if (skillMatchIds) return featuredProjects.filter((p) => skillMatchIds.has(p.id));
     if (category === ALL) return featuredProjects;
     return featuredProjects.filter((p) => p.category === category);
   }, [category, skillMatchIds]);
+
+  const visibleFeatured = useMemo(() => matching.filter((p) => !isAdditional(p)), [matching]);
+  const visibleAdditional = useMemo(() => matching.filter(isAdditional), [matching]);
 
   const visibleSecondaryGroups = useMemo(() => {
     if (!skillMatchIds) return secondaryGroups;
@@ -43,7 +54,7 @@ export default function FeaturedProjects({ skillFilter, onClearSkillFilter }) {
         <SectionHeader
           eyebrow="Projects"
           title="What I've Built"
-          subtitle={`${featuredProjects.length + secondaryProjects.length} projects and labs, each backed by a real, inspectable repository unless marked otherwise.`}
+          subtitle={`${featuredProjects.length + secondaryProjects.length} projects and labs. Every one links to public source, implementation artifacts, or a clearly labeled technical case study.`}
         />
 
         {skillFilter ? (
@@ -55,8 +66,8 @@ export default function FeaturedProjects({ skillFilter, onClearSkillFilter }) {
               <span className="visually-hidden">— clear this filter</span>
             </button>
             <span className="filter-bar-count mono">
-              {visibleFeatured.length + secondaryMatchCount} match
-              {visibleFeatured.length + secondaryMatchCount === 1 ? "" : "es"}
+              {matching.length + secondaryMatchCount} match
+              {matching.length + secondaryMatchCount === 1 ? "" : "es"}
             </span>
           </div>
         ) : (
@@ -76,6 +87,10 @@ export default function FeaturedProjects({ skillFilter, onClearSkillFilter }) {
           </div>
         )}
 
+        {visibleAdditional.length > 0 && visibleFeatured.length === 0 && !skillFilter && (
+          <p className="filter-empty">No featured projects in this category — see below.</p>
+        )}
+
         {visibleFeatured.length > 0 ? (
           <div className={`grid grid-projects${spotlightEnabled ? " grid-projects--spotlight" : ""}`}>
             {visibleFeatured.map((project, i) => (
@@ -89,14 +104,24 @@ export default function FeaturedProjects({ skillFilter, onClearSkillFilter }) {
             ))}
           </div>
         ) : (
-          !skillFilter && <p className="filter-empty">No featured projects in this category.</p>
+          !skillFilter &&
+          visibleAdditional.length === 0 && <p className="filter-empty">No featured projects in this category.</p>
+        )}
+
+        {visibleAdditional.length > 0 && (
+          <div className="more-projects">
+            {!skillFilter && <h3 className="more-projects-title mono">Additional Projects</h3>}
+            <div className="grid grid-projects">
+              {visibleAdditional.map((project, i) => (
+                <ProjectCard key={project.id} project={project} index={i} onOpen={setOpenProject} />
+              ))}
+            </div>
+          </div>
         )}
 
         {visibleSecondaryGroups.length > 0 && (
           <div className="more-projects">
-            {!skillFilter && (
-              <h3 className="more-projects-title mono">More Projects &amp; Labs</h3>
-            )}
+            {!skillFilter && <h3 className="more-projects-title mono">Labs &amp; Research</h3>}
             {visibleSecondaryGroups.map((group) => (
               <div key={group.id} className="secondary-group">
                 <div className="secondary-group-head">
@@ -134,12 +159,21 @@ export default function FeaturedProjects({ skillFilter, onClearSkillFilter }) {
           </div>
         )}
 
-        {skillFilter && visibleFeatured.length + secondaryMatchCount === 0 && (
+        {skillFilter && visibleFeatured.length + visibleAdditional.length + secondaryMatchCount === 0 && (
           <p className="filter-empty">No projects on this page are tagged with {skillFilter}.</p>
         )}
       </div>
 
-      {openProject && <ProjectModal project={openProject} onClose={() => setOpenProject(null)} />}
+      {openProject && (
+        <ProjectModal
+          project={openProject}
+          onClose={() => setOpenProject(null)}
+          onOpenFull={(e) => {
+            setOpenProject(null);
+            linkTo(projectPath(openProject.id))(e);
+          }}
+        />
+      )}
     </section>
   );
 }

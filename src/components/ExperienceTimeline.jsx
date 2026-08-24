@@ -3,7 +3,15 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 function BoschMark({ size = 74 }) {
   return (
     <svg width={size} height={size * 0.29} viewBox="0 0 200 58" fill="none" aria-hidden="true">
-      <text x="2" y="46" fill="#E20015" fontFamily="'Outfit','Arial Black',sans-serif" fontWeight="900" fontSize="48" letterSpacing="2">
+      <text
+        x="2"
+        y="46"
+        fill="#E20015"
+        fontFamily="'Outfit','Arial Black',sans-serif"
+        fontWeight="900"
+        fontSize="48"
+        letterSpacing="2"
+      >
         BOSCH
       </text>
     </svg>
@@ -33,6 +41,7 @@ export default function ExperienceTimeline({ bosch, additional }) {
         </div>
 
         <p className="experience-inline-note">{bosch.note}</p>
+        {bosch.context && <p className="experience-context">{bosch.context}</p>}
 
         <div className="experience-grid">
           {bosch.categories.map((cat) => (

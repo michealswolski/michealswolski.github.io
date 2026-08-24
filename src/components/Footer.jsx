@@ -8,9 +8,7 @@ export default function Footer() {
         <span className="brand" style={{ fontSize: 15 }}>
           Micheal<span className="brand-dot">.</span>
         </span>
-        <span className="footer-note">
-          © {year} Micheal Wolski · React + Vite · GitHub Pages
-        </span>
+        <span className="footer-note">© {year} Micheal Wolski · React + Vite · GitHub Pages</span>
         <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="footer-link">
           github.com/michealswolski →
         </a>

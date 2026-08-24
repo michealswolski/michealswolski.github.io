@@ -2,7 +2,7 @@ import { useCallback, useRef } from "react";
 import { profile, getHeroStats } from "../data/profile";
 import { totalProjectCount } from "../data/projects";
 import HeroBackground from "../components/HeroBackground";
-import { IconArrowRight, IconArrowUpRight, IconGitHub, IconLinkedIn } from "../components/Icons";
+import { IconArrowRight, IconArrowUpRight, IconDownload, IconGitHub, IconLinkedIn } from "../components/Icons";
 
 const heroStats = getHeroStats(totalProjectCount);
 
@@ -50,6 +50,12 @@ export default function Hero() {
               View Projects
               <IconArrowRight />
             </a>
+            {profile.resumeUrl && (
+              <a href={profile.resumeUrl} className="btn btn-secondary" download>
+                <IconDownload size={15} />
+                Download Résumé
+              </a>
+            )}
             <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
               <IconGitHub size={15} />
               GitHub
@@ -75,7 +81,7 @@ export default function Hero() {
             <span className="dot dot--live" aria-hidden="true" />
             <div>
               <p className="hero-status-title">Open to full-time roles</p>
-              <p className="hero-status-sub mono">Cybersecurity · full-time · Michigan or remote</p>
+              <p className="hero-status-sub mono">Automotive &amp; product security · full-time · Michigan or remote</p>
             </div>
           </div>
 

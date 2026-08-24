@@ -1,14 +1,16 @@
 /*
   Two tiers, on purpose.
 
-  "Hands-on" means it was used to build something that shipped — most entries
-  carry an `evidence` array naming the projects on this page that used it, and
-  those become clickable filters over the project grid.
+  "Hands-on" means it was used directly in a project, lab, coursework build, or
+  professional engineering work — most entries carry an `evidence` array naming
+  the projects on this page that used it, and those become clickable filters
+  over the project grid.
 
-  "Working knowledge" is coursework, research, and internal work with no public
-  repository to point at. Listing it separately is the honest version: the
-  knowledge is real, the public proof isn't, and an interviewer can tell which
-  is which without having to ask.
+  "Working knowledge" is studied through coursework, research, professional
+  exposure, or technical practice where a complete public implementation isn't
+  available. Listing it separately is the honest version: the knowledge is real,
+  the public proof isn't, and an interviewer can tell which is which without
+  having to ask.
 
   `brand` is the technology's own brand colour. It is only ever used as an
   accent — a dot, a tint, a border — never as text colour, so text contrast
@@ -19,14 +21,18 @@ export const skillTiers = [
   {
     id: "hands-on",
     label: "Hands-on",
-    note: "Used to build and ship something. Where a project on this page used it, the chip filters to that project.",
+    note: "Used directly in a project, lab, coursework build, or professional engineering work. Where a project on this page used it, the chip filters to that project.",
     groups: [
       {
         category: "Languages",
         glyph: "code",
         items: [
           { name: "Python", brand: "#3776AB", evidence: ["python-log-automation", "obd2-diagnostic-scanner", "swoop"] },
-          { name: "JavaScript", brand: "#F7DF1E", evidence: ["ai-agent-governance", "document-analyzer-ai", "forecast-ai"] },
+          {
+            name: "JavaScript",
+            brand: "#F7DF1E",
+            evidence: ["ai-agent-governance", "document-analyzer-ai", "forecast-ai"],
+          },
           { name: "TypeScript", brand: "#3178C6", evidence: ["auto-job-intel", "swoop"] },
           { name: "Swift", brand: "#F05138", evidence: ["meshlink-ios"] },
           { name: "PowerShell", brand: "#5391FE", evidence: ["network-utility-tool"] },
@@ -42,7 +48,11 @@ export const skillTiers = [
         items: [
           { name: "React", brand: "#61DAFB", evidence: ["auto-job-intel", "wolski-command-center", "swoop"] },
           { name: "Next.js", brand: "#8B93FF", evidence: ["auto-job-intel"] },
-          { name: "Node.js", brand: "#339933", evidence: ["ai-agent-governance", "wolski-command-center", "document-analyzer-ai"] },
+          {
+            name: "Node.js",
+            brand: "#339933",
+            evidence: ["ai-agent-governance", "wolski-command-center", "document-analyzer-ai"],
+          },
           { name: "Express", brand: "#6D7B8D", evidence: ["wolski-command-center"] },
           { name: "FastAPI", brand: "#009688", evidence: ["swoop"] },
           { name: "SQLite", brand: "#4A9CC7", evidence: ["ai-agent-governance"] },
@@ -69,11 +79,19 @@ export const skillTiers = [
         category: "AI & Data",
         glyph: "brain",
         items: [
-          { name: "AI Agent Design", brand: "#A78BFA", evidence: ["ai-agent-governance", "swoop", "llm-onboarding-agent"] },
+          {
+            name: "AI Agent Design",
+            brand: "#A78BFA",
+            evidence: ["ai-agent-governance", "swoop", "llm-onboarding-agent"],
+          },
           { name: "Prompt Engineering", brand: "#A78BFA", evidence: ["llm-onboarding-agent", "swoop"] },
           { name: "Prompt-Injection Detection", brand: "#C084FC", evidence: ["ai-agent-governance"] },
           { name: "Retrieval-Augmented Generation", brand: "#C084FC", evidence: ["llm-onboarding-agent"] },
-          { name: "Structured Data Extraction", brand: "#8B93FF", evidence: ["document-analyzer-ai", "auto-job-intel"] },
+          {
+            name: "Structured Data Extraction",
+            brand: "#8B93FF",
+            evidence: ["document-analyzer-ai", "auto-job-intel"],
+          },
           { name: "Document Workflow Automation", brand: "#8B93FF", evidence: ["document-analyzer-ai"] },
           { name: "Data Visualization", brand: "#62A6FF", evidence: ["forecast-ai", "project-database"] },
         ],
@@ -104,8 +122,16 @@ export const skillTiers = [
         category: "Platform & Tooling",
         glyph: "terminal",
         items: [
-          { name: "Linux Administration", brand: "#FCC624", evidence: ["system-hardening-lab", "wolski-command-center"] },
-          { name: "Windows Administration", brand: "#0078D4", evidence: ["system-hardening-lab", "network-utility-tool"] },
+          {
+            name: "Linux Administration",
+            brand: "#FCC624",
+            evidence: ["system-hardening-lab", "wolski-command-center"],
+          },
+          {
+            name: "Windows Administration",
+            brand: "#0078D4",
+            evidence: ["system-hardening-lab", "network-utility-tool"],
+          },
           { name: "Docker", brand: "#2496ED", evidence: ["ai-agent-governance"] },
           { name: "Git", brand: "#F05032" },
           { name: "GitHub Actions", brand: "#8B949E" },
@@ -116,7 +142,7 @@ export const skillTiers = [
   {
     id: "working-knowledge",
     label: "Working knowledge",
-    note: "Coursework, research, and internal work. Real experience, but no public repository to point at — so it's listed separately rather than mixed in above.",
+    note: "Studied through coursework, research, professional exposure, or technical practice where a complete public implementation isn't available — listed separately rather than mixed in above.",
     groups: [
       {
         category: "Languages",
@@ -132,20 +158,57 @@ export const skillTiers = [
         items: [{ name: "Tauri", brand: "#24C8D8" }],
       },
       {
-        category: "Automotive & Embedded",
+        category: "Automotive Networking & Diagnostics",
         glyph: "chip",
         items: [
           { name: "CAN Bus", brand: "#F0765F" },
-          { name: "UDS", brand: "#F0765F" },
-          { name: "Secure Boot & Chain of Trust", brand: "#FB923C", evidence: ["secure-boot-research"] },
-          { name: "TPM 2.0 / Remote Attestation", brand: "#FB923C", evidence: ["secure-boot-research"] },
-          { name: "ISO/SAE 21434 & TARA", brand: "#E3AC52" },
+          { name: "CAN-FD", brand: "#F0765F" },
+          { name: "LIN", brand: "#F0765F" },
+          { name: "Automotive Ethernet", brand: "#F0765F" },
+          { name: "UDS", brand: "#FB923C" },
+          { name: "DoIP", brand: "#FB923C" },
+          { name: "AUTOSAR SecOC", brand: "#FB923C" },
+          { name: "Diagnostic Security Concepts", brand: "#FB923C" },
+        ],
+      },
+      {
+        category: "Product Security Lifecycle",
+        glyph: "shield",
+        items: [
+          { name: "ISO/SAE 21434", brand: "#E3AC52" },
+          { name: "TARA", brand: "#E3AC52" },
+          { name: "Threat Modeling", brand: "#E3AC52" },
+          { name: "UN R155", brand: "#E3AC52" },
+          { name: "UN R156", brand: "#E3AC52" },
+          { name: "ASPICE", brand: "#E3AC52" },
+          { name: "V-Model", brand: "#E3AC52" },
           { name: "AUTOSAR", brand: "#E3AC52" },
           { name: "MISRA C", brand: "#E3AC52", evidence: ["secure-boot-research"] },
         ],
       },
       {
-        category: "Security & Cryptography",
+        category: "Embedded Trust & Cryptography",
+        glyph: "chip",
+        items: [
+          { name: "Secure Boot & Chain of Trust", brand: "#FB923C", evidence: ["secure-boot-research"] },
+          { name: "Hardware Root of Trust", brand: "#FB923C" },
+          { name: "HSM", brand: "#FB923C" },
+          { name: "TPM 2.0 / Remote Attestation", brand: "#FB923C", evidence: ["secure-boot-research"] },
+          { name: "Secure Flashing", brand: "#FB923C" },
+          { name: "Secure OTA Update", brand: "#FB923C" },
+          { name: "Anti-Rollback", brand: "#FB923C" },
+          { name: "Key Management / KMS", brand: "#5EEAD4" },
+          { name: "ECU Security Architecture", brand: "#5EEAD4" },
+          { name: "RTOS Fundamentals", brand: "#5EEAD4" },
+          { name: "MCU Fundamentals", brand: "#5EEAD4" },
+          { name: "AES", brand: "#5EEAD4" },
+          { name: "RSA / ECC", brand: "#5EEAD4" },
+          { name: "SHA-2", brand: "#5EEAD4" },
+          { name: "HMAC / CMAC", brand: "#5EEAD4" },
+        ],
+      },
+      {
+        category: "PKI",
         glyph: "shield",
         items: [
           { name: "PKI & Trust Chains", brand: "#5EEAD4", evidence: ["pki-ca-research"] },

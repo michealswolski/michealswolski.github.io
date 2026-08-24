@@ -181,7 +181,9 @@ section[id] {
 .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transition:
+    opacity 0.6s var(--ease),
+    transform 0.6s var(--ease);
 }
 .reveal[data-visible="true"] {
   opacity: 1;
@@ -207,7 +209,11 @@ section[id] {
   text-decoration: none;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+  transition:
+    transform 0.2s var(--ease),
+    box-shadow 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    background 0.2s var(--ease);
   white-space: nowrap;
 }
 .btn:hover {
@@ -324,7 +330,11 @@ button:hover .icon-arrow {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.28s var(--ease), border-color 0.28s var(--ease), box-shadow 0.28s var(--ease), background 0.28s var(--ease);
+  transition:
+    transform 0.28s var(--ease),
+    border-color 0.28s var(--ease),
+    box-shadow 0.28s var(--ease),
+    background 0.28s var(--ease);
 }
 .card:hover {
   transform: translateY(-4px);
@@ -373,7 +383,10 @@ button:hover .icon-arrow {
   align-items: center;
   background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background 0.3s var(--ease), border-color 0.3s var(--ease), backdrop-filter 0.3s var(--ease);
+  transition:
+    background 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    backdrop-filter 0.3s var(--ease);
 }
 .navbar.scrolled {
   background: var(--nav-bg);
@@ -427,7 +440,10 @@ button:hover .icon-arrow {
   padding: 8px 14px;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
-  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s,
+    border-color 0.2s;
 }
 .nav-link:hover {
   color: var(--text);
@@ -454,7 +470,9 @@ button:hover .icon-arrow {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
   color: var(--text-mid);
 }
 .icon-btn:hover {
@@ -526,7 +544,10 @@ button:hover .icon-arrow {
   opacity: 0;
   transform: translateY(10px);
   pointer-events: none;
-  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), border-color 0.2s;
+  transition:
+    opacity 0.25s var(--ease),
+    transform 0.25s var(--ease),
+    border-color 0.2s;
 }
 .scroll-top-btn.visible {
   opacity: 1;
