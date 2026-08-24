@@ -4,6 +4,11 @@ export default function Footer() {
   const year = "2025–2026";
   return (
     <footer className="site-footer">
+      <p className="footer-motto mono">
+        {profile.motto.map((word) => (
+          <span key={word}>{word}</span>
+        ))}
+      </p>
       <div className="site-footer-inner">
         <span className="brand" style={{ fontSize: 15 }}>
           Micheal<span className="brand-dot">.</span>

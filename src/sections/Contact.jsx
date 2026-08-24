@@ -1,12 +1,13 @@
 import SectionHeader from "../components/SectionHeader";
 import { profile } from "../data/profile";
+import SecurityEmblem from "../components/SecurityEmblem";
 import { IconArrowUpRight, IconDownload, IconGitHub, IconLinkedIn, IconMail } from "../components/Icons";
 
 export default function Contact() {
   return (
     <section id="contact" className="section section--alt contact-section">
       <div className="container contact-inner">
-        <SectionHeader eyebrow="Contact" title="Hiring for automotive, product, or embedded security?" />
+        <SectionHeader command="./connect" title="Hiring for automotive, product, or embedded security?" />
         <p className="contact-sub">
           I&rsquo;m a recent graduate looking for full-time work in automotive and product cybersecurity, embedded
           security, and adjacent security engineering. LinkedIn is the fastest way to reach me; GitHub has the source
@@ -35,6 +36,16 @@ export default function Contact() {
             LinkedIn
             <IconArrowUpRight />
           </a>
+        </div>
+
+        <div className="contact-seal">
+          <SecurityEmblem size={168} />
+          <p className="contact-motto mono">
+            {profile.motto.map((word) => (
+              <span key={word}>{word}</span>
+            ))}
+          </p>
+          <p className="contact-tagline">{profile.tagline}</p>
         </div>
       </div>
     </section>

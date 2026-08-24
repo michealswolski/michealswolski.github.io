@@ -548,3 +548,56 @@ export function hasPublishedSource(project) {
 }
 
 export const totalProjectCount = featuredProjects.length + secondaryProjects.length;
+
+/*
+  The security-domain taxonomy from the profile README's focus card.
+
+  This is a second, coarser axis over the same projects: `category` is what a
+  single project *is*, and the domain is which part of security it belongs to.
+  Categories alone are a poor summary of the work — twelve of the twenty-three
+  land in "Systems" — while these five say something. Every project belongs to
+  exactly one, and tests/data.test.mjs enforces both halves of that.
+*/
+export const SECURITY_DOMAINS = [
+  {
+    name: "Automotive & Embedded",
+    color: "var(--cat-automotive)",
+    ids: ["obd2-diagnostic-scanner", "secure-boot-research"],
+  },
+  {
+    name: "AI Agent Security",
+    color: "var(--cat-ai-security)",
+    ids: ["ai-agent-governance", "document-analyzer-ai", "llm-onboarding-agent", "swoop"],
+  },
+  {
+    name: "Detection & SIEM",
+    color: "var(--cat-analytics)",
+    ids: ["splunk-siem-lab", "python-log-automation", "network-traffic-analysis"],
+  },
+  {
+    name: "Offensive & Vulnerability Mgmt",
+    color: "var(--cat-awareness)",
+    ids: [
+      "offensive-security-lab",
+      "web-app-security-lab",
+      "openvas-scanning",
+      "homelab-vuln-management",
+      "system-hardening-lab",
+      "firewall-vpn-lab",
+      "pki-ca-research",
+      "quishing-awareness",
+    ],
+  },
+  {
+    name: "Full-Stack & Platform",
+    color: "var(--cat-fullstack)",
+    ids: [
+      "auto-job-intel",
+      "forecast-ai",
+      "project-database",
+      "wolski-command-center",
+      "meshlink-ios",
+      "network-utility-tool",
+    ],
+  },
+];

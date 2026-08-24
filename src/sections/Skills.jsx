@@ -38,7 +38,7 @@ export default function Skills({ activeSkill, onSelectSkill }) {
     <section id="skills" className="section section--alt">
       <div className="container">
         <SectionHeader
-          eyebrow="Skills"
+          command="cat skills.json"
           title="Technical Skills"
           subtitle="Split by how directly hands-on the experience is. Anything with a number beside it was used to build a project on this page — press it to filter the grid to exactly those projects."
         />

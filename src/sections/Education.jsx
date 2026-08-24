@@ -10,7 +10,7 @@ export default function Education() {
   return (
     <section id="education" className="section">
       <div className="container">
-        <SectionHeader eyebrow="Education" title="Academic Background" />
+        <SectionHeader command="./verify --credentials" title="Academic Background" />
         <div className="grid grid-2 edu-grid">
           {education.map((item, i) => (
             <EducationCard key={item.school} item={item} index={i} />
