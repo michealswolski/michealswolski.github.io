@@ -69,7 +69,12 @@ export default function ProjectCard({ project, index, onOpen, variant = "default
             <IconArrowUpRight />
           </button>
           {project.links?.github && (
-            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-sm">
+            <a
+              href={project.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary btn-sm"
+            >
               <IconGitHub size={14} />
               Code
             </a>
@@ -80,7 +85,9 @@ export default function ProjectCard({ project, index, onOpen, variant = "default
               <IconArrowUpRight />
             </a>
           )}
-          {!project.links?.github && project.privateLabel && <span className="project-private-tag">{project.privateLabel}</span>}
+          {!project.links?.github && project.privateLabel && (
+            <span className="project-private-tag">{project.privateLabel}</span>
+          )}
         </div>
       </div>
     </article>

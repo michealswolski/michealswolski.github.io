@@ -34,7 +34,12 @@ export default function CircuitMark() {
       <circle cx="215" cy="278" r="7" fill="currentColor" />
       <circle cx="688" cy="278" r="40" stroke="currentColor" strokeWidth="2.5" />
       <circle cx="688" cy="278" r="7" fill="currentColor" />
-      <polyline points="118,216 198,184 308,162 435,140 568,144 665,160 750,196" stroke="currentColor" strokeWidth="1" strokeDasharray="7 4" />
+      <polyline
+        points="118,216 198,184 308,162 435,140 568,144 665,160 750,196"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeDasharray="7 4"
+      />
       <line x1="198" y1="184" x2="198" y2="248" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3" />
       <line x1="308" y1="162" x2="308" y2="113" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3" />
       <line x1="435" y1="140" x2="435" y2="112" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3" />

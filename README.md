@@ -1,10 +1,10 @@
 # michealswolski.github.io
 
-> Micheal Wolski's portfolio — cybersecurity, with a specialty focus in AI agents and automotive/embedded systems. Live at [michealswolski.github.io](https://michealswolski.github.io).
+> Micheal Wolski's portfolio — automotive and product cybersecurity, embedded security, and AI agent security. Live at [michealswolski.github.io](https://michealswolski.github.io).
 
 ## Overview
 
-A single-page portfolio built to support cybersecurity job searches, weighted toward AI security and automotive/embedded roles. Content is organized around real, verifiable work — every featured project links to an inspectable public repository unless it's explicitly marked as a private or public-safe case study.
+A portfolio built to support a job search in automotive and product cybersecurity, embedded security, and adjacent security engineering. Content is organized around verifiable work: every project links to public source, implementation artifacts, or a clearly labeled technical case study — and which of those it is, is stated rather than implied.
 
 ## Stack
 
@@ -19,7 +19,9 @@ A single-page portfolio built to support cybersecurity job searches, weighted to
 - **Skill → project evidence links.** Skills that were used to build something carry a count; pressing one filters the project grid to exactly the projects that used it. Skills without a public repo behind them live in a separate "working knowledge" tier rather than being mixed in.
 - **Category filtering** across the featured project grid
 - **Proof of Work section** — a native replacement for third-party GitHub stat widgets. Repository and language counts come from the GitHub API at build time; project and test counts are derived at render time from the same data that renders the grid, so they can't drift from what the page shows.
+- **Shareable case-study URLs.** Every project has a real page at `/projects/<id>/`, prerendered at build time with its own title, description, canonical URL, and `SoftwareSourceCode` JSON-LD, plus a `<noscript>` copy of the case study. A recruiter can send a single project link and it previews correctly. The modal stays as a quick preview and links through to the full page.
 - Accessible project case-study modal — focus trap, `Escape` to close, focus returns to the trigger
+- Branded 404, and a résumé CTA in the hero, navbar, and contact section that renders only when `resumeUrl` is set — so there's never a button that 404s
 - Scroll-reveal and active-section navigation via `IntersectionObserver`
 - `prefers-reduced-motion` respected throughout
 - SEO: canonical URL, Open Graph + Twitter card metadata, JSON-LD (`Person`/`WebSite`), `robots.txt`, `sitemap.xml`
@@ -38,6 +40,11 @@ src/
   main.jsx
 scripts/
   fetch-activity.mjs   # regenerates src/data/activity.js from the GitHub API at build time
+  prerender.mjs        # per-project HTML, 404.html, and sitemap after vite build
+  a11y-check.mjs       # axe-core audit used by CI
+  link-check.mjs       # internal link validation over dist/
+tests/
+  data.test.mjs        # data-integrity tests
 public/
   fonts/          # self-hosted latin woff2 subsets
   screenshots/    # real product screenshots, shown in case-study modals
@@ -65,6 +72,26 @@ npm install
 npm run dev
 ```
 
+## Checks
+
+```bash
+npm run lint      # ESLint
+npm run format    # Prettier, check only (format:write to fix)
+npm test          # data-integrity tests (node:test)
+npm run build     # vite build + prerender
+npm run check     # all of the above
+```
+
+`npm test` guards the things the components trust but the build doesn't verify:
+unique project ids, every skill `evidence` id resolving to a real project,
+category colours existing as tokens in `tokens.css`, screenshot files being
+present, status values coming from the controlled list, and only private
+projects omitting a repository link.
+
+CI (`.github/workflows/ci.yml`) runs those on every pull request, plus an
+axe-core audit across both themes at two breakpoints on both the home page and
+a case-study page, and an internal-link check over the built output.
+
 ## Build
 
 ```bash
@@ -80,15 +107,16 @@ node scripts/fetch-activity.mjs
 
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm ci`, refreshes the activity data, builds with Vite, and publishes `dist/` to GitHub Pages. The activity refresh fails soft — an unreachable or rate-limited API leaves the committed data in place rather than failing the deploy.
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm ci`, refreshes the activity data, builds with Vite (including the prerender step), and publishes `dist/` to GitHub Pages. The activity refresh fails soft — an unreachable or rate-limited API leaves the committed data in place rather than failing the deploy.
 
 ## Accessibility & performance notes
 
-- Verified with axe-core (WCAG 2.1 A + AA) in both themes at 390px and 1440px — zero violations.
+- Verified with axe-core (WCAG 2.1 A + AA) in both themes at 390px and 1440px, on the home page and a case-study page — zero violations, enforced in CI.
 - `--text-faint` fails AA by design and is restricted to `aria-hidden` ornament; anything carrying text uses `--text-dim` or stronger.
 - Brand colours on skill chips are used only as tint, dot, and border — never as text colour — so chips for near-black and near-white brands keep identical text contrast in both themes.
 - No canvas/WebGL effects; all motion is CSS transforms/opacity, gated by `prefers-reduced-motion`.
 - Zero runtime third-party requests. Fonts are self-hosted (~132 KB of latin woff2), and React is the only runtime dependency.
 
 ---
+
 Built by Micheal Wolski

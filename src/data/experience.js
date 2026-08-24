@@ -5,6 +5,8 @@ export const boschExperience = {
   location: "Farmington Hills, Michigan",
   period: "2025 – 2026",
   note: "Roughly a ten-month internship, part-time in its later months.",
+  context:
+    "Exposure to automotive product-security processes, secure boot, security requirements, and cross-functional engineering workflows, including ISO/SAE 21434-aligned concepts.",
   disclaimer:
     "Public-facing case study. No confidential company information, internal data, source code, or proprietary material is disclosed.",
   categories: [
@@ -45,6 +47,8 @@ export const boschExperience = {
   ],
 };
 
+// Deliberately just role, employer, and dates. Kept for the continuous work
+// history, not for the detail (audit #22).
 export const additionalExperience = [
   {
     role: "Warehouse Operations",
