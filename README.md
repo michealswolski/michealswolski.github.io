@@ -20,17 +20,17 @@ so the two read as one body of work rather than two unrelated pages. Everything
 below was rebuilt in the page rather than embedded as an image, so it scales,
 themes, and stays selectable:
 
-| Device                                                                                                     | Where it lives      |
-| ---------------------------------------------------------------------------------------------------------- | ------------------- |
-| Terminal chrome — window controls, `micheal@secops — zsh`, a typed `./whoami` and a blinking caret         | `Hero`              |
-| Gradient-animated name over a rule that draws itself in                                                    | `Hero`              |
-| Cycling role line, `>`-prefixed                                                                            | `Hero`              |
-| Status bar — pulsing "open to work", location, availability, scrolling CAN 500 kbps waveform               | `Hero` / `CanWave`  |
-| Lanyard security credential — LED, hex monogram, field grid, chip, barcode with a scanning bar, holo sweep | `CredentialCard`    |
-| Rotating security seal — counter-rotating rings, radar sweep, hex shield, padlock                          | `SecurityEmblem`    |
-| Animated section rule — gradient hairline, twinkling ticks, travelling pulse                               | `SectionDivider`    |
-| Shell-prompt section eyebrows (`$ ls -la ~/projects`)                                                      | `SectionHeader`     |
-| `Trust · Verify · Ship` sign-off                                                                           | `Contact`, `Footer` |
+| Device                                                                                                                        | Where it lives      |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| Terminal chrome — window controls, `micheal@secops — zsh`, a typed `./whoami` and a blinking caret                            | `Hero`              |
+| Gradient-animated name over a rule that draws itself in                                                                       | `Hero`              |
+| Cycling role line, `>`-prefixed                                                                                               | `Hero`              |
+| Status bar — pulsing "open to work", location, availability, scrolling CAN 500 kbps waveform                                  | `Hero` / `CanWave`  |
+| Security console — a detect → decide → act log that streams and loops, spanning secure boot, CAN, agent traces and detections | `SecurityConsole`   |
+| Rotating security seal — counter-rotating rings, radar sweep, hex shield, padlock                                             | `SecurityEmblem`    |
+| Animated section rule — gradient hairline, twinkling ticks, travelling pulse                                                  | `SectionDivider`    |
+| Shell-prompt section eyebrows (`$ ls -la ~/projects`)                                                                         | `SectionHeader`     |
+| `Trust · Verify · Ship` sign-off                                                                                              | `Contact`, `Footer` |
 
 Two rules keep all of it safe:
 
@@ -38,17 +38,24 @@ Two rules keep all of it safe:
   set, the global rule collapses every animation to its end state — the command
   is fully typed, the badge hangs straight, the first role is the one on screen.
   Nothing that matters is only visible mid-animation.
-- **Ornament is ornament.** The terminal, the credential badge, the seal and the
+- **Ornament is ornament.** The terminal, the console log, the seal and the
   waveform are `aria-hidden`. Every fact any of them shows also appears in
   readable form elsewhere on the page, so a screen reader gets the content once
-  rather than twice.
+  rather than twice — the console is paired with a single sentence saying what
+  it demonstrates, because eight streaming log lines read aloud are worse than
+  the point.
+- **Invented numbers are labelled.** The hero console shows timestamps and counts
+  that are made up. Every line describes a control a project on this page really
+  implements, but the panel says in plain text that it is illustrative rather
+  than telemetry, and a test fails the build if that disclaimer goes missing.
 
 ## Features
 
 - Dark-first theme (light mode fully supported, persisted, no flash-of-wrong-theme on load)
 - **Skill → project evidence links.** Skills that were used to build something carry a count; pressing one filters the project grid to exactly the projects that used it. Skills without a public repo behind them live in a separate "working knowledge" tier rather than being mixed in.
 - **Category filtering** across the featured project grid
-- **Proof of Work section** — a native replacement for third-party GitHub stat widgets. Repository and language counts come from the GitHub API at build time; project and test counts are derived at render time from the same data that renders the grid, so they can't drift from what the page shows.
+- **Proof of Work section** — a native replacement for third-party GitHub stat widgets. Repository and language counts come from the GitHub API at build time; project and test counts are derived at render time from the same data that renders the grid, so they can't drift from what the page shows. The headline stats are deliberately depth rather than volume — passing tests, projects with published source, security domains — with the repository count kept as secondary metadata.
+- **Activity data that admits when it's stale.** `scripts/fetch-activity.mjs` stamps `stale: false` on a successful fetch; the committed fallback carries `stale: true`. When the API can't be reached the deploy ships the fallback and the Proof section drops its "last push" date rather than presenting a date that has been sitting in git as live proof of activity.
 - **Security-domain breakdown** — the same five-domain taxonomy the profile README's focus card uses. It's a second axis over the projects: `category` is what a project _is_, the domain is which part of security it belongs to. Categories alone summarise poorly (twelve of twenty-three are "Systems"); a test enforces that every project sits in exactly one domain.
 - **Shareable case-study URLs.** Every project has a real page at `/projects/<id>/`, prerendered at build time with its own title, description, canonical URL, and `SoftwareSourceCode` JSON-LD, plus a `<noscript>` copy of the case study. A recruiter can send a single project link and it previews correctly. The modal stays as a quick preview and links through to the full page.
 - Accessible project case-study modal — focus trap, `Escape` to close, focus returns to the trigger
@@ -62,7 +69,7 @@ Two rules keep all of it safe:
 
 ```
 src/
-  components/     # Navbar, ProjectCard, ProjectModal, SkillChip, CredentialCard,
+  components/     # Navbar, ProjectCard, ProjectModal, SkillChip, SecurityConsole,
                   # SecurityEmblem, SectionDivider, CanWave, GlyphIcon, etc.
   sections/       # Hero, About, Experience, FeaturedProjects, Proof, Skills, Education, Contact
   data/           # profile, experience, education, skills, projects, activity — content lives here
@@ -119,8 +126,9 @@ unique project ids, every skill `evidence` id resolving to a real project,
 category and security-domain colours existing as tokens in `tokens.css`, every
 project belonging to exactly one security domain, screenshot files being
 present, status values coming from the controlled list, only private projects
-omitting a repository link, and the hero's first cycling role matching the
-stated identity — since that one is the resting state when the cycle is off.
+omitting a repository link, the hero's first cycling role matching the stated
+identity — since that one is the resting state when the cycle is off — and the
+hero console carrying its illustrative-not-telemetry disclaimer.
 
 CI (`.github/workflows/ci.yml`) runs those on every pull request, plus an
 axe-core audit across both themes at two breakpoints on both the home page and

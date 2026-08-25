@@ -110,7 +110,7 @@
   }
 }
 
-/* Moved off the right edge — the credential panel and its seal live there now. */
+/* Moved off the right edge — the console panel and its seal live there now. */
 .hero-circuit {
   position: absolute;
   left: -70px;
@@ -398,16 +398,18 @@
   }
 }
 
-/* ── Hero: credential panel ────────────────────────────────────── */
+/* ── Hero: console panel ───────────────────────────────────────── */
+/* Wider than the badge it replaced: a log line needs the room, and the panel
+   is now the thing the hero is actually showing off. */
 .hero-panel {
   position: relative;
-  width: 300px;
+  width: 440px;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
 }
-/* The rotating seal sits behind the badge rather than beside it: the badge is
-   opaque, so the rings read as a halo around it instead of competing. */
+/* The rotating seal sits behind the panel rather than beside it: the console
+   is opaque, so the rings read as a halo around it instead of competing. */
 .hero-panel-seal {
   position: absolute;
   top: 50%;
@@ -417,302 +419,158 @@
   pointer-events: none;
 }
 /* The global `svg { max-width: 100% }` was clamping the seal to the panel's
-   own width, which is the badge's width — so the rings that are meant to halo
-   past the badge were being squeezed underneath it and never showed. */
+   own width — so the rings that are meant to halo past the panel were being
+   squeezed underneath it and never showed. */
 .hero-panel-seal svg {
   max-width: none;
 }
 
-.credential {
+.console {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 292px;
-  padding-top: 30px;
-  transform-origin: 50% 0;
-  animation:
-    credSettle 4s var(--ease) both,
-    credSway 9s ease-in-out 4s infinite;
-}
-@keyframes credSettle {
-  0% {
-    transform: rotate(3.4deg);
-  }
-  35% {
-    transform: rotate(-2deg);
-  }
-  62% {
-    transform: rotate(1.1deg);
-  }
-  84% {
-    transform: rotate(-0.5deg);
-  }
-  100% {
-    transform: rotate(0);
-  }
-}
-@keyframes credSway {
-  0%,
-  100% {
-    transform: rotate(-1.1deg);
-  }
-  50% {
-    transform: rotate(1.1deg);
-  }
-}
-
-.credential-clasp {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.credential-clasp-bar {
-  width: 28px;
-  height: 13px;
-  border-radius: 4px;
-  background: var(--surface-hover);
-  border: 1px solid var(--border);
-}
-.credential-clasp-ring {
-  width: 15px;
-  height: 15px;
-  margin-top: -3px;
-  border-radius: 50%;
-  border: 2.5px solid var(--text-dim);
-  opacity: 0.75;
-}
-
-.credential-card {
-  position: relative;
-  overflow: hidden;
-  padding: 0 0 16px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(150deg, var(--surface), var(--bg-deep));
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--surface), var(--bg-deep));
   border: 1px solid var(--accent-border);
   box-shadow: var(--shadow-lg);
 }
 
-.credential-head {
+.console-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 9px 14px;
-  background: var(--accent-soft);
-  border-bottom: 1px solid var(--accent-mid);
+  gap: 7px;
+  padding: 10px 14px;
+  background: var(--surface-hover);
+  border-bottom: 1px solid var(--border);
 }
-.credential-head-label {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  color: var(--accent);
-}
-.credential-led {
-  width: 7px;
-  height: 7px;
+.console-light {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: var(--success);
-  animation: credLed 2s ease-in-out infinite;
+  flex-shrink: 0;
 }
-@keyframes credLed {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 1;
-  }
+/* Same as the terminal card: this is a picture of a window, not a use of the
+   site's palette, so the controls keep their own colours in both themes. */
+.console-light--red {
+  background: #ff5f57;
 }
-
-.credential-avatar {
-  display: flex;
-  justify-content: center;
-  padding: 20px 0 12px;
-  background: radial-gradient(60px circle at 50% 50%, var(--accent-soft), transparent 70%);
+.console-light--amber {
+  background: #febc2e;
 }
-.credential-hex {
-  display: grid;
-  place-items: center;
-  width: 66px;
-  height: 74px;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: linear-gradient(140deg, var(--accent), var(--accent2) 55%, var(--success));
+.console-light--green {
+  background: #28c840;
 }
-.credential-hex-inner {
-  display: grid;
-  place-items: center;
-  width: 60px;
-  height: 68px;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: var(--bg-deep);
-  font-family: var(--font-display);
-  font-size: 21px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  color: var(--accent);
+.console-title {
+  margin-left: 8px;
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.credential-name {
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  color: var(--text);
-}
-.credential-role {
-  text-align: center;
-  margin-top: 3px;
-  font-size: 8.5px;
-  letter-spacing: 0.17em;
-  color: var(--accent);
-}
-
-.credential-fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 11px 12px;
-  margin: 14px 18px 0;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-}
-.credential-field {
+.console-log {
+  list-style: none;
+  margin: 0;
+  padding: 14px 16px 10px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 7px;
+}
+
+/* Columns rather than spaces, so the status and tag stay in line the way they
+   would in a real log, and a long message wraps under itself instead of under
+   the timestamp. */
+.console-line {
+  display: grid;
+  grid-template-columns: auto auto auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 9px;
+  font-size: 11px;
+  line-height: 1.45;
+  /* Visible at rest: with animations off the whole log is on screen, which is
+     the correct resting state for a log. Only the keyframes hide a line. */
+  opacity: 1;
+  animation-name: consoleLine;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes consoleLine {
+  0%,
+  1% {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  3%,
+  80% {
+    opacity: 1;
+    transform: none;
+  }
+  88%,
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+.console-time {
+  color: var(--text-dim);
+}
+.console-level {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: pre;
+  color: var(--level, var(--accent));
+}
+.console-tag {
+  font-weight: 600;
+  color: var(--text-dim);
+}
+.console-text {
+  color: var(--text-mid);
   min-width: 0;
 }
-.credential-field--wide {
-  grid-column: 1 / -1;
+.console-line--ok {
+  --level: var(--success);
 }
-.credential-key {
-  font-size: 7px;
-  letter-spacing: 0.16em;
-  color: var(--text-dim);
+.console-line--warn {
+  --level: var(--warning);
 }
-.credential-value {
-  font-size: 9.5px;
-  font-weight: 600;
-  color: var(--text-mid);
+.console-line--act {
+  --level: var(--accent);
 }
 
-.credential-strip {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 16px 18px 0;
+.console-line--prompt {
+  grid-template-columns: auto;
+  padding-top: 1px;
 }
-.credential-chip {
-  position: relative;
-  width: 34px;
-  height: 26px;
-  flex-shrink: 0;
-  border-radius: 5px;
-  background: color-mix(in srgb, var(--warning) 18%, transparent);
-  border: 1px solid color-mix(in srgb, var(--warning) 65%, transparent);
-  overflow: hidden;
-}
-.credential-chip-traces {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--warning), var(--warning)), linear-gradient(var(--warning), var(--warning)),
-    linear-gradient(var(--warning), var(--warning)), linear-gradient(var(--warning), var(--warning));
-  background-repeat: no-repeat;
-  background-size:
-    100% 1px,
-    100% 1px,
-    1px 100%,
-    1px 100%;
-  background-position:
-    0 8px,
-    0 16px,
-    11px 0,
-    21px 0;
-  animation: credChip 2.4s ease-in-out infinite;
-}
-@keyframes credChip {
-  0%,
-  100% {
-    opacity: 0.45;
-  }
-  50% {
-    opacity: 0.95;
-  }
+.console-caret {
+  display: block;
+  width: 7px;
+  height: 13px;
+  background: var(--accent);
+  animation: termBlink 1.06s steps(1, end) infinite;
 }
 
-.credential-barcode {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 20px;
-}
-.credential-bar {
-  height: 100%;
-  background: var(--text-mid);
-  opacity: 0.75;
-}
-.credential-scan {
-  position: absolute;
-  top: -3px;
-  left: 0;
-  width: 2.5px;
-  height: 26px;
-  background: var(--accent-strong);
-  opacity: 0;
-  animation: credScan 3.4s ease-in-out infinite;
-}
-@keyframes credScan {
-  0%,
-  100% {
-    left: 0;
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.9;
-  }
-  50% {
-    left: calc(100% - 2.5px);
-    opacity: 0.9;
-  }
-  60% {
-    opacity: 0;
-  }
-}
-
-.credential-serial {
-  margin: 9px 18px 0;
-  font-size: 7px;
-  letter-spacing: 0.13em;
+.console-note {
+  padding: 0 16px 13px;
+  font-size: 10px;
+  line-height: 1.5;
   color: var(--text-dim);
 }
 
-/* A single diagonal shine crossing the laminate. Sits above the card content
-   but is transparent everywhere except the band itself. */
-.credential-holo {
-  position: absolute;
-  inset: -40%;
-  pointer-events: none;
-  background: linear-gradient(
-    120deg,
-    transparent 38%,
-    color-mix(in srgb, var(--accent-strong) 22%, transparent) 47%,
-    color-mix(in srgb, var(--text) 12%, transparent) 53%,
-    transparent 62%
-  );
-  animation: credHolo 6.5s ease-in-out infinite;
-}
-@keyframes credHolo {
-  0% {
-    transform: translate(-55%, -55%);
+/* The timestamp is the least useful column and the widest fixed one, so it is
+   the first thing to go when the panel gets narrow. */
+@media (max-width: 700px) {
+  .console-time {
+    display: none;
   }
-  55%,
-  100% {
-    transform: translate(55%, 55%);
+  .console-line {
+    grid-template-columns: auto auto minmax(0, 1fr);
+  }
+  .console-line--prompt {
+    grid-template-columns: auto;
   }
 }
 

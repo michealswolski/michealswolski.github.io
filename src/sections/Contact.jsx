@@ -7,10 +7,10 @@ export default function Contact() {
   return (
     <section id="contact" className="section section--alt contact-section">
       <div className="container contact-inner">
-        <SectionHeader command="./connect" title="Hiring for automotive, product, or embedded security?" />
+        <SectionHeader command="./connect" title="Hiring for security engineering?" />
         <p className="contact-sub">
-          I&rsquo;m a recent graduate looking for full-time work in automotive and product cybersecurity, embedded
-          security, and adjacent security engineering. LinkedIn is the fastest way to reach me; GitHub has the source
+          I&rsquo;m a recent graduate looking for full-time cybersecurity work — automotive and embedded security, AI
+          agent security, and detection and response. LinkedIn is the fastest way to reach me; GitHub has the source
           behind everything above.
         </p>
         <div className="contact-links">

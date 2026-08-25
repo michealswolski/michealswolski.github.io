@@ -17,6 +17,86 @@ export const CATEGORY_COLORS = {
 
 export const featuredProjects = [
   {
+    id: "automotive-ecu-lab",
+    title: "Automotive ECU Cybersecurity Lab",
+    category: "Automotive",
+    status: "in-progress",
+    summary:
+      "A six-project automotive product-security portfolio — secure boot, AUTOSAR SecOC, ECU key lifecycle, ISO/SAE 21434 TARA, in-vehicle network defence, and firmware-security validation — where each project is specified against a written definition of done before any of it is built.",
+    tech: ["Secure Boot", "AUTOSAR SecOC", "ISO/SAE 21434", "CAN / CAN-FD", "Key Management", "Python"],
+    highlights: [
+      "Six projects specified: 56 core build phases and 114 acceptance criteria",
+      "0 of 114 criteria met so far — the count is generated from the repository, not asserted here",
+      "Simulation-first and hardware-honest: no ECU, transceiver, HSM, or vehicle is touched",
+      "A labctl CLI checks every capability the portfolio claims and fails the build on one that needs hardware",
+    ],
+    links: { github: "https://github.com/michealswolski/Automotive-ECU-Cybersecurity-Lab-" },
+    disclaimer:
+      "In progress. The repository currently holds specifications, build plans, and acceptance criteria — the six implementations are not written yet. Nothing in it is AUTOSAR-conformant, ISO-certified, independently reviewed, or production-grade.",
+    detail: {
+      problem:
+        "Automotive product security is a lifecycle, not a feature: threat analysis, secure boot, key management, message authentication, network defence, and firmware validation each need their own answer, and an interviewer wants to see that the pieces fit together rather than six unrelated demos.",
+      whatIBuilt:
+        "One repository holding six composable projects, each shipped as a complete engineering package before a line of code exists — a technical specification, a phased build plan, and an acceptance list that has to pass before the project counts as done. Writing the definition of done first is the point: it separates building a thing from engineering a thing to a requirement and being able to show it met one.",
+      architecture:
+        "Six project directories — secure boot chain simulator, CAN SecOC demo, ECU key lifecycle manager, ISO/SAE 21434 TARA workbench, in-vehicle network security lab, and a firmware-security validation pipeline — designed to plug into each other. A lab.toml manifest records every capability the portfolio claims, and a labctl CLI validates it in CI.",
+      keyFeatures: [
+        "Specification, build plan, and acceptance criteria per project, written before implementation",
+        "Standards traceability: each project names the document it implements, with the edition pinned and enforced",
+        "Capability manifest that fails the build if a project claims something needing real hardware",
+        "Progress totals generated into the README rather than written by hand",
+      ],
+      securityConsiderations:
+        "The repository states its own limits at the top rather than in a footnote: everything models hardware behaviour in software, and the five capabilities that would need a bench — logic analyzer, JTAG/SWD, a real HSM, a transceiver, a vehicle — are marked as not claimed. Naming the gap before an interviewer finds it is part of the design.",
+      challenges:
+        "Resisting the urge to start coding. Six half-built demos would look busier than six specified ones, but only the second kind can be checked against anything.",
+      whatNext:
+        "Implementation, starting with the secure boot chain simulator and the CAN SecOC demo. Skills move from working knowledge to hands-on on this site only as the acceptance criteria behind them actually pass.",
+      whatILearned:
+        "How much of automotive security work is written down before it is built — and that a definition of done is what makes a portfolio project answerable rather than just demonstrable.",
+    },
+  },
+  {
+    id: "project-database",
+    title: "Product Security Intake & Reporting Platform",
+    category: "Product Security",
+    status: "case-study",
+    summary:
+      "An 11-screen intake application plus an executive reporting dashboard, built to replace fragmented spreadsheet tracking of security work across multiple engineering divisions at a Tier 1 automotive supplier.",
+    tech: ["Power Apps (Canvas)", "Power Automate", "Power BI", "DAX", "Power Query", "SharePoint Online"],
+    highlights: [
+      "11-screen Canvas app intake wizard with role-based admin review and ticketing",
+      "Power BI reporting layer with per-division drill-through and DAX measures",
+      "Automated notifications and approvals via Power Automate",
+      "Packaged cross-tenant .msapp deployments",
+    ],
+    links: {
+      github: "https://github.com/michealswolski/project-database",
+      githubSecondary: "https://github.com/michealswolski/bosch-project-dashboard",
+      githubSecondaryLabel: "Reporting dashboard repo",
+    },
+    disclaimer:
+      "Public-safe case study of work completed during an automotive product cybersecurity internship. No confidential company data, customer information, credentials, or proprietary internal content is included. The linked repository is a sanitized public reconstruction and may differ from the internal architecture — treat the repository, not this page, as the record of what it currently implements.",
+    detail: {
+      problem:
+        "Security project tracking was scattered across spreadsheets and email threads across several engineering divisions, with no shared view of status or ownership.",
+      whatIBuilt:
+        "A Canvas-app intake wizard (validation, draft/submit/review-style states, admin queue) backed by SharePoint, plus a Power BI dashboard that turns the same data into cross-division reporting for leadership.",
+      architecture:
+        "Professional implementation: a Power Apps Canvas front end over SharePoint Online lists, with Power Automate flows for notifications and approvals and a Power BI, DAX, and Power Query reporting layer. Public reconstruction: a separate, sanitized rebuild whose backend and implemented feature set are documented in the repository itself — the two are not claimed to be identical.",
+      keyFeatures: [
+        "Multi-step intake with validation and a dark, SOC-style UI",
+        "Role-based admin dashboard with an integrated ticketing workflow",
+        "Cross-division drill-through reporting with scheduled refresh",
+        "Cross-tenant .msapp packaging",
+      ],
+      challenges:
+        ".msapp packages don't repack or import cleanly across different tenant environments by default — solved the cross-tenant deployment problem so the same app could ship without breaking internal references.",
+      whatILearned:
+        "Power Platform ALM in practice — packaging, versioning, cross-tenant deploys — and how to gather consistent requirements from stakeholders across divisions that don't agree on terminology.",
+    },
+  },
+  {
     id: "ai-agent-governance",
     title: "AI Agent Governance Dashboard",
     category: "AI Security",
@@ -53,46 +133,6 @@ export const featuredProjects = [
         "Keeping the governance engine as one module used by the server, the browser, and the tests — so the dashboard's score can never disagree with what's persisted. Chose zero runtime dependencies and Node's built-in SQLite to keep the Docker image tiny and installs instant.",
       whatILearned:
         "How to design a scoring rubric transparent enough to defend in an audit — every rule has a name, a category, and a weight — instead of a black-box number.",
-    },
-  },
-  {
-    id: "project-database",
-    title: "Product Security Intake & Reporting Platform",
-    category: "Product Security",
-    status: "case-study",
-    summary:
-      "An 11-screen intake application plus an executive reporting dashboard, built to replace fragmented spreadsheet tracking of security work across multiple engineering divisions at a Tier 1 automotive supplier.",
-    tech: ["Power Apps (Canvas)", "Power Automate", "Power BI", "DAX", "Power Query", "SharePoint Online"],
-    highlights: [
-      "11-screen Canvas app intake wizard with role-based admin review and ticketing",
-      "Power BI reporting layer with per-division drill-through and DAX measures",
-      "Automated notifications and approvals via Power Automate",
-      "Packaged cross-tenant .msapp deployments",
-    ],
-    links: {
-      github: "https://github.com/michealswolski/project-database",
-      githubSecondary: "https://github.com/michealswolski/bosch-project-dashboard",
-      githubSecondaryLabel: "Reporting dashboard repo",
-    },
-    disclaimer:
-      "Public-safe, sanitized case study based on work completed during an automotive product cybersecurity internship. No confidential company data, customer information, credentials, or proprietary internal content is included.",
-    detail: {
-      problem:
-        "Security project tracking was scattered across spreadsheets and email threads across several engineering divisions, with no shared view of status or ownership.",
-      whatIBuilt:
-        "A Canvas-app intake wizard (validation, draft/submit/review-style states, admin queue) backed by SharePoint, plus a Power BI dashboard that turns the same data into cross-division reporting for leadership.",
-      architecture:
-        "Power Apps Canvas front end → SharePoint Online lists as the backend → Power Automate flows for notifications and approvals → Power BI, DAX, and Power Query for the reporting layer.",
-      keyFeatures: [
-        "Multi-step intake with validation and a dark, SOC-style UI",
-        "Role-based admin dashboard with an integrated ticketing workflow",
-        "Cross-division drill-through reporting with scheduled refresh",
-        "Cross-tenant .msapp packaging",
-      ],
-      challenges:
-        ".msapp packages don't repack or import cleanly across different tenant environments by default — solved the cross-tenant deployment problem so the same app could ship without breaking internal references.",
-      whatILearned:
-        "Power Platform ALM in practice — packaging, versioning, cross-tenant deploys — and how to gather consistent requirements from stakeholders across divisions that don't agree on terminology.",
     },
   },
   {
@@ -163,42 +203,6 @@ export const featuredProjects = [
     },
   },
   {
-    id: "llm-onboarding-agent",
-    title: "LLM Onboarding Agent",
-    category: "AI Security",
-    status: "case-study",
-    summary:
-      "An AI onboarding assistant built at an internal AI hackathon, designed to answer new cybersecurity hires' procedural questions from an internal knowledge base instead of routing every one of them to a senior engineer.",
-    tech: ["LLM Integration", "Prompt Engineering", "Knowledge Base Retrieval"],
-    highlights: [
-      "System prompts tuned for cybersecurity domain knowledge transfer",
-      "Conversational flows mapped to the questions new hires actually repeat",
-      "Answers sourced from an internal procedures knowledge base",
-      "Feedback loop driving iterative prompt refinement",
-    ],
-    links: { github: "https://github.com/michealswolski/365-whitepaper-agent" },
-    disclaimer:
-      "Public-facing case study. No confidential company information, internal data, source code, or proprietary material is disclosed.",
-    detail: {
-      problem:
-        "Onboarding a new cybersecurity team member meant senior engineers answering the same procedural questions over and over — expensive for them, and slow for the person waiting on an answer.",
-      whatIBuilt:
-        "A conversational onboarding assistant that handles the repeated procedural questions directly, grounded in the team's own documented procedures, with anything it can't answer falling through to a human.",
-      architecture:
-        "An LLM front end over a set of domain-tuned system prompts, reading from the internal procedures knowledge base rather than from model memory — so answers track the documentation instead of drifting from it.",
-      keyFeatures: [
-        "Domain-specific system prompt design for security procedures",
-        "Conversational flows for the highest-frequency onboarding questions",
-        "Knowledge-base lookups for procedural answers",
-        "Structured feedback loop for refining prompts against real usage",
-      ],
-      challenges:
-        "Designing an assistant that handles sensitive procedural knowledge responsibly — being deliberate about what it should answer confidently, and what it should hand to a person instead of guessing at.",
-      whatILearned:
-        "Enterprise prompt engineering is mostly scoping, not wording: the useful work was deciding which questions the assistant owns and which ones it must escalate.",
-    },
-  },
-  {
     id: "document-analyzer-ai",
     title: "Document Analyzer AI",
     category: "Enterprise Apps",
@@ -231,6 +235,43 @@ export const featuredProjects = [
         "Choosing deterministic, rule-based extraction over an LLM call so results stay explainable and reproducible with zero API cost — the repo documents how LLM-based extraction could be added later as an opt-in.",
       whatILearned:
         'How much of "document AI" trust comes from traceability — showing the source sentence — rather than the extraction method itself.',
+    },
+  },
+  {
+    id: "llm-onboarding-agent",
+    tier: "additional",
+    title: "LLM Onboarding Agent",
+    category: "AI Security",
+    status: "case-study",
+    summary:
+      "An AI onboarding assistant built at an internal AI hackathon, designed to answer new cybersecurity hires' procedural questions from an internal knowledge base instead of routing every one of them to a senior engineer.",
+    tech: ["LLM Integration", "Prompt Engineering", "Knowledge Base Retrieval"],
+    highlights: [
+      "System prompts tuned for cybersecurity domain knowledge transfer",
+      "Conversational flows mapped to the questions new hires actually repeat",
+      "Answers sourced from an internal procedures knowledge base",
+      "Feedback loop driving iterative prompt refinement",
+    ],
+    links: { github: "https://github.com/michealswolski/365-whitepaper-agent" },
+    disclaimer:
+      "Public-facing case study. No confidential company information, internal data, source code, or proprietary material is disclosed.",
+    detail: {
+      problem:
+        "Onboarding a new cybersecurity team member meant senior engineers answering the same procedural questions over and over — expensive for them, and slow for the person waiting on an answer.",
+      whatIBuilt:
+        "A conversational onboarding assistant that handles the repeated procedural questions directly, grounded in the team's own documented procedures, with anything it can't answer falling through to a human.",
+      architecture:
+        "An LLM front end over a set of domain-tuned system prompts, reading from the internal procedures knowledge base rather than from model memory — so answers track the documentation instead of drifting from it.",
+      keyFeatures: [
+        "Domain-specific system prompt design for security procedures",
+        "Conversational flows for the highest-frequency onboarding questions",
+        "Knowledge-base lookups for procedural answers",
+        "Structured feedback loop for refining prompts against real usage",
+      ],
+      challenges:
+        "Designing an assistant that handles sensitive procedural knowledge responsibly — being deliberate about what it should answer confidently, and what it should hand to a person instead of guessing at.",
+      whatILearned:
+        "Enterprise prompt engineering is mostly scoping, not wording: the useful work was deciding which questions the assistant owns and which ones it must escalate.",
     },
   },
   {
@@ -390,7 +431,7 @@ export const secondaryGroups = [
   {
     id: "security-labs",
     title: "Security Labs",
-    note: "Hands-on lab work — build the environment, run the attack or the scan, then fix what it found.",
+    note: "Documented hands-on lab work across detection, vulnerability management, network security, system hardening, and application security. Depth of published artifacts varies by lab — each links to what it actually contains.",
     projects: [
       {
         id: "homelab-vuln-management",
@@ -562,7 +603,7 @@ export const SECURITY_DOMAINS = [
   {
     name: "Automotive & Embedded",
     color: "var(--cat-automotive)",
-    ids: ["obd2-diagnostic-scanner", "secure-boot-research"],
+    ids: ["automotive-ecu-lab", "obd2-diagnostic-scanner", "secure-boot-research"],
   },
   {
     name: "AI Agent Security",

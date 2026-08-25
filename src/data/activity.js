@@ -30,4 +30,9 @@ export const activity = {
   lastPush: "2026-08-10",
   generatedAt: "2026-08-24",
   source: "github-api",
+  // True in the committed copy, false in the file the build regenerates. When
+  // the API can't be reached the deploy falls back to this copy, and a "last
+  // push" date from whenever it was last committed is worse than no date at
+  // all — so the Proof section hides that line whenever this is true.
+  stale: true,
 };

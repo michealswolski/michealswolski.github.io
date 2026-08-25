@@ -2,7 +2,7 @@ import { useCallback, useRef } from "react";
 import { profile, getHeroStats } from "../data/profile";
 import { totalProjectCount } from "../data/projects";
 import HeroBackground from "../components/HeroBackground";
-import CredentialCard from "../components/CredentialCard";
+import SecurityConsole from "../components/SecurityConsole";
 import SecurityEmblem from "../components/SecurityEmblem";
 import CanWave from "../components/CanWave";
 import { IconArrowRight, IconDownload, IconGitHub, IconLinkedIn } from "../components/Icons";
@@ -109,11 +109,15 @@ export default function Hero() {
           </dl>
         </div>
 
-        <aside className="hero-panel" aria-label="Security credential badge">
+        <aside className="hero-panel" aria-label="What I build">
           <div className="hero-panel-seal" aria-hidden="true">
-            <SecurityEmblem variant="watermark" size={480} />
+            <SecurityEmblem variant="watermark" size={520} />
           </div>
-          <CredentialCard />
+          <SecurityConsole />
+          <p className="visually-hidden">
+            Secure boot and CAN bus controls on the vehicle side, prompt-injection scoring and human approval on the AI
+            agent side, and detection rules on the monitoring side.
+          </p>
         </aside>
 
         {/* Its own row inside the flex container rather than a sibling of it,
