@@ -254,6 +254,27 @@ test("the hero's cycling roles and credential text are present", () => {
   assert.equal(profile.roles[0].text, profile.identity);
 
   assert.equal(profile.motto.length, 3);
-  for (const value of Object.values(profile.credential)) assert.ok(value.trim(), "a credential field is empty");
   assert.ok(profile.shell.command.startsWith("./"), "the hero prompt should run something");
+});
+
+test("the hero console is complete and labelled as illustrative", () => {
+  const { title, note, lines } = profile.console;
+  assert.ok(title.trim() && note.trim(), "the console needs a title and a note");
+  // The numbers in it are invented. If the disclaimer ever goes missing the
+  // panel reads as telemetry, which is the one thing this site does not do.
+  assert.match(note, /[Ii]llustrative/, "the console note must say the log is illustrative");
+
+  const levels = new Set(["ok", "warn", "act"]);
+  for (const line of lines) {
+    assert.ok(levels.has(line.level), `console line has unknown level "${line.level}"`);
+    assert.match(line.time, /^\d{2}:\d{2}:\d{2}$/, "console timestamps should look like times");
+    assert.ok(line.tag.trim() && line.text.trim(), "a console line is missing its tag or text");
+  }
+  // The point of the panel is that it spans all three lanes at once.
+  for (const level of levels) {
+    assert.ok(
+      lines.some((l) => l.level === level),
+      `no console line at level "${level}"`
+    );
+  }
 });

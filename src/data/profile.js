@@ -1,15 +1,15 @@
 export const profile = {
   name: "Micheal Wolski",
-  // Automotive/product cybersecurity is the primary lane, with embedded, AI
-  // agent security, and security automation as the supporting specialisations.
-  // Full-stack stays visible in the skills and projects, but as an engineering
-  // capability rather than a third professional identity.
+  // Cybersecurity is the identity. Automotive/embedded and AI agent security
+  // are the two lanes inside it, in that order, with detection and response
+  // as the third. Full-stack stays visible in the skills and projects, but as
+  // an engineering capability rather than a professional identity.
   // The Bosch internship deliberately does NOT lead the hero; it's a past role
   // and belongs in Experience, not in the first sentence someone reads.
-  identity: "Automotive & Product Cybersecurity",
-  focusAreas: ["Embedded Security", "AI Agent Security", "Security Automation"],
+  identity: "Cybersecurity Engineer",
+  focusAreas: ["Automotive & Embedded Security", "AI Agent Security", "Detection & Response"],
   heroSummary:
-    "Automotive and product cybersecurity engineer — vehicle and embedded security, secure boot, and the software and AI-security tooling around it. Product security background at Bosch Mobility.",
+    "Cybersecurity engineer — automotive and embedded security, AI agent security, and the detection and tooling work around both. Product security background at Bosch Mobility.",
   // The one-line promise. Carried over from the profile README so the two
   // read as the same person's work.
   tagline: "Security that survives contact with production — not just the threat model.",
@@ -22,32 +22,40 @@ export const profile = {
   // if the cycle never runs — reduced motion, no CSS animation — this is what
   // stays on screen, so it has to be the strongest one on its own.
   roles: [
-    { text: "Automotive & Product Cybersecurity", detail: "secure by construction" },
-    { text: "Embedded Security", detail: "CAN / UDS / secure boot" },
+    { text: "Cybersecurity Engineer", detail: "secure by construction" },
+    { text: "Automotive & Embedded Security", detail: "CAN / UDS / secure boot" },
     { text: "AI Agent Security", detail: "guardrails, audit trails, human approval" },
-    { text: "Security Automation", detail: "detection, tooling, ship the whole system" },
+    { text: "Detection & Response", detail: "SIEM tuning, log automation, vuln management" },
   ],
   shell: {
     host: "micheal@secops — zsh",
     command: "./whoami --role engineer --scope full",
   },
-  // Flavour text for the credential badge in the hero. Ornamental — the badge
-  // is aria-hidden, and every fact it shows also appears in readable form in
-  // the status bar, the hero stats, or About.
-  credential: {
-    id: "MW-0xC5",
-    clearance: "ENGINEER",
-    status: "ACTIVE",
-    region: "MI · USA",
-    focus: "AUTOMOTIVE · EMBEDDED · AI AGENTS",
-    serial: "MW · EMU · MI · USA",
+  // The hero console. Every line describes a control one of the projects on
+  // this page actually implements — but the timestamps and numbers are made
+  // up, so it is labelled illustrative on screen and never presented as
+  // telemetry. Inventing measurements and passing them off as real is the one
+  // thing the rest of this site refuses to do.
+  console: {
+    title: "secops — control pipeline",
+    note: "Illustrative: the shape of the controls behind the projects below, not live telemetry.",
+    lines: [
+      { time: "09:41:02", level: "ok", tag: "BOOT", text: "chain of trust verified: ROM to app" },
+      { time: "09:41:02", level: "ok", tag: "CAN", text: "SecOC freshness ok, 0 replays" },
+      { time: "09:41:03", level: "warn", tag: "CAN", text: "0x7DF flood, 214 frames/s" },
+      { time: "09:41:03", level: "act", tag: "GATE", text: "rate limit applied at gateway" },
+      { time: "09:41:05", level: "ok", tag: "AGENT", text: "trace 1038: 6 tool calls scored" },
+      { time: "09:41:05", level: "warn", tag: "AGENT", text: "prompt-injection 0.82 on write_file" },
+      { time: "09:41:06", level: "act", tag: "GATE", text: "held for human approval" },
+      { time: "09:41:08", level: "ok", tag: "SIEM", text: "brute-force rule fired, src blocked" },
+    ],
   },
   availability: "Full-time · on-site, hybrid, or remote",
   aboutParagraphs: [
-    "I'm a cybersecurity engineer based in Michigan, working in automotive and product security. My focus is the embedded computers inside vehicles — how they boot, how they talk to each other, and what an attacker does with either. I graduated from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense, after an A.A.S. in Computer Information Systems from Henry Ford College.",
-    "During a Product Cybersecurity internship at Bosch Mobility I worked inside that lifecycle: researching secure boot for automotive ECUs — chain-of-trust verification and TPM-based attestation — and shipping an intake and reporting platform used across multiple engineering divisions, replacing spreadsheet tracking of security work with a shared system of record.",
+    "I'm a cybersecurity engineer based in Michigan. Most of my work sits in two places: the embedded computers inside vehicles — how an ECU boots, how ECUs talk to each other, and what an attacker does with either — and the AI agents that are starting to take real actions on real systems. I graduated from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense, after an A.A.S. in Computer Information Systems from Henry Ford College.",
+    "During a Product Cybersecurity internship at Bosch Mobility I worked inside the automotive product-security lifecycle: researching secure boot for automotive ECUs — chain-of-trust verification and TPM-based attestation — and shipping an intake and reporting platform used across multiple engineering divisions, replacing spreadsheet tracking of security work with a shared system of record.",
     "Around that, most of my security background comes from building rather than reading: home-lab intrusion detection, SIEM tuning, offensive-security labs, and full detect-to-remediate vulnerability management cycles. On the software side I've built a governance layer that scores AI agent traces for prompt injection and gates risky actions behind a human, and document tooling that traces every extracted value back to the sentence it came from. The through-line is the one that matters in product security: a system you can audit beats a system you have to trust.",
-    "I'm looking for full-time work in automotive and product cybersecurity, embedded security, and adjacent security engineering roles.",
+    "I'm looking for full-time work in cybersecurity engineering — automotive and embedded security, AI agent security, and detection and response roles.",
   ],
   currentlyExploring: [
     "ISO/SAE 21434 TARA practice",

@@ -8,7 +8,7 @@
 
   `variant="watermark"` drops the padlock and the motto and leaves only the
   rings — used behind the hero panel, where a full emblem would compete with
-  the credential badge sitting on top of it.
+  the console sitting on top of it.
 */
 
 const CX = 120;

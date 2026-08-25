@@ -20,17 +20,17 @@ so the two read as one body of work rather than two unrelated pages. Everything
 below was rebuilt in the page rather than embedded as an image, so it scales,
 themes, and stays selectable:
 
-| Device                                                                                                     | Where it lives      |
-| ---------------------------------------------------------------------------------------------------------- | ------------------- |
-| Terminal chrome — window controls, `micheal@secops — zsh`, a typed `./whoami` and a blinking caret         | `Hero`              |
-| Gradient-animated name over a rule that draws itself in                                                    | `Hero`              |
-| Cycling role line, `>`-prefixed                                                                            | `Hero`              |
-| Status bar — pulsing "open to work", location, availability, scrolling CAN 500 kbps waveform               | `Hero` / `CanWave`  |
-| Lanyard security credential — LED, hex monogram, field grid, chip, barcode with a scanning bar, holo sweep | `CredentialCard`    |
-| Rotating security seal — counter-rotating rings, radar sweep, hex shield, padlock                          | `SecurityEmblem`    |
-| Animated section rule — gradient hairline, twinkling ticks, travelling pulse                               | `SectionDivider`    |
-| Shell-prompt section eyebrows (`$ ls -la ~/projects`)                                                      | `SectionHeader`     |
-| `Trust · Verify · Ship` sign-off                                                                           | `Contact`, `Footer` |
+| Device                                                                                                                        | Where it lives      |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| Terminal chrome — window controls, `micheal@secops — zsh`, a typed `./whoami` and a blinking caret                            | `Hero`              |
+| Gradient-animated name over a rule that draws itself in                                                                       | `Hero`              |
+| Cycling role line, `>`-prefixed                                                                                               | `Hero`              |
+| Status bar — pulsing "open to work", location, availability, scrolling CAN 500 kbps waveform                                  | `Hero` / `CanWave`  |
+| Security console — a detect → decide → act log that streams and loops, spanning secure boot, CAN, agent traces and detections | `SecurityConsole`   |
+| Rotating security seal — counter-rotating rings, radar sweep, hex shield, padlock                                             | `SecurityEmblem`    |
+| Animated section rule — gradient hairline, twinkling ticks, travelling pulse                                                  | `SectionDivider`    |
+| Shell-prompt section eyebrows (`$ ls -la ~/projects`)                                                                         | `SectionHeader`     |
+| `Trust · Verify · Ship` sign-off                                                                                              | `Contact`, `Footer` |
 
 Two rules keep all of it safe:
 
@@ -38,10 +38,16 @@ Two rules keep all of it safe:
   set, the global rule collapses every animation to its end state — the command
   is fully typed, the badge hangs straight, the first role is the one on screen.
   Nothing that matters is only visible mid-animation.
-- **Ornament is ornament.** The terminal, the credential badge, the seal and the
+- **Ornament is ornament.** The terminal, the console log, the seal and the
   waveform are `aria-hidden`. Every fact any of them shows also appears in
   readable form elsewhere on the page, so a screen reader gets the content once
-  rather than twice.
+  rather than twice — the console is paired with a single sentence saying what
+  it demonstrates, because eight streaming log lines read aloud are worse than
+  the point.
+- **Invented numbers are labelled.** The hero console shows timestamps and counts
+  that are made up. Every line describes a control a project on this page really
+  implements, but the panel says in plain text that it is illustrative rather
+  than telemetry, and a test fails the build if that disclaimer goes missing.
 
 ## Features
 
@@ -62,7 +68,7 @@ Two rules keep all of it safe:
 
 ```
 src/
-  components/     # Navbar, ProjectCard, ProjectModal, SkillChip, CredentialCard,
+  components/     # Navbar, ProjectCard, ProjectModal, SkillChip, SecurityConsole,
                   # SecurityEmblem, SectionDivider, CanWave, GlyphIcon, etc.
   sections/       # Hero, About, Experience, FeaturedProjects, Proof, Skills, Education, Contact
   data/           # profile, experience, education, skills, projects, activity — content lives here
@@ -119,8 +125,9 @@ unique project ids, every skill `evidence` id resolving to a real project,
 category and security-domain colours existing as tokens in `tokens.css`, every
 project belonging to exactly one security domain, screenshot files being
 present, status values coming from the controlled list, only private projects
-omitting a repository link, and the hero's first cycling role matching the
-stated identity — since that one is the resting state when the cycle is off.
+omitting a repository link, the hero's first cycling role matching the stated
+identity — since that one is the resting state when the cycle is off — and the
+hero console carrying its illustrative-not-telemetry disclaimer.
 
 CI (`.github/workflows/ci.yml`) runs those on every pull request, plus an
 axe-core audit across both themes at two breakpoints on both the home page and
