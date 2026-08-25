@@ -64,6 +64,11 @@ async function main() {
     lastPush: lastPush ? lastPush.slice(0, 10) : null,
     generatedAt: new Date().toISOString().slice(0, 10),
     source: "github-api",
+    // This file was written by a successful fetch, so the dates in it are
+    // current. The committed fallback carries stale: true, and the Proof
+    // section hides its "last push" line rather than showing a date that has
+    // been sitting in git since whenever it was last committed.
+    stale: false,
   };
 
   writeFileSync(OUT, render(data));

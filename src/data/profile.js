@@ -16,7 +16,7 @@ export const profile = {
   // The lead-in on the README's About block. Sharper than the biographical
   // paragraphs below it, so the site uses it as the pull quote above them.
   leadIn:
-    "I build systems where the security controls are part of the product, not a document filed next to it — firmware trust chains that hold up on a bench, detections that fire on real traffic, and governance layers that actually block a bad agent call.",
+    "I build systems where the security controls are part of the product, not a document filed next to it — secure-boot and trust-chain designs grounded in automotive architectures, detections built around real traffic, and governance layers that gate risky agent actions.",
   motto: ["Trust", "Verify", "Ship"],
   // Cycled under the name in the hero. The first entry is the resting state:
   // if the cycle never runs — reduced motion, no CSS animation — this is what
@@ -57,11 +57,15 @@ export const profile = {
     "Around that, most of my security background comes from building rather than reading: home-lab intrusion detection, SIEM tuning, offensive-security labs, and full detect-to-remediate vulnerability management cycles. On the software side I've built a governance layer that scores AI agent traces for prompt injection and gates risky actions behind a human, and document tooling that traces every extracted value back to the sentence it came from. The through-line is the one that matters in product security: a system you can audit beats a system you have to trust.",
     "I'm looking for full-time work in cybersecurity engineering — automotive and embedded security, AI agent security, and detection and response roles.",
   ],
+  // Leads with the automotive lab: it is the current build and the strongest
+  // signal for the roles being targeted. AI agent governance stays a selected
+  // project rather than the defining "currently building" line.
   currentlyExploring: [
+    "Automotive ECU Cybersecurity Lab",
+    "Secure boot & AUTOSAR SecOC",
     "ISO/SAE 21434 TARA practice",
-    "Automotive SecOC / secure boot",
-    "AI agent governance patterns",
-    "Prompt-injection detection",
+    "ECU key lifecycle",
+    "In-vehicle network defence",
   ],
   // Metro Detroit rather than the exact suburb: recruiters get the location
   // signal they need, it reads as a recognisable market, and it doesn't publish

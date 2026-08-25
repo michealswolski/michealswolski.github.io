@@ -41,13 +41,15 @@ export default function Proof() {
   }, []);
 
   const languageTotal = activity.languages.reduce((n, l) => n + l.count, 0);
-  const lastPush = formatDate(activity.lastPush);
+  // Only ever shown when the build actually reached the API. The committed
+  // fallback is marked stale, and a date that has been sitting in git for weeks
+  // is worse than no date: it reads as live proof of activity and isn't.
+  const lastPush = activity.stale ? null : formatDate(activity.lastPush);
 
   const stats = [
     { value: testTotal, label: "Passing tests across public projects", note: "counted from their test suites" },
     { value: sourceCount, label: "Projects with published source", note: "implementation, not just a README" },
     { value: domains.length, label: "Security domains covered", note: "automotive through AI security" },
-    { value: activity.publicRepos, label: "Public repositories", note: "live from GitHub" },
   ];
 
   return (
@@ -123,7 +125,10 @@ export default function Proof() {
               )}
 
               <div className="proof-meta mono">
-                {lastPush && <span>Last push {lastPush}</span>}
+                <span>
+                  {activity.publicRepos} public repositories
+                  {lastPush && ` · last push ${lastPush}`}
+                </span>
                 <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="proof-meta-link">
                   <IconGitHub size={13} />
                   View on GitHub
