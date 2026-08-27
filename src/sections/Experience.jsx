@@ -8,6 +8,8 @@ export default function Experience() {
       <div className="container">
         <SectionHeader
           command="cat experience.md"
+          glyph="stack"
+          accent="warning"
           title="Work Experience"
           subtitle="A Product Cybersecurity internship at an automotive Tier 1 supplier, plus earlier operations work."
         />

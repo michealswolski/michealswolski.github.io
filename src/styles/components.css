@@ -772,11 +772,34 @@
 }
 
 /* ── About ─────────────────────────────────────────────────────── */
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 56px;
+  align-items: start;
+}
 .about-body {
-  max-width: 760px;
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+.about-rail {
+  position: sticky;
+  top: calc(var(--nav-h) + 28px);
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+@media (max-width: 1000px) {
+  .about-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+  .about-rail {
+    position: static;
+  }
 }
 .about-body p {
   font-size: 15.5px;
@@ -795,9 +818,6 @@
 }
 
 .about-exploring {
-  margin-top: 8px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -886,9 +906,9 @@
 }
 .experience-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
   align-items: start;
-  gap: 20px;
+  gap: 26px 40px;
   margin-bottom: 24px;
 }
 .experience-category h4 {
@@ -1444,8 +1464,7 @@
   max-width: 48ch;
 }
 
-.contact-motto,
-.footer-motto {
+.contact-motto {
   display: flex;
   justify-content: center;
   gap: 16px;
@@ -1455,16 +1474,10 @@
   text-transform: uppercase;
   color: var(--accent);
 }
-.contact-motto span + span::before,
-.footer-motto span + span::before {
+.contact-motto span + span::before {
   content: "·";
   margin-right: 16px;
   color: var(--text-dim);
-}
-.footer-motto {
-  margin-bottom: 22px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
 }
 
 /* ── Skill badges ──────────────────────────────────────────────── */
@@ -1975,7 +1988,7 @@
   color: var(--text-dim);
   border-left: 2px solid var(--accent-border);
   padding-left: 12px;
-  margin-top: 10px;
+  margin: 10px 0 28px;
   max-width: 78ch;
 }
 

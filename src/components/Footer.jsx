@@ -1,17 +1,17 @@
+import BrandMark from "./BrandMark";
 import { profile } from "../data/profile";
 
 export default function Footer() {
   const year = "2025–2026";
   return (
     <footer className="site-footer">
-      <p className="footer-motto mono">
-        {profile.motto.map((word) => (
-          <span key={word}>{word}</span>
-        ))}
-      </p>
       <div className="site-footer-inner">
-        <span className="brand" style={{ fontSize: 15 }}>
-          Micheal<span className="brand-dot">.</span>
+        <span className="brand brand--sm">
+          <BrandMark size={26} id="footer-brand" />
+          <span className="brand-word">
+            Micheal
+            <span className="brand-dot" aria-hidden="true" />
+          </span>
         </span>
         <span className="footer-note">© {year} Micheal Wolski · React + Vite · GitHub Pages</span>
         <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="footer-link">

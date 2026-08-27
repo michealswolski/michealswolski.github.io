@@ -3,6 +3,7 @@ import { useActiveSection } from "../hooks/useActiveSection";
 import ThemeToggle from "./ThemeToggle";
 import { IconMenu, IconClose } from "./Icons";
 import { profile } from "../data/profile";
+import BrandMark from "./BrandMark";
 
 const NAV_ITEMS = [
   { id: "about", label: "About" },
@@ -38,25 +39,11 @@ export default function Navbar({ theme, onToggleTheme, isSubPage = false, onNavi
     <header className={`navbar${scrolled ? " scrolled" : ""}`}>
       <div className="navbar-inner">
         <a href={isSubPage ? home : "#home"} className="brand" onClick={isSubPage ? onNavigateHome : undefined}>
-          <span className="brand-mark" aria-hidden="true">
-            <svg width="16" height="18" viewBox="0 0 16 18" fill="none">
-              <path
-                d="M8 1.5L2 4V8.5C2 12 4.5 15.2 8 16.5C11.5 15.2 14 12 14 8.5V4L8 1.5Z"
-                fill="rgba(4,34,43,0.35)"
-                stroke="#04222b"
-                strokeWidth="1.25"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M5.5 9.2L7.2 11L10.8 7.5"
-                stroke="#04222b"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+          <BrandMark />
+          <span className="brand-word">
+            Micheal
+            <span className="brand-dot" aria-hidden="true" />
           </span>
-          Micheal<span className="brand-dot">.</span>
         </a>
 
         <nav className="nav-links" aria-label="Primary">
