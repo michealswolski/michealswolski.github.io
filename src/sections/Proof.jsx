@@ -57,6 +57,8 @@ export default function Proof() {
       <div className="container">
         <SectionHeader
           command="./stats --source github"
+          glyph="chip"
+          accent="success"
           title="Proof of Work"
           subtitle="Depth rather than volume. Counts come from this page's own project data and from GitHub at build time — not screenshots of a dashboard."
         />
@@ -75,7 +77,10 @@ export default function Proof() {
           <div className="proof-panels">
             <div className="proof-panel">
               <h3 className="proof-panel-title">Where the work sits</h3>
-              <p className="proof-panel-sub">Every project on this page, grouped by security domain.</p>
+              <p className="proof-panel-sub">
+                Every project on this page, grouped by security domain. Two lanes, one discipline — the threat model
+                changes, the rigour does not.
+              </p>
               <ul className="proof-bars">
                 {domains.map((d) => (
                   <li key={d.name} className="proof-bar-row" style={{ "--cat": d.color }}>

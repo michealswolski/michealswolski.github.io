@@ -155,6 +155,14 @@ section[id] {
   background: linear-gradient(90deg, var(--accent), transparent);
 }
 
+/* ── Section lead ──────────────────────────────────────────────── */
+/* Divider, eyebrow and heading are one unit. Previously each carried its own
+   margin on top of the section's padding, so every section opened with about
+   110px of nothing before the first mark on the page. */
+.section-lead {
+  --sec: var(--accent);
+}
+
 /* ── Section rule ──────────────────────────────────────────────── */
 /* The animated divider the profile README puts between sections: a gradient
    hairline, evenly spaced ticks, and a pulse travelling along it. Lives inside
@@ -162,10 +170,10 @@ section[id] {
    and lines up with the content beside it. */
 .rule {
   position: relative;
-  height: 26px;
-  /* Pulled up into the section's own top padding: the rule marks the seam
-     between sections, so it should sit near it rather than float in the gap. */
-  margin: -24px 0 26px;
+  height: 20px;
+  /* Pulled well up into the section's own top padding: the rule marks the seam
+     between sections, so it belongs near it rather than floating in the gap. */
+  margin: -46px 0 18px;
 }
 .rule-line,
 .rule-ticks,
@@ -178,20 +186,13 @@ section[id] {
   top: 50%;
   height: 1.4px;
   margin-top: -0.7px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent) 18%,
-    var(--accent2) 50%,
-    var(--success) 82%,
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--accent) 18%, var(--sec) 50%, var(--success) 82%, transparent);
   opacity: 0.7;
 }
 .rule-ticks {
   top: calc(50% - 4px);
   height: 8px;
-  background-image: repeating-linear-gradient(90deg, var(--accent) 0 1.4px, transparent 1.4px 90px);
+  background-image: repeating-linear-gradient(90deg, var(--sec) 0 1.4px, transparent 1.4px 90px);
   opacity: 0.3;
   animation: ruleTwinkle 3.4s ease-in-out infinite;
 }
@@ -209,7 +210,7 @@ section[id] {
 .rule-pulse {
   top: calc(50% - 6px);
   height: 12px;
-  background-image: radial-gradient(circle, var(--accent-strong) 0, transparent 62%);
+  background-image: radial-gradient(circle, var(--sec) 0, transparent 62%);
   background-repeat: no-repeat;
   background-size: 14px 12px;
   animation: rulePulse 6s cubic-bezier(0.55, 0, 0.45, 1) infinite;
@@ -226,23 +227,38 @@ section[id] {
 /* The shell-prompt variant. Drops the gradient tick the plain eyebrow uses —
    the "$" is the marker here. */
 .eyebrow--term {
-  gap: 7px;
+  gap: 8px;
   letter-spacing: 0.04em;
   text-transform: none;
   font-size: 12px;
   color: var(--text-dim);
+  margin-bottom: 12px;
 }
 .eyebrow--term::before {
   content: none;
 }
+/* Tinted square rather than a bare icon: at 14px an outline mark needs a
+   surface behind it to hold its own beside the type. */
+.eyebrow-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-right: 2px;
+  border-radius: 8px;
+  color: var(--sec);
+  background: color-mix(in srgb, var(--sec) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sec) 28%, transparent);
+}
 .eyebrow-sigil {
-  color: var(--success);
+  color: var(--sec);
   font-weight: 700;
 }
 
 .section-head {
   max-width: 680px;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
 .section-title {
@@ -486,18 +502,30 @@ button:hover .icon-arrow {
   color: var(--text);
   letter-spacing: -0.01em;
 }
-.brand-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow: 0 4px 14px rgba(63, 217, 242, 0.35);
+.brand-mark-svg {
+  flex-shrink: 0;
+  overflow: visible;
+  filter: drop-shadow(0 2px 8px color-mix(in srgb, var(--accent) 30%, transparent));
 }
+.brand-word {
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+}
+/* A drawn dot rather than a typed period: the display face gives "." a wide
+   left bearing, which read as a spacing bug next to the wordmark. Nested in
+   the word so it sits on the text baseline rather than the mark's. */
 .brand-dot {
-  color: var(--accent);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-left: 3px;
+  flex-shrink: 0;
+}
+.brand--sm {
+  font-size: 15px;
+  gap: 8px;
 }
 
 .nav-links {
