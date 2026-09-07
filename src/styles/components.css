@@ -1,269 +1,62 @@
 /* ── Hero ──────────────────────────────────────────────────────── */
+/* Deliberately quiet: a single static background wash, no looping
+   animation anywhere in view except the one-line role cycle and the
+   small "open to work" dot — everything else is static so the page reads
+   as put-together rather than busy on first paint. */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: 88vh;
   display: flex;
   align-items: center;
-  /* Bottom padding clears the status bar for the scroll cue, which is
-     absolutely positioned against the section's bottom edge. */
-  padding: calc(var(--nav-h) + 44px) 0 108px;
+  /* Bottom padding clears the scroll cue, which is absolutely positioned
+     against the section's bottom edge. */
+  padding: calc(var(--nav-h) + 56px) 0 108px;
   overflow: hidden;
 }
 
 .hero-inner {
   position: relative;
   z-index: 1;
-  display: flex;
-  gap: 56px;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
 .hero-main {
-  flex: 1 1 480px;
-  max-width: 720px;
+  max-width: 700px;
 }
 
+/* Two soft, static corner washes. No blur filter, no motion — just enough
+   colour to keep the page from feeling flat. */
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  overflow: hidden;
   pointer-events: none;
+  background:
+    radial-gradient(60% 55% at 12% -6%, var(--accent-soft), transparent 65%),
+    radial-gradient(50% 45% at 100% 105%, var(--accent2-soft), transparent 65%);
 }
 
-.hero-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.5;
-  will-change: transform;
-}
-.hero-blob--a {
-  top: -12%;
-  left: -8%;
-  width: 52vmax;
-  height: 52vmax;
-  background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
-  animation: heroDriftA 24s ease-in-out infinite alternate;
-}
-.hero-blob--b {
-  bottom: -14%;
-  right: -10%;
-  width: 42vmax;
-  height: 42vmax;
-  background: radial-gradient(circle, var(--accent2-soft) 0%, transparent 70%);
-  animation: heroDriftB 28s ease-in-out infinite alternate;
-}
-@keyframes heroDriftA {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(5%, 7%) scale(1.08);
-  }
-}
-@keyframes heroDriftB {
-  0% {
-    transform: translate(0, 0) scale(1.04);
-  }
-  100% {
-    transform: translate(-4%, -5%) scale(0.95);
-  }
-}
-
-.hero-dotgrid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(var(--border-hover) 1px, transparent 1px);
-  background-size: 30px 30px;
-  opacity: 0.25;
-  /* Pans exactly one cell, so the loop is invisible. */
-  animation: heroGridPan 22s linear infinite;
-}
-@keyframes heroGridPan {
-  to {
-    background-position: -30px -30px;
-  }
-}
-
-/* A slow scan sweep down the hero, the way the README's hero SVG has one. Top
-   is animated rather than transform because the travel distance is the
-   container's height, which only a percentage can express here. */
-.hero-scan {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -88px;
-  height: 88px;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    color-mix(in srgb, var(--accent-strong) 20%, transparent),
-    transparent
-  );
-  animation: heroScan 7.5s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-}
-@keyframes heroScan {
-  to {
-    top: 100%;
-  }
-}
-
-/* Moved off the right edge — the console panel and its seal live there now. */
-.hero-circuit {
-  position: absolute;
-  left: -70px;
-  bottom: -20px;
-  color: var(--accent);
-  opacity: 0.05;
-}
-
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(480px circle at var(--mx, 60%) var(--my, 20%), var(--accent-soft), transparent 70%);
-}
-@media (hover: none) {
-  .hero-glow {
-    display: none;
-  }
-}
-
-.term {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 26px;
-  padding: 10px 16px 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  max-width: 100%;
-}
-.term-bar {
+.hero-status {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 7px;
-}
-.term-light {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-/* The window-control colours are the same in both themes on purpose: they are
-   a picture of a terminal, not a use of the site's palette. */
-.term-light--red {
-  background: #ff5f57;
-}
-.term-light--amber {
-  background: #febc2e;
-}
-.term-light--green {
-  background: #28c840;
-}
-.term-host {
-  margin-left: 8px;
-  font-size: 11px;
-  color: var(--text-dim);
-  white-space: nowrap;
-}
-.term-line {
-  display: flex;
-  align-items: baseline;
   gap: 8px;
-  font-size: 13px;
-  color: var(--text-mid);
-  min-width: 0;
+  margin: 0 0 22px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-dim);
 }
-.term-sigil {
-  color: var(--success);
-  font-weight: 600;
-}
-/* clip-path rather than width, so the reveal never reflows the caret beside
-   it. The animation runs backwards-filled: with animations off, the command
-   sits fully typed instead of hidden. */
-.term-cmd {
-  animation: termType 1.45s steps(24, end) 0.35s backwards;
-}
-@keyframes termType {
-  from {
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-.term-caret {
-  width: 7px;
-  height: 14px;
-  flex-shrink: 0;
-  background: var(--accent);
-  opacity: 0;
-  animation: termBlink 1.06s steps(1, end) 1.8s infinite;
-}
-@keyframes termBlink {
-  0%,
-  49% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
+.hero-status-sep {
+  color: var(--text-faint);
 }
 
 .hero-name {
   font-family: var(--font-display);
   font-size: clamp(38px, 6.8vw, 74px);
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  /* Every stop clears AA against both theme backgrounds on its own, so the
-     gradient can never sweep the name into unreadable territory. */
-  background: linear-gradient(
-    100deg,
-    var(--accent-strong) 0%,
-    var(--accent2) 30%,
-    var(--success) 58%,
-    var(--accent) 82%,
-    var(--accent-strong) 100%
-  );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
   color: var(--text);
-  animation: nameFlow 9s linear infinite;
-}
-@supports (-webkit-background-clip: text) {
-  .hero-name {
-    -webkit-text-fill-color: transparent;
-  }
-}
-@keyframes nameFlow {
-  to {
-    background-position: 220% 0;
-  }
-}
-
-.hero-rule {
-  display: block;
-  width: min(300px, 60%);
-  height: 4px;
-  margin: 14px 0 20px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--success) 60%, transparent), transparent);
-  transform-origin: left center;
-  animation: ruleGrow 0.8s var(--ease) 0.9s backwards;
-}
-@keyframes ruleGrow {
-  from {
-    transform: scaleX(0);
-  }
+  margin: 0 0 18px;
 }
 
 /* Every role occupies the same grid cell, so they stack without any of them
@@ -273,7 +66,7 @@
    renderer that ignores the cycle still shows the role that matters most. */
 .hero-roles {
   display: grid;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 .hero-role {
   grid-area: 1 / 1;
@@ -282,20 +75,16 @@
   gap: 8px;
   flex-wrap: wrap;
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.3;
   color: var(--text-mid);
   opacity: 0;
   animation-name: roleCycle;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 .hero-role:first-child {
   opacity: 1;
-}
-.hero-role-sigil {
-  color: var(--accent);
-  font-weight: 700;
 }
 .hero-role-text {
   color: var(--text);
@@ -332,16 +121,13 @@
 }
 
 .hero-tagline {
-  display: inline-block;
-  max-width: 620px;
-  margin-bottom: 22px;
-  padding: 11px 18px;
-  font-size: 14.5px;
+  max-width: 560px;
+  margin: 0 0 18px;
+  padding-left: 14px;
+  font-size: 15px;
   line-height: 1.6;
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--accent-border);
-  border-radius: var(--radius-md);
+  color: var(--text-mid);
+  border-left: 2px solid var(--accent-border);
 }
 
 .hero-summary {
@@ -396,287 +182,9 @@
     padding: 0;
     border-left: none;
   }
-}
-
-/* ── Hero: console panel ───────────────────────────────────────── */
-/* Wider than the badge it replaced: a log line needs the room, and the panel
-   is now the thing the hero is actually showing off. */
-.hero-panel {
-  position: relative;
-  width: 440px;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-}
-/* The rotating seal sits behind the panel rather than beside it: the console
-   is opaque, so the rings read as a halo around it instead of competing. */
-.hero-panel-seal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.85;
-  pointer-events: none;
-}
-/* The global `svg { max-width: 100% }` was clamping the seal to the panel's
-   own width — so the rings that are meant to halo past the panel were being
-   squeezed underneath it and never showed. */
-.hero-panel-seal svg {
-  max-width: none;
-}
-
-.console {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: linear-gradient(160deg, var(--surface), var(--bg-deep));
-  border: 1px solid var(--accent-border);
-  box-shadow: var(--shadow-lg);
-}
-
-.console-bar {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 10px 14px;
-  background: var(--surface-hover);
-  border-bottom: 1px solid var(--border);
-}
-.console-light {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-/* Same as the terminal card: this is a picture of a window, not a use of the
-   site's palette, so the controls keep their own colours in both themes. */
-.console-light--red {
-  background: #ff5f57;
-}
-.console-light--amber {
-  background: #febc2e;
-}
-.console-light--green {
-  background: #28c840;
-}
-.console-title {
-  margin-left: 8px;
-  font-size: 11px;
-  color: var(--text-dim);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.console-log {
-  list-style: none;
-  margin: 0;
-  padding: 14px 16px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-/* Columns rather than spaces, so the status and tag stay in line the way they
-   would in a real log, and a long message wraps under itself instead of under
-   the timestamp. */
-.console-line {
-  display: grid;
-  grid-template-columns: auto auto auto minmax(0, 1fr);
-  align-items: baseline;
-  gap: 0 9px;
-  font-size: 11px;
-  line-height: 1.45;
-  /* Visible at rest: with animations off the whole log is on screen, which is
-     the correct resting state for a log. Only the keyframes hide a line. */
-  opacity: 1;
-  animation-name: consoleLine;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-@keyframes consoleLine {
-  0%,
-  1% {
-    opacity: 0;
-    transform: translateY(3px);
-  }
-  3%,
-  80% {
-    opacity: 1;
-    transform: none;
-  }
-  88%,
-  100% {
-    opacity: 0;
-    transform: none;
-  }
-}
-
-.console-time {
-  color: var(--text-dim);
-}
-.console-level {
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  white-space: pre;
-  color: var(--level, var(--accent));
-}
-.console-tag {
-  font-weight: 600;
-  color: var(--text-dim);
-}
-.console-text {
-  color: var(--text-mid);
-  min-width: 0;
-}
-.console-line--ok {
-  --level: var(--success);
-}
-.console-line--warn {
-  --level: var(--warning);
-}
-.console-line--act {
-  --level: var(--accent);
-}
-
-.console-line--prompt {
-  grid-template-columns: auto;
-  padding-top: 1px;
-}
-.console-caret {
-  display: block;
-  width: 7px;
-  height: 13px;
-  background: var(--accent);
-  animation: termBlink 1.06s steps(1, end) infinite;
-}
-
-.console-note {
-  padding: 0 16px 13px;
-  font-size: 10px;
-  line-height: 1.5;
-  color: var(--text-dim);
-}
-
-/* The timestamp is the least useful column and the widest fixed one, so it is
-   the first thing to go when the panel gets narrow. */
-@media (max-width: 700px) {
-  .console-time {
-    display: none;
-  }
-  .console-line {
-    grid-template-columns: auto auto minmax(0, 1fr);
-  }
-  .console-line--prompt {
-    grid-template-columns: auto;
-  }
-}
-
-/* ── Hero: status bar ──────────────────────────────────────────── */
-.hero-hud {
-  flex: 1 0 100%;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px 0;
-  padding: 12px 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-}
-.hero-hud > * + * {
-  margin-left: 18px;
-  padding-left: 18px;
-  border-left: 1px solid var(--border);
-}
-.hero-hud-status {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: var(--success);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.hero-hud-item {
-  font-size: 11.5px;
-  color: var(--text-dim);
-}
-.hero-hud .canwave {
-  margin-left: auto;
-}
-
-.canwave {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1px;
-}
-.canwave-label {
-  font-size: 8px;
-  letter-spacing: 0.2em;
-  color: var(--text-dim);
-}
-.canwave-svg {
-  width: 200px;
-  height: 22px;
-  overflow: hidden;
-}
-.canwave-track {
-  animation: canScroll 5.5s linear infinite;
-}
-@keyframes canScroll {
-  to {
-    transform: translateX(-200px);
-  }
-}
-
-/* Once the bar wraps, the dividers strand themselves against a line break —
-   the same failure the hero stats had. Below this width it becomes a stack. */
-@media (max-width: 860px) {
-  .hero-hud {
-    gap: 10px 0;
-  }
-  .hero-hud > * + * {
-    margin-left: 0;
-    padding-left: 0;
-    border-left: none;
-  }
-  .hero-hud > * {
-    flex: 1 0 100%;
-  }
-  .hero-hud .canwave {
-    margin-left: 0;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 900px) {
-  .hero-panel {
-    width: 100%;
-  }
-  .hero-panel-seal {
-    opacity: 0.5;
-  }
-}
-
-@media (max-width: 640px) {
-  .term {
-    padding: 9px 13px 11px;
-  }
-  .term-line {
-    font-size: 11.5px;
-  }
-  .term-host {
-    font-size: 10px;
-  }
   .hero-role {
     align-items: flex-start;
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 
