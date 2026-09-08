@@ -27,29 +27,6 @@ export const profile = {
     { text: "AI Agent Security", detail: "guardrails, audit trails, human approval" },
     { text: "Detection & Response", detail: "SIEM tuning, log automation, vuln management" },
   ],
-  shell: {
-    host: "micheal@secops — zsh",
-    command: "./whoami --role engineer --scope full",
-  },
-  // The hero console. Every line describes a control one of the projects on
-  // this page actually implements — but the timestamps and numbers are made
-  // up, so it is labelled illustrative on screen and never presented as
-  // telemetry. Inventing measurements and passing them off as real is the one
-  // thing the rest of this site refuses to do.
-  console: {
-    title: "secops — control pipeline",
-    note: "Illustrative: the shape of the controls behind the projects below, not live telemetry.",
-    lines: [
-      { time: "09:41:02", level: "ok", tag: "BOOT", text: "chain of trust verified: ROM to app" },
-      { time: "09:41:02", level: "ok", tag: "CAN", text: "SecOC freshness ok, 0 replays" },
-      { time: "09:41:03", level: "warn", tag: "CAN", text: "0x7DF flood, 214 frames/s" },
-      { time: "09:41:03", level: "act", tag: "GATE", text: "rate limit applied at gateway" },
-      { time: "09:41:05", level: "ok", tag: "AGENT", text: "trace 1038: 6 tool calls scored" },
-      { time: "09:41:05", level: "warn", tag: "AGENT", text: "prompt-injection 0.82 on write_file" },
-      { time: "09:41:06", level: "act", tag: "GATE", text: "held for human approval" },
-      { time: "09:41:08", level: "ok", tag: "SIEM", text: "brute-force rule fired, src blocked" },
-    ],
-  },
   availability: "Full-time · on-site, hybrid, or remote",
   aboutParagraphs: [
     "I'm a cybersecurity engineer based in Michigan. Most of my work sits in two places: the embedded computers inside vehicles — how an ECU boots, how ECUs talk to each other, and what an attacker does with either — and the AI agents that are starting to take real actions on real systems. I graduated from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense, after an A.A.S. in Computer Information Systems from Henry Ford College.",
