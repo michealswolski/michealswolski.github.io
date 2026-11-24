@@ -53,6 +53,6 @@ export function getHeroStats(projectCount) {
   return [
     { value: "B.S.", label: "Info Assurance & Cyber Defense, 2026" },
     { value: "ECU", label: "Embedded security lab" },
-    { value: String(projectCount), label: "Public projects & labs" },
+    { value: String(projectCount), label: "Projects, labs & case studies" },
   ];
 }

@@ -189,46 +189,6 @@ export const featuredProjects = [
       "Active coursework project — the repository currently holds documentation; code, wiring notes, and sample PID/DTC reads land there as the build progresses.",
   },
   {
-    id: "auto-job-intel",
-    title: "AutoJob Intel",
-    category: "Full Stack",
-    status: "public",
-    screenshot: {
-      src: "/screenshots/auto-job-intel.webp",
-      alt: "AutoJob Intel ranked-matches view showing fit scores, verification badges, and cited requirement evidence",
-    },
-    summary:
-      "A job-search pipeline that only trusts official employer postings — every requirement is cited back to the exact sentence it came from, and every alert is re-verified as still active before it reaches you.",
-    tech: ["Next.js", "React", "TypeScript", "Zod"],
-    highlights: [
-      "Ingest → verify → extract → match → digest pipeline, each stage independently tested",
-      "Explainable 0–100 fit score with matched / gap / unknown skills — no black box",
-      "Status re-verification (verified / uncertain / closed) plus dedupe and change history",
-      "Runs end-to-end with zero external services; 24 passing tests",
-    ],
-    metrics: { tests: 24 },
-    links: { github: "https://github.com/michealswolski/auto-job-intel" },
-    detail: {
-      problem:
-        "Most job boards optimize for volume of listings, not whether they're real, current, or a genuine fit — leading to stale postings and generic keyword matching.",
-      whatIBuilt:
-        "A pipeline that ingests official employer postings, extracts requirements with evidence spans, scores fit transparently, and only surfaces alerts for postings re-verified as still active.",
-      architecture:
-        "fetcher → parser → dedupe → verifier → matcher → digest, orchestrated over a swappable Repository interface (file-backed by default, with a ready-to-use Supabase/Postgres schema).",
-      keyFeatures: [
-        "Search-profile dashboard (locations, skills, role families, remote/stretch tolerance)",
-        "Official-URL or pasted-HTML ingestion with verification evidence",
-        "Ranked matches with cited source sentences behind every requirement",
-        "Saved-jobs pipeline (saved → applied → interview → offer/rejected)",
-        "Deduplicated digest with closed-job corrections",
-      ],
-      challenges:
-        'Keeping fetching/parsing separate from matching so one verified job record can be scored against many profiles, and treating "no fabricated links, no CAPTCHA bypass, no auto-apply" as an explicit trust boundary rather than an afterthought.',
-      whatILearned:
-        "How much of a trustworthy matching tool comes from showing your work — the cited sentence, the verification status — rather than a single confidence score.",
-    },
-  },
-  {
     id: "document-analyzer-ai",
     title: "Document Analyzer AI",
     category: "Enterprise Apps",
@@ -372,41 +332,6 @@ export const featuredProjects = [
       ],
       challenges: "Building a real SSH bridge safely — scoped commands and auth — instead of just shelling out.",
       whatILearned: "Designing a backend that bridges a web UI to a remote shell without turning it into an open door.",
-    },
-  },
-  {
-    id: "swoop",
-    tier: "additional",
-    title: "Swoop",
-    category: "AI / Automation",
-    status: "private",
-    summary:
-      "A self-hosted AI agent that watches for relevant job postings, scores them against a career profile, tailors a resume and cover letter, and waits for human approval before anything is submitted.",
-    tech: ["Python", "FastAPI", "React", "TypeScript", "Claude"],
-    highlights: [
-      "Watches roles and scores them against a configurable career profile",
-      "Tailors a resume and cover letter per posting",
-      "Never submits without explicit human approval",
-      "Triages replies into a pipeline",
-    ],
-    links: {},
-    privateLabel: "Private project — architecture and case study",
-    detail: {
-      problem:
-        "Job searching well takes more consistent effort than most people have time for — tracking postings, tailoring materials, and following up.",
-      whatIBuilt:
-        "A self-hosted agent that watches relevant roles, scores them against a career profile, tailors application materials, and keeps a human in the loop before anything goes out.",
-      architecture:
-        "Python/FastAPI backend orchestrating the agent logic, a React + TypeScript front end for review and approval, self-hosted with local data.",
-      keyFeatures: [
-        "Role scoring against a configurable profile",
-        "Per-posting resume and cover-letter tailoring",
-        "Human-approval gate before submission",
-        "Reply triage pipeline",
-      ],
-      challenges: "Keeping a human approval gate in front of every submission by design, not as an afterthought.",
-      whatILearned:
-        "Where to draw the line between agent autonomy and human sign-off in a workflow with real-world consequences.",
     },
   },
   {
@@ -605,7 +530,6 @@ export const REPOS_WITH_PUBLISHED_SOURCE = new Set([
   "automotive-ecu-lab",
   "autosbom-sentinel",
   "ai-agent-governance",
-  "auto-job-intel",
   "project-database",
   "forecast-ai",
   "document-analyzer-ai",
@@ -636,7 +560,7 @@ export const SECURITY_DOMAINS = [
   {
     name: "AI Agent Security",
     color: "var(--cat-ai-security)",
-    ids: ["ai-agent-governance", "document-analyzer-ai", "llm-onboarding-agent", "swoop"],
+    ids: ["ai-agent-governance", "document-analyzer-ai", "llm-onboarding-agent"],
   },
   {
     name: "Detection & SIEM",
@@ -660,13 +584,6 @@ export const SECURITY_DOMAINS = [
   {
     name: "Full-Stack & Platform",
     color: "var(--cat-fullstack)",
-    ids: [
-      "auto-job-intel",
-      "forecast-ai",
-      "project-database",
-      "wolski-command-center",
-      "meshlink-ios",
-      "network-utility-tool",
-    ],
+    ids: ["forecast-ai", "project-database", "wolski-command-center", "meshlink-ios", "network-utility-tool"],
   },
 ];
