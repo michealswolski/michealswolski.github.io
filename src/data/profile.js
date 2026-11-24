@@ -1,38 +1,22 @@
 export const profile = {
   name: "Micheal Wolski",
-  // Cybersecurity is the identity. Automotive/embedded and AI agent security
-  // are the two lanes inside it, in that order, with detection and response
-  // as the third. Full-stack stays visible in the skills and projects, but as
-  // an engineering capability rather than a professional identity.
-  // The Bosch internship deliberately does NOT lead the hero; it's a past role
-  // and belongs in Experience, not in the first sentence someone reads.
-  identity: "Cybersecurity Engineer",
+  identity: "Product Cybersecurity",
   focusAreas: ["Automotive & Embedded Security", "AI Agent Security", "Detection & Response"],
   heroSummary:
-    "Cybersecurity engineer — automotive and embedded security, AI agent security, and the detection and tooling work around both. Product security background at Bosch Mobility.",
-  // The one-line promise. Carried over from the profile README so the two
-  // read as the same person's work.
-  tagline: "Security that survives contact with production — not just the threat model.",
-  // The lead-in on the README's About block. Sharper than the biographical
-  // paragraphs below it, so the site uses it as the pull quote above them.
+    "I build defensive security tools and simulations for connected vehicles, embedded software, and AI systems.",
+  tagline: "Automotive & embedded security",
   leadIn:
-    "I build systems where the security controls are part of the product, not a document filed next to it — secure-boot and trust-chain designs grounded in automotive architectures, detections built around real traffic, and governance layers that gate risky agent actions.",
+    "My work focuses on making security decisions easier to verify, from firmware trust and software inventory to detection and human approval.",
   motto: ["Trust", "Verify", "Ship"],
-  // Cycled under the name in the hero. The first entry is the resting state:
-  // if the cycle never runs — reduced motion, no CSS animation — this is what
-  // stays on screen, so it has to be the strongest one on its own.
   roles: [
-    { text: "Cybersecurity Engineer", detail: "secure by construction" },
-    { text: "Automotive & Embedded Security", detail: "CAN / UDS / secure boot" },
-    { text: "AI Agent Security", detail: "guardrails, audit trails, human approval" },
-    { text: "Detection & Response", detail: "SIEM tuning, log automation, vuln management" },
+    { text: "Product Cybersecurity", detail: "automotive, embedded, and connected systems" },
+    { text: "AI Agent Security", detail: "audit trails and human approval" },
+    { text: "Detection & Response", detail: "alert triage and evidence correlation" },
   ],
-  availability: "Full-time · on-site, hybrid, or remote",
   aboutParagraphs: [
-    "I'm a cybersecurity engineer based in Michigan. Most of my work sits in two places: the embedded computers inside vehicles — how an ECU boots, how ECUs talk to each other, and what an attacker does with either — and the AI agents that are starting to take real actions on real systems. I graduated from Eastern Michigan University with a B.S. in Information Assurance & Cyber Defense, after an A.A.S. in Computer Information Systems from Henry Ford College.",
-    "During a Product Cybersecurity internship at Bosch Mobility I worked inside the automotive product-security lifecycle: researching secure boot for automotive ECUs — chain-of-trust verification and TPM-based attestation — and shipping an intake and reporting platform used across multiple engineering divisions, replacing spreadsheet tracking of security work with a shared system of record.",
-    "Around that, most of my security background comes from building rather than reading: home-lab intrusion detection, SIEM tuning, offensive-security labs, and full detect-to-remediate vulnerability management cycles. On the software side I've built a governance layer that scores AI agent traces for prompt injection and gates risky actions behind a human, and document tooling that traces every extracted value back to the sentence it came from. The through-line is the one that matters in product security: a system you can audit beats a system you have to trust.",
-    "I'm looking for full-time work in cybersecurity engineering — automotive and embedded security, AI agent security, and detection and response roles.",
+    "I’m based in Metro Detroit and focus on automotive product cybersecurity. My public work includes a simulation-first ECU lab and an embedded Linux software inventory and drift-detection pipeline.",
+    "During my product cybersecurity internship at Bosch Mobility, I researched automotive security topics and built reporting workflows to help teams organize and communicate project information.",
+    "I also build defensive tooling around AI governance, alert investigation, and documentation. My project pages distinguish working implementations from prototypes and research.",
   ],
   // Leads with the automotive lab: it is the current build and the strongest
   // signal for the roles being targeted. AI agent governance stays a selected
@@ -60,7 +44,6 @@ export const profile = {
   // Set to a job-search address to surface an "Email" action in Contact. Left
   // null on purpose: publishing an address is your call, not a default.
   email: null,
-  openToWork: true,
 };
 
 // Kept deliberately short. Each value is verifiable: two from the degree, and
@@ -69,7 +52,7 @@ export const profile = {
 export function getHeroStats(projectCount) {
   return [
     { value: "B.S.", label: "Info Assurance & Cyber Defense, 2026" },
-    { value: "3.66", label: "GPA · Cum Laude" },
+    { value: "ECU", label: "Embedded security lab" },
     { value: String(projectCount), label: "Public projects & labs" },
   ];
 }

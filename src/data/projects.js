@@ -22,38 +22,64 @@ export const featuredProjects = [
     category: "Automotive",
     status: "in-progress",
     summary:
-      "A six-project automotive product-security portfolio — secure boot, AUTOSAR SecOC, ECU key lifecycle, ISO/SAE 21434 TARA, in-vehicle network defence, and firmware-security validation — where each project is specified against a written definition of done before any of it is built.",
+      "Six simulation-first labs for automotive product security, with an implemented secure-boot simulator and published acceptance criteria that distinguish completed work from planned modules.",
     tech: ["Secure Boot", "AUTOSAR SecOC", "ISO/SAE 21434", "CAN / CAN-FD", "Key Management", "Python"],
     highlights: [
-      "Six projects specified: 56 core build phases and 114 acceptance criteria",
-      "0 of 114 criteria met so far — the count is generated from the repository, not asserted here",
-      "Simulation-first and hardware-honest: no ECU, transceiver, HSM, or vehicle is touched",
-      "A labctl CLI checks every capability the portfolio claims and fails the build on one that needs hardware",
+      "Models firmware trust decisions; message authentication is specified, not built",
+      "Publishes acceptance criteria and implementation status alongside each project",
+      "Checks declared lab capabilities in CI",
     ],
     links: { github: "https://github.com/michealswolski/Automotive-ECU-Cybersecurity-Lab-" },
     disclaimer:
-      "In progress. The repository currently holds specifications, build plans, and acceptance criteria — the six implementations are not written yet. Nothing in it is AUTOSAR-conformant, ISO-certified, independently reviewed, or production-grade.",
+      "Personal simulation lab, not vehicle or hardware validation. The repository tracks which acceptance criteria pass. No claim of AUTOSAR conformance, ISO certification, or production readiness.",
     detail: {
       problem:
-        "Automotive product security is a lifecycle, not a feature: threat analysis, secure boot, key management, message authentication, network defence, and firmware validation each need their own answer, and an interviewer wants to see that the pieces fit together rather than six unrelated demos.",
+        "Vehicle security controls span firmware, communications, and engineering processes. A useful lab needs to show what each control does and make the validation boundary explicit.",
       whatIBuilt:
-        "One repository holding six composable projects, each shipped as a complete engineering package before a line of code exists — a technical specification, a phased build plan, and an acceptance list that has to pass before the project counts as done. Writing the definition of done first is the point: it separates building a thing from engineering a thing to a requirement and being able to show it met one.",
+        "A suite of six connected projects with scoped specifications, a phased implementation plan, and a repeatable acceptance checklist.",
       architecture:
-        "Six project directories — secure boot chain simulator, CAN SecOC demo, ECU key lifecycle manager, ISO/SAE 21434 TARA workbench, in-vehicle network security lab, and a firmware-security validation pipeline — designed to plug into each other. A lab.toml manifest records every capability the portfolio claims, and a labctl CLI validates it in CI.",
+        "Secure boot, message authentication, key lifecycle, TARA, in-vehicle defense, and firmware validation share capability manifests and a labctl verification CLI.",
       keyFeatures: [
-        "Specification, build plan, and acceptance criteria per project, written before implementation",
-        "Standards traceability: each project names the document it implements, with the edition pinned and enforced",
-        "Capability manifest that fails the build if a project claims something needing real hardware",
-        "Progress totals generated into the README rather than written by hand",
+        "Software-only secure-boot simulator with published acceptance results",
+        "Checkable requirements and progress",
+        "Documented standards references and hardware limits",
       ],
       securityConsiderations:
-        "The repository states its own limits at the top rather than in a footnote: everything models hardware behaviour in software, and the five capabilities that would need a bench — logic analyzer, JTAG/SWD, a real HSM, a transceiver, a vehicle — are marked as not claimed. Naming the gap before an interviewer finds it is part of the design.",
-      challenges:
-        "Resisting the urge to start coding. Six half-built demos would look busier than six specified ones, but only the second kind can be checked against anything.",
+        "No ECU, vehicle, physical bus or hardware security module is connected to the simulations.",
       whatNext:
-        "Implementation, starting with the secure boot chain simulator and the CAN SecOC demo. Skills move from working knowledge to hands-on on this site only as the acceptance criteria behind them actually pass.",
-      whatILearned:
-        "How much of automotive security work is written down before it is built — and that a definition of done is what makes a portfolio project answerable rather than just demonstrable.",
+        "Extend the implementation across the remaining planned phases and keep the public acceptance checklist current.",
+    },
+  },
+  {
+    id: "autosbom-sentinel",
+    title: "AutoSBOM Sentinel",
+    category: "Automotive",
+    status: "public",
+    summary:
+      "A defensive software-supply-chain pipeline for embedded Linux: generate a component inventory, review vulnerability applicability, and detect changes against a signed baseline.",
+    tech: ["Python", "CycloneDX", "OpenVEX", "Cosign", "Embedded Linux"],
+    highlights: [
+      "Flags unknown component versions instead of silently dropping them",
+      "Requires human approval for proposed vulnerability exceptions",
+      "Checks baseline signatures before reporting runtime drift",
+    ],
+    links: { github: "https://github.com/michealswolski/AutoSBOM-Sentinel" },
+    disclaimer:
+      "Personal portfolio project for public and self-built firmware images. It does not use proprietary automaker firmware or claim production validation.",
+    detail: {
+      problem:
+        "A generic inventory can miss components in embedded firmware, while a raw vulnerability report does not show whether a finding applies to a device configuration.",
+      whatIBuilt:
+        "A staged pipeline for software bills of materials, reviewable vulnerability applicability, and runtime drift detection.",
+      architecture:
+        "Firmware inventory feeds CycloneDX, a policy layer proposes OpenVEX statements for human review, and a reporting layer compares runtime observations against a verified signed baseline.",
+      keyFeatures: [
+        "Embedded Linux inventory with explicit unknown versions",
+        "Human-reviewed vulnerability contextualization",
+        "Signed-baseline verification and drift reporting",
+      ],
+      securityConsiderations:
+        "A vulnerability is not automatically dismissed, and an unsigned baseline is not trusted by default.",
     },
   },
   {
@@ -576,6 +602,8 @@ export const secondaryProjects = secondaryGroups.flatMap((g) => g.projects);
 // Projects heading says "source, artifacts, or a labeled case study" rather
 // than claiming every link is inspectable source.
 export const REPOS_WITH_PUBLISHED_SOURCE = new Set([
+  "automotive-ecu-lab",
+  "autosbom-sentinel",
   "ai-agent-governance",
   "auto-job-intel",
   "project-database",
@@ -603,7 +631,7 @@ export const SECURITY_DOMAINS = [
   {
     name: "Automotive & Embedded",
     color: "var(--cat-automotive)",
-    ids: ["automotive-ecu-lab", "obd2-diagnostic-scanner", "secure-boot-research"],
+    ids: ["automotive-ecu-lab", "autosbom-sentinel", "obd2-diagnostic-scanner", "secure-boot-research"],
   },
   {
     name: "AI Agent Security",

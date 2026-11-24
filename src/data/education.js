@@ -4,14 +4,12 @@ export const education = [
     school: "Eastern Michigan University",
     location: "Ypsilanti, Michigan",
     status: "Graduated 2026",
-    honors: "Cum Laude · GPA 3.66",
   },
   {
-    degree: "A.A.S. Computer Information Systems",
+    degree: "A.A.S. Cyber Security",
     school: "Henry Ford College",
     location: "Dearborn, Michigan",
     status: "Graduated May 2023",
-    honors: "Dean's List · GPA 3.90",
   },
 ];
 

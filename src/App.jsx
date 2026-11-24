@@ -99,9 +99,9 @@ export default function App() {
         {route.name === "home" && (
           <>
             <Hero />
+            <FeaturedProjects skillFilter={skillFilter} onClearSkillFilter={clearSkillFilter} linkTo={linkTo} />
             <About />
             <Experience />
-            <FeaturedProjects skillFilter={skillFilter} onClearSkillFilter={clearSkillFilter} linkTo={linkTo} />
             <Proof />
             <Skills activeSkill={skillFilter} onSelectSkill={selectSkill} />
             <Education />

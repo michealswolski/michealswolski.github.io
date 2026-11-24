@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
 import ProjectCard from "../components/ProjectCard";
 import ProjectModal from "../components/ProjectModal";
-import { featuredProjects, secondaryGroups, secondaryProjects, CATEGORY_COLORS } from "../data/projects";
+import { featuredProjects, secondaryGroups, CATEGORY_COLORS } from "../data/projects";
 import { skillEvidenceMap } from "../data/skills";
 import { IconArrowUpRight, IconClose } from "../components/Icons";
 import { projectPath } from "../hooks/useRoute";
@@ -55,8 +55,8 @@ export default function FeaturedProjects({ skillFilter, onClearSkillFilter, link
           command="ls -la ~/projects"
           glyph="grid"
           accent="accent2"
-          title="What I've Built"
-          subtitle={`${featuredProjects.length + secondaryProjects.length} projects and labs. Every one links to public source, published engineering artifacts, or a clearly labeled technical case study — and which of those it is, is stated rather than implied.`}
+          title="Selected work"
+          subtitle="Defensive tools, simulations, and case studies. Open a project to see what it implements, how it was validated, and where its limits are."
         />
 
         {skillFilter ? (
