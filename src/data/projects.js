@@ -22,38 +22,64 @@ export const featuredProjects = [
     category: "Automotive",
     status: "in-progress",
     summary:
-      "A six-project automotive product-security portfolio — secure boot, AUTOSAR SecOC, ECU key lifecycle, ISO/SAE 21434 TARA, in-vehicle network defence, and firmware-security validation — where each project is specified against a written definition of done before any of it is built.",
+      "Six simulation-first labs for automotive product security, with an implemented secure-boot simulator and published acceptance criteria that distinguish completed work from planned modules.",
     tech: ["Secure Boot", "AUTOSAR SecOC", "ISO/SAE 21434", "CAN / CAN-FD", "Key Management", "Python"],
     highlights: [
-      "Six projects specified: 56 core build phases and 114 acceptance criteria",
-      "0 of 114 criteria met so far — the count is generated from the repository, not asserted here",
-      "Simulation-first and hardware-honest: no ECU, transceiver, HSM, or vehicle is touched",
-      "A labctl CLI checks every capability the portfolio claims and fails the build on one that needs hardware",
+      "Models firmware trust decisions; message authentication is specified, not built",
+      "Publishes acceptance criteria and implementation status alongside each project",
+      "Checks declared lab capabilities in CI",
     ],
     links: { github: "https://github.com/michealswolski/Automotive-ECU-Cybersecurity-Lab-" },
     disclaimer:
-      "In progress. The repository currently holds specifications, build plans, and acceptance criteria — the six implementations are not written yet. Nothing in it is AUTOSAR-conformant, ISO-certified, independently reviewed, or production-grade.",
+      "Personal simulation lab, not vehicle or hardware validation. The repository tracks which acceptance criteria pass. No claim of AUTOSAR conformance, ISO certification, or production readiness.",
     detail: {
       problem:
-        "Automotive product security is a lifecycle, not a feature: threat analysis, secure boot, key management, message authentication, network defence, and firmware validation each need their own answer, and an interviewer wants to see that the pieces fit together rather than six unrelated demos.",
+        "Vehicle security controls span firmware, communications, and engineering processes. A useful lab needs to show what each control does and make the validation boundary explicit.",
       whatIBuilt:
-        "One repository holding six composable projects, each shipped as a complete engineering package before a line of code exists — a technical specification, a phased build plan, and an acceptance list that has to pass before the project counts as done. Writing the definition of done first is the point: it separates building a thing from engineering a thing to a requirement and being able to show it met one.",
+        "A suite of six connected projects with scoped specifications, a phased implementation plan, and a repeatable acceptance checklist.",
       architecture:
-        "Six project directories — secure boot chain simulator, CAN SecOC demo, ECU key lifecycle manager, ISO/SAE 21434 TARA workbench, in-vehicle network security lab, and a firmware-security validation pipeline — designed to plug into each other. A lab.toml manifest records every capability the portfolio claims, and a labctl CLI validates it in CI.",
+        "Secure boot, message authentication, key lifecycle, TARA, in-vehicle defense, and firmware validation share capability manifests and a labctl verification CLI.",
       keyFeatures: [
-        "Specification, build plan, and acceptance criteria per project, written before implementation",
-        "Standards traceability: each project names the document it implements, with the edition pinned and enforced",
-        "Capability manifest that fails the build if a project claims something needing real hardware",
-        "Progress totals generated into the README rather than written by hand",
+        "Software-only secure-boot simulator with published acceptance results",
+        "Checkable requirements and progress",
+        "Documented standards references and hardware limits",
       ],
       securityConsiderations:
-        "The repository states its own limits at the top rather than in a footnote: everything models hardware behaviour in software, and the five capabilities that would need a bench — logic analyzer, JTAG/SWD, a real HSM, a transceiver, a vehicle — are marked as not claimed. Naming the gap before an interviewer finds it is part of the design.",
-      challenges:
-        "Resisting the urge to start coding. Six half-built demos would look busier than six specified ones, but only the second kind can be checked against anything.",
+        "No ECU, vehicle, physical bus or hardware security module is connected to the simulations.",
       whatNext:
-        "Implementation, starting with the secure boot chain simulator and the CAN SecOC demo. Skills move from working knowledge to hands-on on this site only as the acceptance criteria behind them actually pass.",
-      whatILearned:
-        "How much of automotive security work is written down before it is built — and that a definition of done is what makes a portfolio project answerable rather than just demonstrable.",
+        "Extend the implementation across the remaining planned phases and keep the public acceptance checklist current.",
+    },
+  },
+  {
+    id: "autosbom-sentinel",
+    title: "AutoSBOM Sentinel",
+    category: "Automotive",
+    status: "public",
+    summary:
+      "A defensive software-supply-chain pipeline for embedded Linux: generate a component inventory, review vulnerability applicability, and detect changes against a signed baseline.",
+    tech: ["Python", "CycloneDX", "OpenVEX", "Cosign", "Embedded Linux"],
+    highlights: [
+      "Flags unknown component versions instead of silently dropping them",
+      "Requires human approval for proposed vulnerability exceptions",
+      "Checks baseline signatures before reporting runtime drift",
+    ],
+    links: { github: "https://github.com/michealswolski/AutoSBOM-Sentinel" },
+    disclaimer:
+      "Personal portfolio project for public and self-built firmware images. It does not use proprietary automaker firmware or claim production validation.",
+    detail: {
+      problem:
+        "A generic inventory can miss components in embedded firmware, while a raw vulnerability report does not show whether a finding applies to a device configuration.",
+      whatIBuilt:
+        "A staged pipeline for software bills of materials, reviewable vulnerability applicability, and runtime drift detection.",
+      architecture:
+        "Firmware inventory feeds CycloneDX, a policy layer proposes OpenVEX statements for human review, and a reporting layer compares runtime observations against a verified signed baseline.",
+      keyFeatures: [
+        "Embedded Linux inventory with explicit unknown versions",
+        "Human-reviewed vulnerability contextualization",
+        "Signed-baseline verification and drift reporting",
+      ],
+      securityConsiderations:
+        "A vulnerability is not automatically dismissed, and an unsigned baseline is not trusted by default.",
     },
   },
   {
@@ -161,46 +187,6 @@ export const featuredProjects = [
     },
     inProgressNote:
       "Active coursework project — the repository currently holds documentation; code, wiring notes, and sample PID/DTC reads land there as the build progresses.",
-  },
-  {
-    id: "auto-job-intel",
-    title: "AutoJob Intel",
-    category: "Full Stack",
-    status: "public",
-    screenshot: {
-      src: "/screenshots/auto-job-intel.webp",
-      alt: "AutoJob Intel ranked-matches view showing fit scores, verification badges, and cited requirement evidence",
-    },
-    summary:
-      "A job-search pipeline that only trusts official employer postings — every requirement is cited back to the exact sentence it came from, and every alert is re-verified as still active before it reaches you.",
-    tech: ["Next.js", "React", "TypeScript", "Zod"],
-    highlights: [
-      "Ingest → verify → extract → match → digest pipeline, each stage independently tested",
-      "Explainable 0–100 fit score with matched / gap / unknown skills — no black box",
-      "Status re-verification (verified / uncertain / closed) plus dedupe and change history",
-      "Runs end-to-end with zero external services; 24 passing tests",
-    ],
-    metrics: { tests: 24 },
-    links: { github: "https://github.com/michealswolski/auto-job-intel" },
-    detail: {
-      problem:
-        "Most job boards optimize for volume of listings, not whether they're real, current, or a genuine fit — leading to stale postings and generic keyword matching.",
-      whatIBuilt:
-        "A pipeline that ingests official employer postings, extracts requirements with evidence spans, scores fit transparently, and only surfaces alerts for postings re-verified as still active.",
-      architecture:
-        "fetcher → parser → dedupe → verifier → matcher → digest, orchestrated over a swappable Repository interface (file-backed by default, with a ready-to-use Supabase/Postgres schema).",
-      keyFeatures: [
-        "Search-profile dashboard (locations, skills, role families, remote/stretch tolerance)",
-        "Official-URL or pasted-HTML ingestion with verification evidence",
-        "Ranked matches with cited source sentences behind every requirement",
-        "Saved-jobs pipeline (saved → applied → interview → offer/rejected)",
-        "Deduplicated digest with closed-job corrections",
-      ],
-      challenges:
-        'Keeping fetching/parsing separate from matching so one verified job record can be scored against many profiles, and treating "no fabricated links, no CAPTCHA bypass, no auto-apply" as an explicit trust boundary rather than an afterthought.',
-      whatILearned:
-        "How much of a trustworthy matching tool comes from showing your work — the cited sentence, the verification status — rather than a single confidence score.",
-    },
   },
   {
     id: "document-analyzer-ai",
@@ -346,41 +332,6 @@ export const featuredProjects = [
       ],
       challenges: "Building a real SSH bridge safely — scoped commands and auth — instead of just shelling out.",
       whatILearned: "Designing a backend that bridges a web UI to a remote shell without turning it into an open door.",
-    },
-  },
-  {
-    id: "swoop",
-    tier: "additional",
-    title: "Swoop",
-    category: "AI / Automation",
-    status: "private",
-    summary:
-      "A self-hosted AI agent that watches for relevant job postings, scores them against a career profile, tailors a resume and cover letter, and waits for human approval before anything is submitted.",
-    tech: ["Python", "FastAPI", "React", "TypeScript", "Claude"],
-    highlights: [
-      "Watches roles and scores them against a configurable career profile",
-      "Tailors a resume and cover letter per posting",
-      "Never submits without explicit human approval",
-      "Triages replies into a pipeline",
-    ],
-    links: {},
-    privateLabel: "Private project — architecture and case study",
-    detail: {
-      problem:
-        "Job searching well takes more consistent effort than most people have time for — tracking postings, tailoring materials, and following up.",
-      whatIBuilt:
-        "A self-hosted agent that watches relevant roles, scores them against a career profile, tailors application materials, and keeps a human in the loop before anything goes out.",
-      architecture:
-        "Python/FastAPI backend orchestrating the agent logic, a React + TypeScript front end for review and approval, self-hosted with local data.",
-      keyFeatures: [
-        "Role scoring against a configurable profile",
-        "Per-posting resume and cover-letter tailoring",
-        "Human-approval gate before submission",
-        "Reply triage pipeline",
-      ],
-      challenges: "Keeping a human approval gate in front of every submission by design, not as an afterthought.",
-      whatILearned:
-        "Where to draw the line between agent autonomy and human sign-off in a workflow with real-world consequences.",
     },
   },
   {
@@ -576,8 +527,9 @@ export const secondaryProjects = secondaryGroups.flatMap((g) => g.projects);
 // Projects heading says "source, artifacts, or a labeled case study" rather
 // than claiming every link is inspectable source.
 export const REPOS_WITH_PUBLISHED_SOURCE = new Set([
+  "automotive-ecu-lab",
+  "autosbom-sentinel",
   "ai-agent-governance",
-  "auto-job-intel",
   "project-database",
   "forecast-ai",
   "document-analyzer-ai",
@@ -603,12 +555,12 @@ export const SECURITY_DOMAINS = [
   {
     name: "Automotive & Embedded",
     color: "var(--cat-automotive)",
-    ids: ["automotive-ecu-lab", "obd2-diagnostic-scanner", "secure-boot-research"],
+    ids: ["automotive-ecu-lab", "autosbom-sentinel", "obd2-diagnostic-scanner", "secure-boot-research"],
   },
   {
     name: "AI Agent Security",
     color: "var(--cat-ai-security)",
-    ids: ["ai-agent-governance", "document-analyzer-ai", "llm-onboarding-agent", "swoop"],
+    ids: ["ai-agent-governance", "document-analyzer-ai", "llm-onboarding-agent"],
   },
   {
     name: "Detection & SIEM",
@@ -632,13 +584,6 @@ export const SECURITY_DOMAINS = [
   {
     name: "Full-Stack & Platform",
     color: "var(--cat-fullstack)",
-    ids: [
-      "auto-job-intel",
-      "forecast-ai",
-      "project-database",
-      "wolski-command-center",
-      "meshlink-ios",
-      "network-utility-tool",
-    ],
+    ids: ["forecast-ai", "project-database", "wolski-command-center", "meshlink-ios", "network-utility-tool"],
   },
 ];

@@ -4,7 +4,7 @@
 
 ## Overview
 
-A portfolio built to support a job search in automotive and product cybersecurity, embedded security, and adjacent security engineering. Content is organized around verifiable work: every project links to public source, implementation artifacts, or a clearly labeled technical case study — and which of those it is, is stated rather than implied.
+A professional portfolio focused on automotive product cybersecurity, embedded security, and adjacent defensive engineering. Content is organized around verifiable work: every project links to public source, implementation artifacts, or a clearly labeled technical case study — and which of those it is, is stated rather than implied.
 
 ## Stack
 
@@ -15,39 +15,7 @@ A portfolio built to support a job search in automotive and product cybersecurit
 
 ## Design language
 
-The visual language is deliberately shared with the [profile README](https://github.com/michealswolski/michealswolski),
-so the two read as one body of work rather than two unrelated pages. Everything
-below was rebuilt in the page rather than embedded as an image, so it scales,
-themes, and stays selectable:
-
-| Device                                                                                                                        | Where it lives      |
-| ----------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| Terminal chrome — window controls, `micheal@secops — zsh`, a typed `./whoami` and a blinking caret                            | `Hero`              |
-| Gradient-animated name over a rule that draws itself in                                                                       | `Hero`              |
-| Cycling role line, `>`-prefixed                                                                                               | `Hero`              |
-| Status bar — pulsing "open to work", location, availability, scrolling CAN 500 kbps waveform                                  | `Hero` / `CanWave`  |
-| Security console — a detect → decide → act log that streams and loops, spanning secure boot, CAN, agent traces and detections | `SecurityConsole`   |
-| Rotating security seal — counter-rotating rings, radar sweep, hex shield, padlock                                             | `SecurityEmblem`    |
-| Animated section rule — gradient hairline, twinkling ticks, travelling pulse                                                  | `SectionDivider`    |
-| Shell-prompt section eyebrows (`$ ls -la ~/projects`)                                                                         | `SectionHeader`     |
-| `Trust · Verify · Ship` sign-off                                                                                              | `Contact`, `Footer` |
-
-Two rules keep all of it safe:
-
-- **Every animation has a readable resting state.** With `prefers-reduced-motion`
-  set, the global rule collapses every animation to its end state — the command
-  is fully typed, the badge hangs straight, the first role is the one on screen.
-  Nothing that matters is only visible mid-animation.
-- **Ornament is ornament.** The terminal, the console log, the seal and the
-  waveform are `aria-hidden`. Every fact any of them shows also appears in
-  readable form elsewhere on the page, so a screen reader gets the content once
-  rather than twice — the console is paired with a single sentence saying what
-  it demonstrates, because eight streaming log lines read aloud are worse than
-  the point.
-- **Invented numbers are labelled.** The hero console shows timestamps and counts
-  that are made up. Every line describes a control a project on this page really
-  implements, but the panel says in plain text that it is illustrative rather
-  than telemetry, and a test fails the build if that disclaimer goes missing.
+The portfolio and profile README share a restrained security-engineering aesthetic. The homepage opens with a short introduction and a project index that links straight to the three lead case studies. The full project grid comes before the career history. The introduction is static and stacks on smaller screens; the rest of the site continues to honor the system’s reduced-motion setting.
 
 ## Features
 
@@ -125,10 +93,7 @@ npm run check     # all of the above
 unique project ids, every skill `evidence` id resolving to a real project,
 category and security-domain colours existing as tokens in `tokens.css`, every
 project belonging to exactly one security domain, screenshot files being
-present, status values coming from the controlled list, only private projects
-omitting a repository link, the hero's first cycling role matching the stated
-identity — since that one is the resting state when the cycle is off — and the
-hero console carrying its illustrative-not-telemetry disclaimer.
+present, status values coming from the controlled list, and only private projects omitting a repository link.
 
 CI (`.github/workflows/ci.yml`) runs those on every pull request, plus an
 axe-core audit across both themes at two breakpoints on both the home page and
@@ -157,7 +122,6 @@ Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm ci`, 
 - `--text-faint` fails AA by design and is restricted to `aria-hidden` ornament; anything carrying text uses `--text-dim` or stronger.
 - Brand colours on skill chips are used only as tint, dot, and border — never as text colour — so chips for near-black and near-white brands keep identical text contrast in both themes.
 - No canvas/WebGL effects and no animation libraries; all motion is CSS, gated by `prefers-reduced-motion`.
-- The hero's cycling roles are stacked in a single CSS grid cell rather than positioned absolutely, so the line is exactly as tall as the longest role at any width — no fixed height to outgrow, and no reflow as the cycle advances.
 - Zero runtime third-party requests. Fonts are self-hosted (~132 KB of latin woff2), and React is the only runtime dependency.
 
 ---

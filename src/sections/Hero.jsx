@@ -1,95 +1,71 @@
 import { profile, getHeroStats } from "../data/profile";
 import { totalProjectCount } from "../data/projects";
-import { IconArrowRight, IconDownload, IconGitHub, IconLinkedIn } from "../components/Icons";
+import { IconArrowRight, IconGitHub, IconLinkedIn } from "../components/Icons";
+import { projectPath } from "../hooks/useRoute";
 
 const heroStats = getHeroStats(totalProjectCount);
-
-// One cycle through every role, so each entry's delay can be derived rather
-// than hard-coded.
-const ROLE_HOLD = 4.4;
-const ROLE_CYCLE = profile.roles.length * ROLE_HOLD;
+const highlights = [
+  ["automotive-ecu-lab", "01", "Automotive ECU Cybersecurity Lab", "Firmware trust · simulation"],
+  ["autosbom-sentinel", "02", "AutoSBOM Sentinel", "Software inventory · signed baselines"],
+  ["ai-agent-governance", "03", "AI Agent Governance Dashboard", "Audit trails · human review"],
+];
 
 export default function Hero() {
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero portfolio-hero">
       <div className="hero-bg" aria-hidden="true" />
-
-      <div className="container hero-inner">
+      <div className="container hero-inner portfolio-hero-inner">
         <div className="hero-main">
-          {profile.openToWork && (
-            <p className="hero-status">
-              <span className="dot dot--live" aria-hidden="true" />
-              Open to work
-              <span className="hero-status-sep" aria-hidden="true">
-                ·
-              </span>
-              {profile.location}
-              <span className="hero-status-sep" aria-hidden="true">
-                ·
-              </span>
-              {profile.availability}
-            </p>
-          )}
-
+          <p className="hero-status">
+            <span className="portfolio-kicker-mark" aria-hidden="true" />
+            {profile.location}
+          </p>
           <h1 className="hero-name">{profile.name}</h1>
-
-          {/* The cycle is decoration; this is the copy a screen reader gets. */}
-          <p className="visually-hidden">{profile.roles.map((r) => `${r.text} — ${r.detail}.`).join(" ")}</p>
-          <div className="hero-roles" aria-hidden="true">
-            {profile.roles.map((role, i) => (
-              <p
-                key={role.text}
-                className="hero-role"
-                style={{ animationDelay: `${(i * ROLE_HOLD).toFixed(2)}s`, animationDuration: `${ROLE_CYCLE}s` }}
-              >
-                <span className="hero-role-text">{role.text}</span>
-                <span className="hero-role-detail">{role.detail}</span>
-              </p>
-            ))}
-          </div>
-
-          <p className="hero-tagline">{profile.tagline}</p>
-
+          <p className="portfolio-hero-title">{profile.tagline}</p>
           <p className="hero-summary">{profile.heroSummary}</p>
-
           <div className="hero-cta">
             <a href="#projects" className="btn btn-primary">
-              View Projects
-              <IconArrowRight />
+              Explore projects <IconArrowRight />
             </a>
-            {profile.resumeUrl && (
-              <a href={profile.resumeUrl} className="btn btn-secondary" download>
-                <IconDownload size={15} />
-                Download Résumé
-              </a>
-            )}
-            <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-              <IconGitHub size={15} />
-              GitHub
+            <a href={profile.socials.github} className="btn btn-secondary">
+              <IconGitHub size={15} /> GitHub
             </a>
-            <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-              <IconLinkedIn size={15} />
-              LinkedIn
+            <a href={profile.socials.linkedin} className="btn btn-secondary">
+              <IconLinkedIn size={15} /> LinkedIn
             </a>
           </div>
-
           <dl className="hero-stats">
-            {heroStats.map((s) => (
-              <div key={s.label} className="hero-stat">
-                <dt>{s.value}</dt>
-                <dd>{s.label}</dd>
+            {heroStats.map((stat) => (
+              <div key={stat.label} className="hero-stat">
+                <dt>{stat.value}</dt>
+                <dd>{stat.label}</dd>
               </div>
             ))}
           </dl>
         </div>
+        <aside className="portfolio-index" aria-label="Project highlights">
+          <div className="portfolio-index-header">
+            <h2>Project index</h2>
+            <span className="mono">03 PROJECTS</span>
+          </div>
+          <ol>
+            {highlights.map(([id, number, title, description]) => (
+              <li key={id}>
+                <a href={projectPath(id)}>
+                  <span className="portfolio-index-number mono" aria-hidden="true">
+                    {number}
+                  </span>
+                  <span>
+                    <strong>{title}</strong>
+                    <small>{description}</small>
+                  </span>
+                  <IconArrowRight />
+                </a>
+              </li>
+            ))}
+          </ol>
+        </aside>
       </div>
-
-      <a href="#about" className="scroll-cue" aria-label="Scroll to About section">
-        <span className="scroll-cue-track">
-          <span className="scroll-cue-dot" />
-        </span>
-        <span className="mono">Scroll</span>
-      </a>
     </section>
   );
 }
